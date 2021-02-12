@@ -124,6 +124,8 @@ function redrawBadges(filteredData) {
   xc_total_dist = 0;
   xc_avg_dist = 0;
 
+  total_length = 0;
+
   filteredData.forEach((flight) => {
     totalSeconds += flight.duration;
     flightCount += 1;
@@ -131,7 +133,7 @@ function redrawBadges(filteredData) {
       noIgcSeconds += flight.duration;
       flightNoIGC += 1;
     } else {
-
+      total_length += flight.analysed.trace_length
       if (flight.analysed.maxDistFromTo > max_dist_from_to) {
         max_dist_from_to = flight.analysed.maxDistFromTo;
       }
@@ -195,6 +197,8 @@ function redrawBadges(filteredData) {
     max_dist = '<span class="fs-1">' + max_dist_from_to.toFixed(2) + ' Km</span><p class="fw-lighter"><small>(' + flightNoIGC + ' w/o IGC)</small></p>'
     avg_dist = '<span class="fs-1">' + avg_dist_from_to.toFixed(2) + ' Km</span><p class="fw-lighter"><small>(' + flightNoIGC + ' w/o IGC)</small></p>'
     sum_dist = '<span class="fs-1">' + sum_dist_from_to.toFixed(2) + ' Km</span><p class="fw-lighter"><small>(' + flightNoIGC + ' w/o IGC)</small></p>'
+
+    sum_trace = '<span class="fs-1">' + (total_length / 1000).toFixed(2) + ' Km</span><p class="fw-lighter"><small>(' + flightNoIGC + ' w/o IGC)</small></p>'
   } else {
     avg_xc_dist = '<span class="fs-1">' + xc_avg_dist.toFixed(2) + ' Km</span>'
     max_xc_dist = '<span class="fs-1">' + xc_max_dist.toFixed(2) + ' Km</span>'
@@ -220,6 +224,8 @@ function redrawBadges(filteredData) {
     max_dist = '<span class="fs-1">' + max_dist_from_to.toFixed(2) + ' Km</span>'
     avg_dist = '<span class="fs-1">' + avg_dist_from_to.toFixed(2) + ' Km</span>'
     sum_dist = '<span class="fs-1">' + sum_dist_from_to.toFixed(2) + ' Km</span>'
+
+    sum_trace = '<span class="fs-1">' + (total_length / 1000).toFixed(2) + ' Km</span>'
   }
 
   $('#sum_ffvl_score').html(sum_ffvl_score);
@@ -246,6 +252,8 @@ function redrawBadges(filteredData) {
   $('#max_dist').html(max_dist);
   $('#avg_dist').html(avg_dist);
   $('#sum_dist').html(sum_dist);
+
+  $('#trace_length').html(sum_trace);
 
 }
 
