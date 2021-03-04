@@ -374,7 +374,7 @@ function redrawBadges(filteredData) {
   $('#sum_dist').html(sum_dist);
 
   $('#trace_length').html(sum_trace);
-
+  $('#integration').html(filteredData.integration)
 }
 
 function redrawViz(filteredData) {
