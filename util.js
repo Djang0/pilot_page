@@ -142,7 +142,7 @@ function redrawBadges(filteredData) {
       noIgcSeconds += flight.duration;
       flightNoIGC += 1;
     } else {
-      if (flight.analysed.max_instant_speed > max_speed) {
+      if (flight.analysed.max_instant_speed > max_speed && light.analysed.max_instant_speed <= 75) {
         max_speed = flight.analysed.max_instant_speed;
       }
       if (flight.analysed.max_integ_speed > max_i_speed) {
