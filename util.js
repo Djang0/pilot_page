@@ -177,7 +177,7 @@ function redrawBadges(filteredData) {
       if (flight.analysed.t_max_instant_speed > t_max_speed && flight.analysed.t_max_instant_speed <= 75) {
         t_max_speed = flight.analysed.t_max_instant_speed;
       }
-      if (flight.analysed.max_integ_speed > max_i_speed) {
+      if (flight.analysed.t_max_integ_speed > max_i_speed) {
         t_max_i_speed = flight.analysed.t_max_integ_speed;
       }
 
@@ -374,7 +374,6 @@ function redrawBadges(filteredData) {
   $('#sum_dist').html(sum_dist);
 
   $('#trace_length').html(sum_trace);
-  $('#integration').html(filteredData.integration)
 }
 
 function redrawViz(filteredData) {
