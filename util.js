@@ -153,6 +153,9 @@ function redrawBadges(filteredData) {
   t_sum_speed = 0
   t_sum_i_speed = 0
 
+  max_vario = 0
+  min_vario = 0
+
   filteredData.forEach((flight) => {
     totalSeconds += flight.duration;
     flightCount += 1;
@@ -160,21 +163,27 @@ function redrawBadges(filteredData) {
       noIgcSeconds += flight.duration;
       flightNoIGC += 1;
     } else {
-      if (flight.analysed.max_instant_speed > max_speed && flight.analysed.max_instant_speed <= 75) {
+      if (flight.analysed.max_vario > max_vario) {
+        max_vario = flight.analysed.max_vario;
+      }
+      if (flight.analysed.min_vario < min_vario) {
+        min_vario = flight.analysed.min_vario;
+      }
+      if (flight.analysed.max_instant_speed > max_speed) {
         max_speed = flight.analysed.max_instant_speed;
       }
       if (flight.analysed.max_integ_speed > max_i_speed) {
         max_i_speed = flight.analysed.max_integ_speed;
       }
 
-      if (flight.analysed.g_max_instant_speed > g_max_speed && flight.analysed.g_max_instant_speed <= 75) {
+      if (flight.analysed.g_max_instant_speed > g_max_speed) {
         g_max_speed = flight.analysed.g_max_instant_speed;
       }
       if (flight.analysed.g_max_integ_speed > g_max_i_speed) {
         g_max_i_speed = flight.analysed.g_max_integ_speed;
       }
 
-      if (flight.analysed.t_max_instant_speed > t_max_speed && flight.analysed.t_max_instant_speed <= 75) {
+      if (flight.analysed.t_max_instant_speed > t_max_speed) {
         t_max_speed = flight.analysed.t_max_instant_speed;
       }
       if (flight.analysed.t_max_integ_speed > max_i_speed) {
@@ -257,6 +266,10 @@ function redrawBadges(filteredData) {
     max_speed_h = '<span class="fs-1">' + max_speed.toFixed(2) + ' Km/h</span><p class="fw-lighter"><small>(' + flightNoIGC + ' w/o IGC)</small></p>'
     max_i_speed_h = '<span class="fs-1">' + max_i_speed.toFixed(2) + ' Km/h</span><p class="fw-lighter"><small>(' + flightNoIGC + ' w/o IGC)</small></p>'
 
+    max_vario_h = '<span class="fs-1">' + max_vario.toFixed(2) + ' m/s</span><p class="fw-lighter"><small>(' + flightNoIGC + ' w/o IGC)</small></p>'
+    min_vario_h = '<span class="fs-1">' + min_vario.toFixed(2) + ' m/s</span><p class="fw-lighter"><small>(' + flightNoIGC + ' w/o IGC)</small></p>'
+
+
     avg_xc_dist = '<span class="fs-1">' + xc_avg_dist.toFixed(2) + ' Km</span><p class="fw-lighter"><small>(' + flightNoIGC + ' w/o IGC)</small></p>'
     max_xc_dist = '<span class="fs-1">' + xc_max_dist.toFixed(2) + ' Km</span><p class="fw-lighter"><small>(' + flightNoIGC + ' w/o IGC)</small></p>'
     sum_xc_dist = '<span class="fs-1">' + xc_total_dist.toFixed(2) + ' Km</span><p class="fw-lighter"><small>(' + flightNoIGC + ' w/o IGC)</small></p>'
@@ -299,6 +312,9 @@ function redrawBadges(filteredData) {
     avg_ffvl_score = '<span class="fs-1">' + ffvl_avg_score.toFixed(2) + ' Pts.</span>'
     max_ffvl_score = '<span class="fs-1">' + ffvl_max_score.toFixed(2) + ' Pts.</span>'
     sum_ffvl_score = '<span class="fs-1">' + ffvl_total_score.toFixed(2) + ' Pts.</span>'
+
+    max_vario_h = '<span class="fs-1">' + max_vario.toFixed(2) + ' m/s</span>'
+    min_vario_h = '<span class="fs-1">' + min_vario.toFixed(2) + ' m/s</span>'
 
     alti_baro = '<span class="fs-1">' + maxBaro + ' m</span>'
     alti_gps = '<span class="fs-1">' + maxGPS + ' m</span>'
@@ -372,6 +388,9 @@ function redrawBadges(filteredData) {
   $('#max_dist').html(max_dist);
   $('#avg_dist').html(avg_dist);
   $('#sum_dist').html(sum_dist);
+
+  $('#max_vario').html(max_vario_h);
+  $('#min_vario').html(min_vario_h);
 
   $('#trace_length').html(sum_trace);
 }
