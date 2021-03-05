@@ -156,6 +156,9 @@ function redrawBadges(filteredData) {
   max_vario = 0
   min_vario = 0
 
+  max_vario_i = 0
+  min_vario_i = 0
+
   filteredData.forEach((flight) => {
     totalSeconds += flight.duration;
     flightCount += 1;
@@ -168,6 +171,13 @@ function redrawBadges(filteredData) {
       }
       if (flight.analysed.min_vario < min_vario) {
         min_vario = flight.analysed.min_vario;
+      }
+
+      if (flight.analysed.max_vario_inst > max_vario_i) {
+        max_vario_i = flight.analysed.max_vario_inst;
+      }
+      if (flight.analysed.min_vario_inst < min_vario_i) {
+        min_vario_i = flight.analysed.min_vario_inst;
       }
       if (flight.analysed.max_instant_speed > max_speed) {
         max_speed = flight.analysed.max_instant_speed;
@@ -269,6 +279,8 @@ function redrawBadges(filteredData) {
     max_vario_h = '<span class="fs-1">' + max_vario.toFixed(2) + ' m/s</span><p class="fw-lighter"><small>(' + flightNoIGC + ' w/o IGC)</small></p>'
     min_vario_h = '<span class="fs-1">' + min_vario.toFixed(2) + ' m/s</span><p class="fw-lighter"><small>(' + flightNoIGC + ' w/o IGC)</small></p>'
 
+    max_vario_i_h = '<span class="fs-1">' + max_vario_i.toFixed(2) + ' m/s</span><p class="fw-lighter"><small>(' + flightNoIGC + ' w/o IGC)</small></p>'
+    min_vario_i_h = '<span class="fs-1">' + min_vario_i.toFixed(2) + ' m/s</span><p class="fw-lighter"><small>(' + flightNoIGC + ' w/o IGC)</small></p>'
 
     avg_xc_dist = '<span class="fs-1">' + xc_avg_dist.toFixed(2) + ' Km</span><p class="fw-lighter"><small>(' + flightNoIGC + ' w/o IGC)</small></p>'
     max_xc_dist = '<span class="fs-1">' + xc_max_dist.toFixed(2) + ' Km</span><p class="fw-lighter"><small>(' + flightNoIGC + ' w/o IGC)</small></p>'
@@ -315,6 +327,8 @@ function redrawBadges(filteredData) {
 
     max_vario_h = '<span class="fs-1">' + max_vario.toFixed(2) + ' m/s</span>'
     min_vario_h = '<span class="fs-1">' + min_vario.toFixed(2) + ' m/s</span>'
+    max_vario_i_h = '<span class="fs-1">' + max_vario_i.toFixed(2) + ' m/s</span>'
+    min_vario_i_h = '<span class="fs-1">' + min_vario_i.toFixed(2) + ' m/s</span>'
 
     alti_baro = '<span class="fs-1">' + maxBaro + ' m</span>'
     alti_gps = '<span class="fs-1">' + maxGPS + ' m</span>'
@@ -391,6 +405,9 @@ function redrawBadges(filteredData) {
 
   $('#max_vario').html(max_vario_h);
   $('#min_vario').html(min_vario_h);
+
+  $('#i_max_vario').html(max_vario_i_h);
+  $('#i_min_vario').html(min_vario_i_h);
 
   $('#trace_length').html(sum_trace);
 }
