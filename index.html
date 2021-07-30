@@ -530,23 +530,23 @@
 </div>
     </div>
 </div><!-- row -->
-    
-<!-- Modal -->
+    <!-- Modal -->
 <div class="modal fade" id="mapModal" tabindex="-1" aria-labelledby="map" aria-hidden="true">
-  <div class="modal-dialog modal-fullscreen">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="map_label">Modal title</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div id="mapinsert" class="modal-body">
-        
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-      </div>
+    <div class="modal-dialog modal-fullscreen">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="map_label">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div id="mapwrap" class="modal-body">
+                <div id="mapinsert">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
     <script type="text/javascript">
     $(document).ready(function() {
@@ -566,10 +566,20 @@
             var latlngs = []
             var mymap = null
             $.getJSON(id + ".js", function(fixes) {
-                if (mymap != undefined || mymap != null) {
-                    mymap.off();
-                    mymap.remove();
-                }
+                const mapWrp = document.querySelector('#mapwrap');
+                const map = document.querySelector('#mapinsert');
+
+                //Create a new map element
+                const newMap = document.createElement('div');
+                newMap.setAttribute('id', 'mapinsert');
+
+                // Remove older/previous map element
+                mapWrp.removeChild(map);
+
+                // insert new map element
+                mapWrp.append(newMap);
+
+
                 var flight = filteredData.find(t => t.id === id)
                 for (let fix of fixes) {
                     latlngs.push([fix.lat, fix.lng])
