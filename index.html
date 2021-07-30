@@ -591,7 +591,7 @@
                     shadowSize: [41, 41]
                 });
 
-                L.marker([flight.latTo, light.longTo], { icon: greenIcon }).addTo(mymap);
+                L.marker([flight.latTo, flight.longTo], { icon: greenIcon }).addTo(mymap);
                 L.marker([latlngs[latlngs.length][0], latlngs[latlngs.length][1]], { icon: redIcon }).addTo(mymap);
                 mymap.fitBounds(polyline.getBounds());
                 L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
