@@ -564,12 +564,13 @@
         $('.viewer').click(function() {
             var id = $(this).data('id');
             var latlngs = []
+            var mymap= null
             $.getJSON(id + ".js", function(fixes) {
                 var flight = filteredData.find(t => t.id === id)
                 for (let fix of fixes) {
                     latlngs.push([fix.lat, fix.lng])
                 }
-                var mymap = L.map('mapinsert').setView([flight.latTo, flight.longTo], 13);
+                mymap = L.map('mapinsert').setView([flight.latTo, flight.longTo], 13);
                 var polyline = L.polyline(latlngs, { color: 'red' }).addTo(mymap);
 
 
