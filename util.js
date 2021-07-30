@@ -13,7 +13,7 @@ function secToHms(sec) {
 
 
 function getViewButton(flight_id){
-  return '<a class="nav-link p-2 viewer" data-id="'+flight_id.toString()+'" href="#" target="_blank" rel="noopener"><i class="fas fa-address-card" data-bs-toggle="tooltip" data-bs-placement="bottom" title="view flight"></i></a>'
+  return '<a class="nav-link p-2 viewer" data-id="'+flight_id.toString()+'" href="#"><i class="fas fa-address-card" data-bs-toggle="tooltip" data-bs-placement="bottom" title="view flight"></i></a>'
 
 }
 function redrawWingsFilter(wings) {
