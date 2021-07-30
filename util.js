@@ -13,7 +13,7 @@ function secToHms(sec) {
 
 
 function getViewButton(flight_id){
-  return '<a class="nav-link p-2 viewer" data-id="'+flight_id.toString()+'" href="#" data-bs-toggle="modal" data-bs-target="#mapModal"><i class="fas fa-address-card" data-bs-toggle="tooltip" data-bs-placement="bottom" title="view flight"></i></a>'
+  return '<span><a class="nav-link p-2 viewer" data-id="'+flight_id.toString()+'" href="#" data-bs-toggle="modal" data-bs-target="#mapModal"><i class="far fa-eye" data-bs-toggle="tooltip" data-bs-placement="bottom" title="view flight"></i></a></span>'
 
 }
 function redrawWingsFilter(wings) {
@@ -110,6 +110,10 @@ function redrawBadges(filteredData) {
   flightNoIGC = 0;
   max_dist_from_to = 0;
   sum_dist_from_to = 0;
+  
+  maxGPS_id = 0;
+  maxBaro_id = 0;
+
   maxGPS = 0;
   maxBaro = 0;
 
@@ -163,7 +167,7 @@ function redrawBadges(filteredData) {
 
   max_vario_i = 0
   min_vario_i = 0
-
+  console.log(filteredData)
   filteredData.forEach((flight) => {
     totalSeconds += flight.duration;
     flightCount += 1;
@@ -211,9 +215,12 @@ function redrawBadges(filteredData) {
       }
       if (flight.analysed.maxAltPressure > maxBaro) {
         maxBaro = flight.analysed.maxAltPressure
+        maxBaro_id = flight.id
       }
       if (flight.analysed.maxAltGPS > maxGPS) {
         maxGPS = flight.analysed.maxAltGPS
+        maxGPS_id = flight.id
+      }
       }
 
       if (flight.analysed.xcontest_score > xc_max_score) {
@@ -303,8 +310,8 @@ function redrawBadges(filteredData) {
     max_ffvl_score = '<span class="fs-2">' + ffvl_max_score.toFixed(2) + ' Pts.</span><p class="fw-lighter"><small>(' + flightNoIGC + ' w/o IGC)</small></p>'
     sum_ffvl_score = '<span class="fs-2">' + ffvl_total_score.toFixed(2) + ' Pts.</span><p class="fw-lighter"><small>(' + flightNoIGC + ' w/o IGC)</small></p>'
 
-    alti_gps = '<span class="fs-2">' + maxGPS + ' m</span> <span class="fw-lighter"><small>(' + flightNoIGC + ' w/o IGC)</small></span> '+getViewButton(0);
-    alti_baro = '<span class="fs-2">' + maxBaro + ' m</span> <span class="fw-lighter"><small>(' + flightNoIGC + ' w/o IGC)</small></span>'
+    alti_gps = '<span class="fs-2">' + maxGPS + ' m</span> <span class="fw-lighter"><small>(' + flightNoIGC + ' w/o IGC)</small></span> '+getViewButton(maxGPS_id);
+    alti_baro = '<span class="fs-2">' + maxBaro + ' m</span> <span class="fw-lighter"><small>(' + flightNoIGC + ' w/o IGC)</small></span>'+getViewButton(maxBARO_id);
     duration = '<span class="fs-2">' + secToHms(totalSeconds) + ' </span> <span class="fw-lighter"><small>(' + secToHms(noIgcSeconds) + ' w/o IGC)</small></span>'
     count = '<span class="fs-2">' + flightCount + ' </span> <span class="fw-lighter"><small>(' + flightNoIGC + ' w/o IGC)</small></span>'
 
@@ -335,8 +342,8 @@ function redrawBadges(filteredData) {
     max_vario_i_h = '<span class="fs-2">' + max_vario_i.toFixed(2) + ' m/s</span>'
     min_vario_i_h = '<span class="fs-2">' + min_vario_i.toFixed(2) + ' m/s</span>'
 
-    alti_baro = '<span class="fs-2">' + maxBaro + ' m</span>'
-    alti_gps = '<span class="fs-2">' + maxGPS + ' m</span>'+getViewButton(0);
+    alti_baro = '<span class="fs-2">' + maxBaro + ' m</span>'+getViewButton(maxBaro_id);
+    alti_gps = '<span class="fs-2">' + maxGPS + ' m</span>'++getViewButton(maxGPS_id);
     duration = '<span class="fs-2">' + secToHms(totalSeconds) + ' </span>'
     count = '<span class="fs-2">' + flightCount + ' </span>'
 
