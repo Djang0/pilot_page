@@ -562,8 +562,9 @@
             });
         });
         $('.viewer').click(function() {
-            
-            $.getJSON($(this).data('id')+".js", function(flight) {
+            var id = $(this).data('id');
+            $.getJSON(id + ".js", function(fixes) {
+                var flight = filteredData.find(t => t.id === id)
                 console.log("JSON Data: " + flight);
                 var mymap = L.map('mapinsert').setView([flight.latTo, flight.longTo], 13);
                 L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
