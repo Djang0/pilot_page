@@ -566,25 +566,25 @@
             var latlngs = []
             
             $.getJSON(id + ".js", function(fixes) {
-                var mapWrp = document.querySelector('#mapwrap');
-                var map = document.querySelector('#mapinsert');
+                // var mapWrp = document.querySelector('#mapwrap');
+                // var map = document.querySelector('#mapinsert');
 
-                //Create a new map element
-                var newMap = document.createElement('div');
-                newMap.setAttribute('id', 'mapinsert');
+                // //Create a new map element
+                // var newMap = document.createElement('div');
+                // newMap.setAttribute('id', 'mapinsert');
 
-                // Remove older/previous map element
-                mapWrp.removeChild(map);
+                // // Remove older/previous map element
+                // mapWrp.removeChild(map);
 
-                // insert new map element
-                mapWrp.append(newMap);
+                // // insert new map element
+                // mapWrp.append(newMap);
 
 
                 var flight = filteredData.find(t => t.id === id)
                 for (let fix of fixes) {
                     latlngs.push([fix.lat, fix.lng])
                 }
-                mymap = L.map('mapinsert').setView([flight.latTo, flight.longTo], 13);
+                var vmymap = L.map('mapinsert').setView([flight.latTo, flight.longTo], 13);
                 var polyline = L.polyline(latlngs, { color: 'red' }).addTo(mymap);
 
 
