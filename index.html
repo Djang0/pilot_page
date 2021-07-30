@@ -564,13 +564,13 @@
         $('.viewer').click(function() {
             var id = $(this).data('id');
             var latlngs = []
-            var mymap = null
+            
             $.getJSON(id + ".js", function(fixes) {
-                const mapWrp = document.querySelector('#mapwrap');
-                const map = document.querySelector('#mapinsert');
+                var mapWrp = document.querySelector('#mapwrap');
+                var map = document.querySelector('#mapinsert');
 
                 //Create a new map element
-                const newMap = document.createElement('div');
+                var newMap = document.createElement('div');
                 newMap.setAttribute('id', 'mapinsert');
 
                 // Remove older/previous map element
