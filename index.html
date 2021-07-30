@@ -584,7 +584,7 @@
                 for (let fix of fixes) {
                     latlngs.push([fix.lat, fix.lng])
                 }
-                var vmymap = L.map('mapinsert').setView([flight.latTo, flight.longTo], 13);
+                var mymap = L.map('mapinsert').setView([flight.latTo, flight.longTo], 13);
                 var polyline = L.polyline(latlngs, { color: 'red' }).addTo(mymap);
 
 
