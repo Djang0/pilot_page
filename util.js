@@ -344,7 +344,7 @@ function redrawBadges(filteredData) {
     min_vario_i_h = '<span class="fs-2">' + min_vario_i.toFixed(2) + ' m/s</span>'
 
     alti_baro = '<span class="fs-2">' + maxBaro + ' m</span>'+getViewButton(maxBaro_id);
-    alti_gps = '<span class="fs-2">' + maxGPS + ' m</span>'++getViewButton(maxGPS_id);
+    alti_gps = '<span class="fs-2">' + maxGPS + ' m</span>'+getViewButton(maxGPS_id);
     duration = '<span class="fs-2">' + secToHms(totalSeconds) + ' </span>'
     count = '<span class="fs-2">' + flightCount + ' </span>'
 
