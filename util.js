@@ -167,7 +167,8 @@ function redrawBadges(filteredData) {
 
   max_vario_i = 0
   min_vario_i = 0
-  console.log(filteredData)
+  console.log(filteredData);
+
   filteredData.forEach((flight) => {
     totalSeconds += flight.duration;
     flightCount += 1;
@@ -221,7 +222,7 @@ function redrawBadges(filteredData) {
         maxGPS = flight.analysed.maxAltGPS
         maxGPS_id = flight.id
       }
-      }
+      
 
       if (flight.analysed.xcontest_score > xc_max_score) {
         xc_max_score = flight.analysed.xcontest_score
