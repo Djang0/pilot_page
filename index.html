@@ -139,8 +139,11 @@
     <div class="col-sm-6 col-lg-6 mb-2 mt-2 ">
         <!-- flight-count -->
         <div class="card mx-2">
+            <div class="card-header">
+                Flights count
+            </div>
             <div class="card-body">
-                <h5 class="card-title">Flights count</h5>
+                <!-- <h5 class="card-title">Flights count</h5> -->
                 <p class="card-text" id="count_badge">
                     Some quick example text to build on the card title and make up the bulk of the card's content.
                 </p>
@@ -150,8 +153,11 @@
     <div class="col-sm-6 col-lg-6 mb-2 mt-2 ">
         <!-- air time -->
         <div class="card mx-2">
+            <div class="card-header">
+                Air time
+            </div>
             <div class="card-body">
-                <h5 class="card-title">Air time</h5>
+                <!-- <h5 class="card-title">Air time</h5> -->
                 <p class="card-text" id="air_badge">
                     Some quick example text to build on the card title and make up the bulk of the card's content.
                 </p>
@@ -160,8 +166,11 @@
     </div>
     <div class="col-sm-6 col-lg-6 mb-2 mt-2 ">
         <div class="card mx-2">
+            <div class="card-header">
+                Total traces length
+            </div>
             <div class="card-body">
-                <h5 class="card-title">Total traces length</h5>
+                <!-- <h5 class="card-title">Total traces length</h5> -->
                 <p class="card-text" id="trace_length">
                 </p>
             </div><!-- card-body -->
@@ -171,7 +180,10 @@
         <!-- max alt gps -->
         <div class="card mx-2">
             <div class="card-body">
-                <h5 class="card-title">Altitude max (GPS)</h5>
+                <div class="card-header">
+                Altitude max (GPS)
+            </div>
+                <!-- <h5 class="card-title">Altitude max (GPS)</h5> -->
                 <p class="card-text" id="alti_GPS_badge">
                     Some quick example text to build on the card title and make up the bulk of the card's content.
                 </p>
@@ -182,7 +194,10 @@
         <!-- max alt baro -->
         <div class="card pb-2 mx-2">
             <div class="card-body">
-                <h5 class="card-title">Altitude max (Baro)</h5>
+                <div class="card-header">
+                Altitude max (Baro)
+            </div>
+                <!-- <h5 class="card-title">Altitude max (Baro)</h5> -->
                 <p class="card-text" id="alti_Baro_badge">
                     Some quick example text to build on the card title and make up the bulk of the card's content.
                 </p>
@@ -194,6 +209,9 @@
         <div class="card mx-2">
             <div class="card-header">
                 <h5 class="card-title">Dist. from take-off</h5>
+                
+            </div>
+            <div class="card-body">
                 <ul class="nav nav-tabs card-header-tabs" role="tablist" id="max_dist_tab">
                     <li class="nav-item" role="presentation">
                         <a class="nav-link active" id="tot_dist-tab" data-bs-toggle="tab" href="#sum_dist" role="tab" aria-controls="Total" aria-selected="true">Total</a>
@@ -205,8 +223,6 @@
                         <a class="nav-link" id="avg_dist-tab" data-bs-toggle="tab" href="#avg_dist" role="tab" aria-controls="Avg" aria-selected="true">Avg.</a>
                     </li>
                 </ul>
-            </div>
-            <div class="card-body">
                 <div class="tab-content" id="max_dist_tab_content">
                     <div class="tab-pane fade show active" id="sum_dist" role="tabpanel" aria-labelledby="Total"></div>
                     <div class="tab-pane fade" id="max_dist" role="tabpanel" aria-labelledby="Max"></div>
