@@ -307,7 +307,7 @@
                     <div class="tab-pane fade" id="avg_oa_speed" role="tabpanel" aria-labelledby="Average">avg</div>
                 </div>
             </div>
-            <div class="tab-pane fade" id="gl_speed" role="tabpanel" aria-labelledby="Gliding">
+            <div class="tab-pane fade  p-2" id="gl_speed" role="tabpanel" aria-labelledby="Gliding">
                 <ul class="nav nav-tabs card-header-tabs" role="tablist" id="_gl_speed_tab">
                     <li class="nav-item" role="presentation">
                         <a class="nav-link active" id="max_gl_speed-tab" data-bs-toggle="tab" href="#max_gl_speed" role="tab" aria-controls="Maximum" aria-selected="true">Maximum</a>
@@ -321,7 +321,7 @@
                     <div class="tab-pane fade" id="avg_gl_speed" role="tabpanel" aria-labelledby="Average">avg</div>
                 </div>
             </div>
-            <div class="tab-pane fade" id="th_speed" role="tabpanel" aria-labelledby="Thermalling">
+            <div class="tab-pane fade  p-2" id="th_speed" role="tabpanel" aria-labelledby="Thermalling">
                 <ul class="nav nav-tabs card-header-tabs" role="tablist" id="_th_speed_tab">
                     <li class="nav-item" role="presentation">
                         <a class="nav-link active" id="max_th_speed-tab" data-bs-toggle="tab" href="#max_th_speed" role="tab" aria-controls="Maximum" aria-selected="true">Maximum</a>
@@ -358,7 +358,7 @@
             </li>
         </ul>
         <div class="tab-content" id="i_speed_tab_content">
-            <div class="tab-pane fade show active" id="oa_i_speed" role="tabpanel" aria-labelledby="Overall">
+            <div class="tab-pane fade show active  p-2" id="oa_i_speed" role="tabpanel" aria-labelledby="Overall">
                 <ul class="nav nav-tabs card-header-tabs" role="tablist" id="_oa_i_speed_tab">
                     <li class="nav-item" role="presentation">
                         <a class="nav-link active" id="max_oa_i_speed-tab" data-bs-toggle="tab" href="#max_oa_i_speed" role="tab" aria-controls="Maximum" aria-selected="true">Maximum</a>
@@ -372,7 +372,7 @@
                     <div class="tab-pane fade" id="avg_oa_i_speed" role="tabpanel" aria-labelledby="Average">avg</div>
                 </div>
             </div>
-            <div class="tab-pane fade" id="gl_i_speed" role="tabpanel" aria-labelledby="Gliding">
+            <div class="tab-pane fade  p-2" id="gl_i_speed" role="tabpanel" aria-labelledby="Gliding">
                 <ul class="nav nav-tabs card-header-tabs" role="tablist" id="_gl_i_speed_tab">
                     <li class="nav-item" role="presentation">
                         <a class="nav-link active" id="max_gl_i_speed-tab" data-bs-toggle="tab" href="#max_gl_i_speed" role="tab" aria-controls="Maximum" aria-selected="true">Maximum</a>
@@ -386,7 +386,7 @@
                     <div class="tab-pane fade" id="avg_gl_i_speed" role="tabpanel" aria-labelledby="Average">avg</div>
                 </div>
             </div>
-            <div class="tab-pane fade" id="th_i_speed" role="tabpanel" aria-labelledby="Thermalling">
+            <div class="tab-pane fade  p-2" id="th_i_speed" role="tabpanel" aria-labelledby="Thermalling">
                 <ul class="nav nav-tabs card-header-tabs" role="tablist" id="_th_i_speed_tab">
                     <li class="nav-item" role="presentation">
                         <a class="nav-link active" id="max_th_i_speed-tab" data-bs-toggle="tab" href="#max_th_i_speed" role="tab" aria-controls="Maximum" aria-selected="true">Maximum</a>
@@ -407,111 +407,109 @@
 </div>
         </div>
         <div class="tab-pane fade" id="sco-tab" role="tabpanel" aria-labelledby="sco-tab">
-            <div class="row" data-masonry='{"percentPosition": true }'>
-    <div class="col-sm-6 col-lg-4 mb-4">
-        <!-- with tab -->
-        <div class="card">
-            <div class="card-header">
-                <h5 class="card-title">FFVL Scoring</h5>
-                <ul class="nav nav-tabs card-header-tabs" role="tablist" id="ffvl_score_tab">
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link active" id="tot_fs-tab" data-bs-toggle="tab" href="#sum_ffvl_score" role="tab" aria-controls="Total" aria-selected="true">Total</a>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link" id="max_fs-tab" data-bs-toggle="tab" href="#max_ffvl_score" role="tab" aria-controls="Max" aria-selected="true">Max.</a>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link" id="avg_fs-tab" data-bs-toggle="tab" href="#avg_ffvl_score" role="tab" aria-controls="Avg" aria-selected="true">Avg.</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="card-body">
-                <div class="tab-content" id="ffvl_score_tab_content">
-                    <div class="tab-pane fade show active" id="sum_ffvl_score" role="tabpanel" aria-labelledby="Total"></div>
-                    <div class="tab-pane fade" id="max_ffvl_score" role="tabpanel" aria-labelledby="Max"></div>
-                    <div class="tab-pane fade" id="avg_ffvl_score" role="tabpanel" aria-labelledby="Avg"></div>
-                </div>
-            </div><!-- card-body -->
-        </div><!-- profil card -->
+            <div class="col-sm-6 col-lg-6 mb-2 mt-2 ">
+    <!-- with tab -->
+<div class="card mx-2">
+    <div class="card-header">
+        FVL Scoring
     </div>
-    <div class="col-sm-6 col-lg-4 mb-4">
-        <!-- with tab -->
-        <div class="card">
-            <div class="card-header">
-                <h5 class="card-title">FFVL distance</h5>
-                <ul class="nav nav-tabs card-header-tabs" role="tablist" id="ffvl_dist_tab">
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link active" id="tot_fd-tab" data-bs-toggle="tab" href="#sum_ffvl_dist" role="tab" aria-controls="Total" aria-selected="true">Total</a>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link" id="max_fd-tab" data-bs-toggle="tab" href="#max_ffvl_dist" role="tab" aria-controls="Max" aria-selected="true">Max.</a>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link" id="avg_fd-tab" data-bs-toggle="tab" href="#avg_ffvl_dist" role="tab" aria-controls="Avg" aria-selected="true">Avg.</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="card-body">
-                <div class="tab-content" id="ffvl_dist_tab_content">
-                    <div class="tab-pane fade show active" id="sum_ffvl_dist" role="tabpanel" aria-labelledby="Total"></div>
-                    <div class="tab-pane fade" id="max_ffvl_dist" role="tabpanel" aria-labelledby="Max"></div>
-                    <div class="tab-pane fade" id="avg_ffvl_dist" role="tabpanel" aria-labelledby="Avg"></div>
-                </div>
-            </div><!-- card-body -->
-        </div><!-- profil card -->
+    <div class="card-body">
+        <ul class="nav nav-tabs card-header-tabs" role="tablist" id="ffvl_score_tab">
+            <li class="nav-item" role="presentation">
+                <a class="nav-link active" id="tot_fs-tab" data-bs-toggle="tab" href="#sum_ffvl_score" role="tab" aria-controls="Total" aria-selected="true">Total</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" id="max_fs-tab" data-bs-toggle="tab" href="#max_ffvl_score" role="tab" aria-controls="Max" aria-selected="true">Max.</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" id="avg_fs-tab" data-bs-toggle="tab" href="#avg_ffvl_score" role="tab" aria-controls="Avg" aria-selected="true">Avg.</a>
+            </li>
+        </ul>
+        <div class="tab-content" id="ffvl_score_tab_content">
+            <div class="tab-pane fade show active" id="sum_ffvl_score" role="tabpanel" aria-labelledby="Total"></div>
+            <div class="tab-pane fade" id="max_ffvl_score" role="tabpanel" aria-labelledby="Max"></div>
+            <div class="tab-pane fade" id="avg_ffvl_score" role="tabpanel" aria-labelledby="Avg"></div>
+        </div>
+    </div><!-- card-body -->
+</div><!-- profil card -->
+</div>
+<div class="col-sm-6 col-lg-6 mb-2 mt-2 ">
+    <!-- with tab -->
+<div class="card mx-2">
+    <div class="card-header">
+        FFVL distance
     </div>
-    <div class="col-sm-6 col-lg-4 mb-4">
-        <!-- with tab -->
-        <div class="card">
-            <div class="card-header">
-                <h5 class="card-title">XContest scoring</h5>
-                <ul class="nav nav-tabs card-header-tabs" role="tablist" id="xc_score_tab">
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link active" id="tot_xs-tab" data-bs-toggle="tab" href="#sum_xc_score" role="tab" aria-controls="Total" aria-selected="true">Total</a>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link" id="max_xs-tab" data-bs-toggle="tab" href="#max_xc_score" role="tab" aria-controls="Max" aria-selected="true">Max.</a>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link" id="avg_xs-tab" data-bs-toggle="tab" href="#avg_xc_score" role="tab" aria-controls="Avg" aria-selected="true">Avg.</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="card-body">
-                <div class="tab-content" id="xc_score_tab_content">
-                    <div class="tab-pane fade show active" id="sum_xc_score" role="tabpanel" aria-labelledby="Total"></div>
-                    <div class="tab-pane fade" id="max_xc_score" role="tabpanel" aria-labelledby="Max"></div>
-                    <div class="tab-pane fade" id="avg_xc_score" role="tabpanel" aria-labelledby="Avg"></div>
-                </div>
-            </div><!-- card-body -->
-        </div><!-- profil card -->
+    <div class="card-body">
+        <ul class="nav nav-tabs card-header-tabs" role="tablist" id="ffvl_dist_tab">
+            <li class="nav-item" role="presentation">
+                <a class="nav-link active" id="tot_fd-tab" data-bs-toggle="tab" href="#sum_ffvl_dist" role="tab" aria-controls="Total" aria-selected="true">Total</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" id="max_fd-tab" data-bs-toggle="tab" href="#max_ffvl_dist" role="tab" aria-controls="Max" aria-selected="true">Max.</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" id="avg_fd-tab" data-bs-toggle="tab" href="#avg_ffvl_dist" role="tab" aria-controls="Avg" aria-selected="true">Avg.</a>
+            </li>
+        </ul>
+        <div class="tab-content" id="ffvl_dist_tab_content">
+            <div class="tab-pane fade show active" id="sum_ffvl_dist" role="tabpanel" aria-labelledby="Total"></div>
+            <div class="tab-pane fade" id="max_ffvl_dist" role="tabpanel" aria-labelledby="Max"></div>
+            <div class="tab-pane fade" id="avg_ffvl_dist" role="tabpanel" aria-labelledby="Avg"></div>
+        </div>
+    </div><!-- card-body -->
+</div><!-- profil card -->
+</div>
+<div class="col-sm-6 col-lg-6 mb-2 mt-2 ">
+    <!-- with tab -->
+<div class="card mx-2">
+    <div class="card-header">
+        XContest scoring
     </div>
-    <div class="col-sm-6 col-lg-4 mb-4">
-        <!-- with tab -->
-        <div class="card">
-            <div class="card-header">
-                <h5 class="card-title">XContest distance</h5>
-                <ul class="nav nav-tabs card-header-tabs" role="tablist" id="xc_dist_tab">
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link active" id="tot_xd-tab" data-bs-toggle="tab" href="#sum_xc_dist" role="tab" aria-controls="Total" aria-selected="true">Total</a>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link" id="max_xd-tab" data-bs-toggle="tab" href="#max_xc_dist" role="tab" aria-controls="Max" aria-selected="true">Max.</a>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link" id="avg_xd-tab" data-bs-toggle="tab" href="#avg_xc_dist" role="tab" aria-controls="Avg" aria-selected="true">Avg.</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="card-body">
-                <div class="tab-content" id="xc_dist_tab_content">
-                    <div class="tab-pane fade show active" id="sum_xc_dist" role="tabpanel" aria-labelledby="Total"></div>
-                    <div class="tab-pane fade" id="max_xc_dist" role="tabpanel" aria-labelledby="Max"></div>
-                    <div class="tab-pane fade" id="avg_xc_dist" role="tabpanel" aria-labelledby="Avg"></div>
-                </div>
-            </div><!-- card-body -->
-        </div><!-- profil card -->
+    <div class="card-body">
+        <ul class="nav nav-tabs card-header-tabs" role="tablist" id="xc_score_tab">
+            <li class="nav-item" role="presentation">
+                <a class="nav-link active" id="tot_xs-tab" data-bs-toggle="tab" href="#sum_xc_score" role="tab" aria-controls="Total" aria-selected="true">Total</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" id="max_xs-tab" data-bs-toggle="tab" href="#max_xc_score" role="tab" aria-controls="Max" aria-selected="true">Max.</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" id="avg_xs-tab" data-bs-toggle="tab" href="#avg_xc_score" role="tab" aria-controls="Avg" aria-selected="true">Avg.</a>
+            </li>
+        </ul>
+        <div class="tab-content" id="xc_score_tab_content">
+            <div class="tab-pane fade show active" id="sum_xc_score" role="tabpanel" aria-labelledby="Total"></div>
+            <div class="tab-pane fade" id="max_xc_score" role="tabpanel" aria-labelledby="Max"></div>
+            <div class="tab-pane fade" id="avg_xc_score" role="tabpanel" aria-labelledby="Avg"></div>
+        </div>
+    </div><!-- card-body -->
+</div><!-- profil card -->
+</div>
+<div class="col-sm-6 col-lg-6 mb-2 mt-2 ">
+    <!-- with tab -->
+<div class="card mx-2">
+    <div class="card-header">
+        XContest distance
     </div>
+    <div class="card-body">
+        <ul class="nav nav-tabs card-header-tabs" role="tablist" id="xc_dist_tab">
+            <li class="nav-item" role="presentation">
+                <a class="nav-link active" id="tot_xd-tab" data-bs-toggle="tab" href="#sum_xc_dist" role="tab" aria-controls="Total" aria-selected="true">Total</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" id="max_xd-tab" data-bs-toggle="tab" href="#max_xc_dist" role="tab" aria-controls="Max" aria-selected="true">Max.</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" id="avg_xd-tab" data-bs-toggle="tab" href="#avg_xc_dist" role="tab" aria-controls="Avg" aria-selected="true">Avg.</a>
+            </li>
+        </ul>
+        <div class="tab-content" id="xc_dist_tab_content">
+            <div class="tab-pane fade show active" id="sum_xc_dist" role="tabpanel" aria-labelledby="Total"></div>
+            <div class="tab-pane fade" id="max_xc_dist" role="tabpanel" aria-labelledby="Max"></div>
+            <div class="tab-pane fade" id="avg_xc_dist" role="tabpanel" aria-labelledby="Avg"></div>
+        </div>
+    </div><!-- card-body -->
+</div><!-- profil card -->
 </div>
         </div>
         <div class="tab-pane fade" id="fli-tab" role="tabpanel" aria-labelledby="fli-tab">
