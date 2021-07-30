@@ -167,7 +167,7 @@ function redrawBadges(filteredData) {
 
   max_vario_i = 0
   min_vario_i = 0
-  console.log(filteredData);
+ 
 
   filteredData.forEach((flight) => {
     totalSeconds += flight.duration;
