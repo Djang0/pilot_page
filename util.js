@@ -52,8 +52,8 @@ function redrawTable(filteredData) {
 
     var table = $('#flights_table').DataTable({
       aaSorting: [
-        [0, 'desc'],
-        [1, 'desc']
+        [3, 'desc'],
+        [4, 'desc']
       ],
       data: filteredData,
       responsive: true,
