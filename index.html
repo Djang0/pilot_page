@@ -576,7 +576,7 @@
                 // // insert new map element
                 // mapWrp.append(newMap);
 
-                if(mymap){
+                if($('#mapinsert').hasClass('leaflet-container')){
                     console.log('reset')
                     $('#mapinsert').remove();
                     $( '<div id="mapinsert" class="modal-body"></div>' ).insertAfter( "#before_modal" );
