@@ -559,8 +559,8 @@
             });
         });
         $('.table_viewer').click(function() {
-
-            var id = parseInt('in' + $(this).parent().parent().find('td').eq(5).html());
+            console.log($(this).parent().parent().find('td').eq(5).html())
+            var id = parseInt($(this).parent().parent().find('td').eq(5).html());
             if (id > 0) {
                 var latlngs = []
                 $.getJSON(id + ".js", function(fixes) {
