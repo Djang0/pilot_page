@@ -138,7 +138,7 @@
     <div class="tab-content" id="mainTabContent">
         <div class="tab-pane fade show active" id="glob-tab" role="tabpanel" aria-labelledby="glob-tab">
             <div class="row" data-masonry='{"percentPosition": true }'>
-    <div class="col-sm-6 col-lg-6 mb-2 mt-2 pb-4">
+    <div class="col-sm-6 col-lg-6 mb-2 mt-2">
         <!-- flight-count -->
 <div class="card mx-2">
     <div class="card-header">
@@ -152,7 +152,7 @@
     </div><!-- card-body -->
 </div><!-- profil card -->
     </div>
-    <div class="col-sm-6 col-lg-6 mb-2 mt-2 pb-4">
+    <div class="col-sm-6 col-lg-6 mb-2 mt-2">
        <!-- air time -->
 <div class="card mx-2">
     <div class="card-header">
@@ -166,7 +166,7 @@
     </div><!-- card-body -->
 </div><!-- profil card -->
     </div>
-    <div class="col-sm-6 col-lg-6 mb-2 mt-2 pb-4">
+    <div class="col-sm-6 col-lg-6 mb-2 mt-2">
        <div class="card mx-2">
     <div class="card-header">
         Total traces length
@@ -178,7 +178,7 @@
     </div><!-- card-body -->
 </div><!-- profil card -->
     </div>
-    <div class="col-sm-6 col-lg-6 mb-2 mt-2 pb-4">
+    <div class="col-sm-6 col-lg-6 mb-2 mt-2">
         <!-- max alt gps -->
 <div class="card mx-2">
     <div class="card-header">
@@ -192,7 +192,7 @@
     </div><!-- card-body -->
 </div><!-- profil card -->
     </div>
-    <div class="col-sm-6 col-lg-6 mb-2 mt-2 pb-4">
+    <div class="col-sm-6 col-lg-6 mb-2 mt-2">
         <!-- max alt baro -->
 <div class="card mx-2">
     <div class="card-header">
@@ -206,7 +206,7 @@
     </div><!-- card-body -->
 </div><!-- profil card -->
     </div>
-    <div class="col-sm-6 col-lg-6 mb-2 mt-2 pb-4">
+    <div class="col-sm-6 col-lg-6 mb-2 mt-2">
         <!-- with tab -->
 <div class="card mx-2">
     <div class="card-header">
@@ -536,11 +536,11 @@
         <div class="modal-content">
             <div id="before_modal" class="modal-header">
                 <h5 class="modal-title" id="map_label">Modal title</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close close_modal" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div id="mapinsert" class="modal-body"></div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="close_modal" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
@@ -558,14 +558,17 @@
                 $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
             });
         });
+        $('.close_modal').click(function() {
+            $('#mapinsert').remove();
+            $('<div id="mapinsert" class="modal-body"></div>').insertAfter("#before_modal");
+        })
         $('.table_viewer').click(function() {
             // console.log($(this).parent().parent().find('td').eq(5).html())
             // var id = parseInt($(this).parent().parent().find('td').eq(5).html());
             var currentRow = $(this).closest("tr");
 
             var data = $('#flights_table').DataTable().row(currentRow).data();
-            console.log(data['id']);
-            console.log(data['hasIGC']);
+
             var id = parseInt(data['id']);
             var igc = data['hasIGC'];
             if (igc) {
