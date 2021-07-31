@@ -534,13 +534,11 @@
 <div class="modal fade" id="mapModal" tabindex="-1" aria-labelledby="map" aria-hidden="true">
     <div class="modal-dialog modal-fullscreen">
         <div class="modal-content">
-            <div class="modal-header">
+            <div id="before_modal" class="modal-header">
                 <h5 class="modal-title" id="map_label">Modal title</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div id="mapinsert" class="modal-body">
-                
-            </div>
+            <div id="mapinsert" class="modal-body"></div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>
@@ -578,7 +576,11 @@
                 // // insert new map element
                 // mapWrp.append(newMap);
 
-
+                if(mymap){
+                    console.log('reset')
+                    $('#mapinsert').remove();
+                    $( '<div id="mapinsert" class="modal-body"></div>' ).insertAfter( "#before_modal" );
+                }
                 var flight = filteredData.find(t => t.id === id)
                 for (let fix of fixes) {
                     latlngs.push([fix.lat, fix.lng])
