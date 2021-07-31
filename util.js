@@ -65,6 +65,10 @@ function redrawTable(filteredData) {
           visible:false,
           title: "id"
         },{
+          data: 'hasIGC',
+          visible:false,
+          title: "hasIGC"
+        },{
           data: 'null',
           defaultContent: '<button type="button" class="btn btn-default table_viewer" data-bs-toggle="modal" data-bs-target="#mapModal"><i class="far fa-eye" data-bs-toggle="tooltip" data-bs-placement="bottom" title="view flight"></i></button>'
         },{

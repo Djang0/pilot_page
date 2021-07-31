@@ -559,9 +559,15 @@
             });
         });
         $('.table_viewer').click(function() {
-            console.log($(this).parent().parent().find('td').eq(5).html())
-            var id = parseInt($(this).parent().parent().find('td').eq(5).html());
-            if (id > 0) {
+            // console.log($(this).parent().parent().find('td').eq(5).html())
+            // var id = parseInt($(this).parent().parent().find('td').eq(5).html());
+            var currentRow = $(this).closest("tr");
+
+            var data = $('#flights_table').DataTable().row(currentRow).data();
+            console.log(data['id']);
+            var id = parseInt(data['id']);
+            var igc = parseInt(data['hasIGC']);
+            if (igc) {
                 var latlngs = []
                 $.getJSON(id + ".js", function(fixes) {
 
