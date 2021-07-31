@@ -559,7 +559,8 @@
             });
         });
         $('.table_iewer').click(function() {
-            alert($(this).parents('tr').children('td')[1]);
+            console.log('in'+$(this).parent().parent().children('td')[1])
+            
         });
         $('.viewer').click(function() {
             var id = $(this).data('id');
