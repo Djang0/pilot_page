@@ -563,21 +563,8 @@
             var latlngs = []
             
             $.getJSON(id + ".js", function(fixes) {
-                // var mapWrp = document.querySelector('#mapwrap');
-                // var map = document.querySelector('#mapinsert');
-
-                // //Create a new map element
-                // var newMap = document.createElement('div');
-                // newMap.setAttribute('id', 'mapinsert');
-
-                // // Remove older/previous map element
-                // mapWrp.removeChild(map);
-
-                // // insert new map element
-                // mapWrp.append(newMap);
 
                 if($('#mapinsert').hasClass('leaflet-container')){
-                    console.log('reset')
                     $('#mapinsert').remove();
                     $( '<div id="mapinsert" class="modal-body"></div>' ).insertAfter( "#before_modal" );
                 }
@@ -585,7 +572,7 @@
                 for (let fix of fixes) {
                     latlngs.push([fix.lat, fix.lng])
                 }
-                console.log(flight.latTo+" "+flight.longTo)
+                
                 var mymap = L.map('mapinsert').setView([flight.latTo, flight.longTo], 13);
                 var polyline = L.polyline(latlngs, { color: 'red' }).addTo(mymap);
 
