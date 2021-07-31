@@ -567,7 +567,7 @@
             console.log(data['id']);
             console.log(data['hasIGC']);
             var id = parseInt(data['id']);
-            var igc = parseInt(data['hasIGC']);
+            var igc = data['hasIGC'];
             if (igc) {
                 var latlngs = []
                 $.getJSON(id + ".js", function(fixes) {
