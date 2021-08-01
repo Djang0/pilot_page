@@ -718,10 +718,10 @@
                 // Create axes
                 var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
                 dateAxis.baseInterval = {
-                    "timeUnit": "second",
-                    "count": 1
+                    "timeUnit": "minute",
+                    "count": 10
                 };
-                dateAxis.renderer.minGridDistance = 50;
+               // dateAxis.renderer.minGridDistance = 50;
 
                 var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
 
