@@ -588,172 +588,17 @@
             $('<div id="mapinsert" class="modal-body"></div>').insertAfter("#before_modal");
         })
         $('.table_viewer').click(function() {
-            // console.log($(this).parent().parent().find('td').eq(5).html())
-            // var id = parseInt($(this).parent().parent().find('td').eq(5).html());
             var currentRow = $(this).closest("tr");
-
             var data = $('#flights_table').DataTable().row(currentRow).data();
-
             var id = parseInt(data['id']);
             var igc = data['hasIGC'];
-            if (igc) {
-                var latlngs = []
-                $.getJSON(id + ".js", function(fixes) {
-
-                    if ($('#mapinsert').hasClass('leaflet-container')) {
-                        $('#mapinsert').remove();
-                        $('<div id="mapinsert" class="modal-body"></div>').insertAfter("#before_modal");
-                    }
-                    var flight = filteredData.find(t => t.id === id)
-                    for (let fix of fixes) {
-                        latlngs.push([fix.lat, fix.lng])
-                    }
-
-                    var mymap = L.map('mapinsert').setView([flight.latTo, flight.longTo], 13);
-                    var polyline = L.polyline(latlngs, { color: 'red' }).addTo(mymap);
-
-
-                    var greenIcon = new L.Icon({
-                        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
-                        shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-                        iconSize: [25, 41],
-                        iconAnchor: [12, 41],
-                        popupAnchor: [1, -34],
-                        shadowSize: [41, 41]
-                    });
-
-                    var redIcon = new L.Icon({
-                        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
-                        shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-                        iconSize: [25, 41],
-                        iconAnchor: [12, 41],
-                        popupAnchor: [1, -34],
-                        shadowSize: [41, 41]
-                    });
-
-                    L.marker([flight.latTo, flight.longTo], { icon: greenIcon }).addTo(mymap);
-                    L.marker([latlngs[latlngs.length - 1][0], latlngs[latlngs.length - 1][1]], { icon: redIcon }).addTo(mymap);
-                    mymap.fitBounds(polyline.getBounds());
-                    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
-                        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-                        maxZoom: 18,
-                        id: 'mapbox/outdoors-v11',
-                        tileSize: 512,
-                        zoomOffset: -1,
-                        accessToken: 'pk.eyJ1IjoidXBza3kiLCJhIjoiY2tycWZodGV2MG1oZDJucGZ3MDV5bmNmeCJ9.f0L_kNkjANGRJO9hlpcpvw'
-                    }).addTo(mymap);
-                });
-            } else {
-                $('#mapinsert').html('<H1> There is no IGC data for this flight</H1>');
-            }
+            setViewer(id, igc)
 
         });
+
         $('.viewer').click(function() {
             var id = $(this).data('id');
-            var latlngs = []
-            am4core.ready(function() {
-
-
-                $.getJSON(id + ".js", function(fixes) {
-
-                    // "gpsalt": 1457,
-                    // "pressalt": 1333,
-
-                    if ($('#mapinsert').hasClass('leaflet-container')) {
-                        $('#mapinsert').remove();
-                        $('<div id="mapinsert" class="modal-body"></div>').insertAfter("#before_modal");
-                    }
-                    var alt_data = []
-                    var flight = filteredData.find(t => t.id === id)
-                    for (let fix of fixes) {
-                        latlngs.push([fix.lat, fix.lng]);
-                        alt_data.push({ date: new Date(2018, 3, 20, fix.time.h, fix.time.m, fix.time.s), gpsalt: fix.gpsalt, pressalt: fix.pressalt })
-                    }
-
-                  
-                    var mymap = L.map('mapinsert').setView([flight.latTo, flight.longTo], 13);
-                    var polyline = L.polyline(latlngs, { color: 'red' }).addTo(mymap);
-
-
-                    var greenIcon = new L.Icon({
-                        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
-                        shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-                        iconSize: [25, 41],
-                        iconAnchor: [12, 41],
-                        popupAnchor: [1, -34],
-                        shadowSize: [41, 41]
-                    });
-
-                    var redIcon = new L.Icon({
-                        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
-                        shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-                        iconSize: [25, 41],
-                        iconAnchor: [12, 41],
-                        popupAnchor: [1, -34],
-                        shadowSize: [41, 41]
-                    });
-
-                    L.marker([flight.latTo, flight.longTo], { icon: greenIcon }).addTo(mymap);
-                    L.marker([latlngs[latlngs.length - 1][0], latlngs[latlngs.length - 1][1]], { icon: redIcon }).addTo(mymap);
-                    mymap.fitBounds(polyline.getBounds());
-                    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
-                        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-                        maxZoom: 18,
-                        id: 'mapbox/outdoors-v11',
-                        tileSize: 512,
-                        zoomOffset: -1,
-                        accessToken: 'pk.eyJ1IjoidXBza3kiLCJhIjoiY2tycWZodGV2MG1oZDJucGZ3MDV5bmNmeCJ9.f0L_kNkjANGRJO9hlpcpvw'
-                    }).addTo(mymap);
-
-                    // Themes begin
-                am4core.useTheme(am4themes_animated);
-                // Themes end
-                // Create chart instance
-                let chart = am4core.create("chartdiv", am4charts.XYChart);
-                
-                // alt_data.push({ date: new Date(2018, 3, 20, 13, 30, 25), gpsalt: 1038, pressalt: 991 })
-                // alt_data.push({ date: new Date(2018, 3, 20, 13, 30, 26), gpsalt: 1024, pressalt: 990 })
-                // alt_data.push({ date: new Date(2018, 3, 20, 13, 30, 27), gpsalt: 1038, pressalt: 991 })
-                // alt_data.push({ date: new Date(2018, 3, 20, 13, 30, 28), gpsalt: 1024, pressalt: 990 })
-                chart.data = alt_data
-
-                // Create axes
-                var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
-                // dateAxis.baseInterval = {
-                //     "timeUnit": "minute",
-                //     "count": 10
-                // };
-                // dateAxis.renderer.minGridDistance = 50;
-
-                var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
-                valueAxis.min = 500
-                // Create series
-                var series = chart.series.push(new am4charts.LineSeries());
-                series.dataFields.valueY = "gpsalt";
-                series.dataFields.dateX = "date";
-                series.strokeWidth = 2;
-                series.minBulletDistance = 10;
-                series.tooltipText = "Alt. GPS : {gpsalt}\nAlt. Baro {pressalt}";
-                series.tooltip.pointerOrientation = "vertical";
-
-                // Create series
-                var series2 = chart.series.push(new am4charts.LineSeries());
-                series2.dataFields.valueY = "pressalt";
-                series2.dataFields.dateX = "date";
-                series2.strokeWidth = 2;
-                series2.strokeDasharray = "3,4";
-                series2.stroke = series.stroke;
-
-                // Add cursor
-                chart.cursor = new am4charts.XYCursor();
-                chart.cursor.xAxis = dateAxis;
-                console.log(alt_data)
-                });
-                
-            }); // end am4core.ready()
-
-
-
+            setViewer(id, true);
 
         });
         $('.year_item').click(function() {
