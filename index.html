@@ -577,8 +577,12 @@
 
                 // Create chart instance
                 let chart = am4core.create("chartdiv", am4charts.XYChart);
-                console.log(alt_data)
-                chart.data = []
+                var alt_data = []
+                alt_data.push({ date: new Date(2018, 3, 20, 13, 30, 25), gpsalt: 1038, pressalt: 991 })
+                alt_data.push({ date: new Date(2018, 3, 20, 13, 30, 26), gpsalt: 1024, pressalt: 990})
+                alt_data.push({ date: new Date(2018, 3, 20, 13, 30, 27), gpsalt: 1038, pressalt: 991 })
+                alt_data.push({ date: new Date(2018, 3, 20, 13, 30, 28), gpsalt: 1024, pressalt: 990})
+                chart.data = alt_data
 
                 // Create axes
                 var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
@@ -698,7 +702,7 @@ console.log('done');
             // Add data
 
             // { indix: 0, gpsalt: 50, pressalt: 48 }
-            var alt_data = []
+            
 
             $.getJSON(id + ".js", function(fixes) {
 
@@ -714,10 +718,7 @@ console.log('done');
                     latlngs.push([fix.lat, fix.lng]);
                     //alt_data.push({ date: new Date(2018, 3, 20, fix.time.h, fix.time.m, fix.time.s), gpsalt: fix.gpsalt, pressalt: fix.pressalt })
                 }
-                alt_data.push({ date: new Date(2018, 3, 20, 13, 30, 25), gpsalt: 1038, pressalt: 991 })
-                alt_data.push({ date: new Date(2018, 3, 20, 13, 30, 26), gpsalt: 1024, pressalt: 990})
-                alt_data.push({ date: new Date(2018, 3, 20, 13, 30, 27), gpsalt: 1038, pressalt: 991 })
-                alt_data.push({ date: new Date(2018, 3, 20, 13, 30, 28), gpsalt: 1024, pressalt: 990})
+                
                 chart.data=alt_data;
                 var mymap = L.map('mapinsert').setView([flight.latTo, flight.longTo], 13);
                 var polyline = L.polyline(latlngs, { color: 'red' }).addTo(mymap);
