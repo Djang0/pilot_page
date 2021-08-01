@@ -90,7 +90,9 @@ function setViewer(id, hasIGC) {
                     zoomOffset: -1,
                     accessToken: 'pk.eyJ1IjoidXBza3kiLCJhIjoiY2tycWZodGV2MG1oZDJucGZ3MDV5bmNmeCJ9.f0L_kNkjANGRJO9hlpcpvw'
                 }).addTo(mymap);
-
+L.easyButton('<button type="button" id="button_graph" class="btn btn-default" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"><i class="far fa-eye" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Show altitudes" aria-label="Show altitudes"></i></button>', function(btn, map){
+    
+}).addTo( mymap );
                 // Themes begin
                 am4core.useTheme(am4themes_animated);
                 // Themes end

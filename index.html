@@ -36,6 +36,8 @@
     <script src="https://cdn.amcharts.com/lib/4/core.js"></script>
     <script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
     <script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.css">
+    <script src="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.js"></script>
     <script>
     window.dataLayer = window.dataLayer || [];
 
@@ -547,21 +549,16 @@
                 <!-- Styles -->
 <style>
 #chartdiv {
-  width: 100%;
-  height: 200px;
+    width: 100%;
+    height: 200px;
 }
 </style>
-
-
-
-<!-- Chart code -->
-<script>
-
-</script>
-
-<!-- HTML -->
-<div id="chartdiv"></div>
-
+<div class="collapse" id="collapseExample">
+    <div class="card card-body">
+        <div id="chartdiv"></div>
+        <button type="button" id="button_graph" class="btn btn-default" ><i class="far fa-eye" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Show altitudes" aria-label="Show altitudes"></i></button>
+    </div>
+</div>
                 
                 <button type="button" class="close_modal" class="btn btn-secondary" data-bs-dismiss="modal">Closed</button>
             </div>
