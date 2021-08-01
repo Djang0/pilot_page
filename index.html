@@ -663,10 +663,11 @@
                         $('#mapinsert').remove();
                         $('<div id="mapinsert" class="modal-body"></div>').insertAfter("#before_modal");
                     }
+                    var alt_data = []
                     var flight = filteredData.find(t => t.id === id)
                     for (let fix of fixes) {
                         latlngs.push([fix.lat, fix.lng]);
-                        //alt_data.push({ date: new Date(2018, 3, 20, fix.time.h, fix.time.m, fix.time.s), gpsalt: fix.gpsalt, pressalt: fix.pressalt })
+                        alt_data.push({ date: new Date(2018, 3, 20, fix.time.h, fix.time.m, fix.time.s), gpsalt: fix.gpsalt, pressalt: fix.pressalt })
                     }
 
                   
@@ -709,11 +710,11 @@
                 // Themes end
                 // Create chart instance
                 let chart = am4core.create("chartdiv", am4charts.XYChart);
-                var alt_data = []
-                alt_data.push({ date: new Date(2018, 3, 20, 13, 30, 25), gpsalt: 1038, pressalt: 991 })
-                alt_data.push({ date: new Date(2018, 3, 20, 13, 30, 26), gpsalt: 1024, pressalt: 990 })
-                alt_data.push({ date: new Date(2018, 3, 20, 13, 30, 27), gpsalt: 1038, pressalt: 991 })
-                alt_data.push({ date: new Date(2018, 3, 20, 13, 30, 28), gpsalt: 1024, pressalt: 990 })
+                
+                // alt_data.push({ date: new Date(2018, 3, 20, 13, 30, 25), gpsalt: 1038, pressalt: 991 })
+                // alt_data.push({ date: new Date(2018, 3, 20, 13, 30, 26), gpsalt: 1024, pressalt: 990 })
+                // alt_data.push({ date: new Date(2018, 3, 20, 13, 30, 27), gpsalt: 1038, pressalt: 991 })
+                // alt_data.push({ date: new Date(2018, 3, 20, 13, 30, 28), gpsalt: 1024, pressalt: 990 })
                 chart.data = alt_data
 
                 // Create axes
