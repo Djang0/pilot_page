@@ -669,7 +669,7 @@
                         //alt_data.push({ date: new Date(2018, 3, 20, fix.time.h, fix.time.m, fix.time.s), gpsalt: fix.gpsalt, pressalt: fix.pressalt })
                     }
 
-                    chart.data = alt_data;
+                  
                     var mymap = L.map('mapinsert').setView([flight.latTo, flight.longTo], 13);
                     var polyline = L.polyline(latlngs, { color: 'red' }).addTo(mymap);
 
