@@ -667,7 +667,7 @@
                 var flight = filteredData.find(t => t.id === id)
                 for (let fix of fixes) {
                     latlngs.push([fix.lat, fix.lng]);
-                    alt_data.push({date: new Date(2018, 3, 20, fix.time.h, fix.time.m,fix.time.s), gpsalt: fix.gpsalt, pressalt: fix.pressalt})
+                    alt_data.push({ date: new Date(2018, 3, 20, fix.time.h, fix.time.m, fix.time.s), gpsalt: fix.gpsalt, pressalt: fix.pressalt })
                 }
 
                 var mymap = L.map('mapinsert').setView([flight.latTo, flight.longTo], 13);
@@ -717,14 +717,14 @@
 
                 // Create axes
                 var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
-                dateAxis.baseInterval = {
-                    "timeUnit": "minute",
-                    "count": 10
-                };
-               // dateAxis.renderer.minGridDistance = 50;
+                // dateAxis.baseInterval = {
+                //     "timeUnit": "minute",
+                //     "count": 10
+                // };
+                // dateAxis.renderer.minGridDistance = 50;
 
                 var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
-
+                valueAxis.min = 500
                 // Create series
                 var series = chart.series.push(new am4charts.LineSeries());
                 series.dataFields.valueY = "gpsalt";
