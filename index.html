@@ -569,6 +569,51 @@
     </div>
 </div>
     <script type="text/javascript">
+        am4core.ready(function() {
+
+                // Themes begin
+                am4core.useTheme(am4themes_animated);
+                // Themes end
+
+                // Create chart instance
+                var chart = am4core.create("chartdiv", am4charts.XYChart);
+                console.log(alt_data)
+                chart.data = []
+
+                // Create axes
+                var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
+                // dateAxis.baseInterval = {
+                //     "timeUnit": "minute",
+                //     "count": 10
+                // };
+                // dateAxis.renderer.minGridDistance = 50;
+
+                var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+                valueAxis.min = 500
+                // Create series
+                var series = chart.series.push(new am4charts.LineSeries());
+                series.dataFields.valueY = "gpsalt";
+                series.dataFields.dateX = "date";
+                series.strokeWidth = 2;
+                series.minBulletDistance = 10;
+                series.tooltipText = "Alt. GPS : {gpsalt}\nAlt. Baro {pressalt}";
+                series.tooltip.pointerOrientation = "vertical";
+
+                // Create series
+                var series2 = chart.series.push(new am4charts.LineSeries());
+                series2.dataFields.valueY = "pressalt";
+                series2.dataFields.dateX = "date";
+                series2.strokeWidth = 2;
+                series2.strokeDasharray = "3,4";
+                series2.stroke = series.stroke;
+
+                // Add cursor
+                chart.cursor = new am4charts.XYCursor();
+                chart.cursor.xAxis = dateAxis;
+
+            }); // end am4core.ready()
+    </script>
+    <script type="text/javascript">
     $(document).ready(function() {
         redrawWingsFilter(wings);
         redrawYearsFilter(years);
@@ -673,6 +718,7 @@
                 alt_data.push({ date: new Date(2018, 3, 20, 13, 30, 26), gpsalt: 1024, pressalt: 990})
                 alt_data.push({ date: new Date(2018, 3, 20, 13, 30, 27), gpsalt: 1038, pressalt: 991 })
                 alt_data.push({ date: new Date(2018, 3, 20, 13, 30, 28), gpsalt: 1024, pressalt: 990})
+                chart.data=alt_data;
                 var mymap = L.map('mapinsert').setView([flight.latTo, flight.longTo], 13);
                 var polyline = L.polyline(latlngs, { color: 'red' }).addTo(mymap);
 
@@ -707,49 +753,7 @@
                     accessToken: 'pk.eyJ1IjoidXBza3kiLCJhIjoiY2tycWZodGV2MG1oZDJucGZ3MDV5bmNmeCJ9.f0L_kNkjANGRJO9hlpcpvw'
                 }).addTo(mymap);
             });
-            am4core.ready(function() {
-
-                // Themes begin
-                am4core.useTheme(am4themes_animated);
-                // Themes end
-
-                // Create chart instance
-                const chart = am4core.create("chartdiv", am4charts.XYChart);
-                console.log(alt_data)
-                chart.data = alt_data
-
-                // Create axes
-                var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
-                // dateAxis.baseInterval = {
-                //     "timeUnit": "minute",
-                //     "count": 10
-                // };
-                // dateAxis.renderer.minGridDistance = 50;
-
-                var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
-                valueAxis.min = 500
-                // Create series
-                var series = chart.series.push(new am4charts.LineSeries());
-                series.dataFields.valueY = "gpsalt";
-                series.dataFields.dateX = "date";
-                series.strokeWidth = 2;
-                series.minBulletDistance = 10;
-                series.tooltipText = "Alt. GPS : {gpsalt}\nAlt. Baro {pressalt}";
-                series.tooltip.pointerOrientation = "vertical";
-
-                // Create series
-                var series2 = chart.series.push(new am4charts.LineSeries());
-                series2.dataFields.valueY = "pressalt";
-                series2.dataFields.dateX = "date";
-                series2.strokeWidth = 2;
-                series2.strokeDasharray = "3,4";
-                series2.stroke = series.stroke;
-
-                // Add cursor
-                chart.cursor = new am4charts.XYCursor();
-                chart.cursor.xAxis = dateAxis;
-
-            }); // end am4core.ready()
+            
 
         });
         $('.year_item').click(function() {
