@@ -32,12 +32,10 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-GB8D2PTX7Z"></script>
     <!-- Make sure you put this AFTER Leaflet's CSS -->
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
-
-<!-- Resources -->
-<script src="https://cdn.amcharts.com/lib/4/core.js"></script>
-<script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
-<script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
-    
+    <!-- Resources -->
+    <script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+    <script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
+    <script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
     <script>
     window.dataLayer = window.dataLayer || [];
 
@@ -558,54 +556,7 @@
 
 <!-- Chart code -->
 <script>
-am4core.ready(function() {
 
-// Themes begin
-am4core.useTheme(am4themes_animated);
-// Themes end
-
-// Create chart instance
-var chart = am4core.create("chartdiv", am4charts.XYChart);
-
-// Add data
-chart.data = [
-  {date:new Date(2019,5,12), value1:50, value2:48, previousDate:new Date(2019, 5, 5)},
-  {date:new Date(2019,5,13), value1:53, value2:51, previousDate:new Date(2019, 5, 6)},
-  {date:new Date(2019,5,14), value1:56, value2:58, previousDate:new Date(2019, 5, 7)},
-  {date:new Date(2019,5,15), value1:52, value2:53, previousDate:new Date(2019, 5, 8)},
-  {date:new Date(2019,5,16), value1:48, value2:44, previousDate:new Date(2019, 5, 9)},
-  {date:new Date(2019,5,17), value1:47, value2:42, previousDate:new Date(2019, 5, 10)},
-  {date:new Date(2019,5,18), value1:59, value2:55, previousDate:new Date(2019, 5, 11)}
-]
-
-// Create axes
-var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
-dateAxis.renderer.minGridDistance = 50;
-
-var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
-
-// Create series
-var series = chart.series.push(new am4charts.LineSeries());
-series.dataFields.valueY = "value1";
-series.dataFields.dateX = "date";
-series.strokeWidth = 2;
-series.minBulletDistance = 10;
-series.tooltipText = "[bold]{date.formatDate()}:[/] {value1}\n[bold]{previousDate.formatDate()}:[/] {value2}";
-series.tooltip.pointerOrientation = "vertical";
-
-// Create series
-var series2 = chart.series.push(new am4charts.LineSeries());
-series2.dataFields.valueY = "value2";
-series2.dataFields.dateX = "date";
-series2.strokeWidth = 2;
-series2.strokeDasharray = "3,4";
-series2.stroke = series.stroke;
-
-// Add cursor
-chart.cursor = new am4charts.XYCursor();
-chart.cursor.xAxis = dateAxis;
-
-}); // end am4core.ready()
 </script>
 
 <!-- HTML -->
@@ -699,7 +650,15 @@ chart.cursor.xAxis = dateAxis;
             var id = $(this).data('id');
             var latlngs = []
 
+            // Add data
+
+            // { indix: 0, gpsalt: 50, pressalt: 48 }
+            alt_data = []
+
             $.getJSON(id + ".js", function(fixes) {
+
+                // "gpsalt": 1457,
+                // "pressalt": 1333,
 
                 if ($('#mapinsert').hasClass('leaflet-container')) {
                     $('#mapinsert').remove();
@@ -707,7 +666,8 @@ chart.cursor.xAxis = dateAxis;
                 }
                 var flight = filteredData.find(t => t.id === id)
                 for (let fix of fixes) {
-                    latlngs.push([fix.lat, fix.lng])
+                    latlngs.push([fix.lat, fix.lng]);
+                    alt_data.push({date: new Date(2018, 3, 20, fix.t.h, fix.t.m,fix.t.s), gpsalt: fix.gpsalt, pressalt: fix.pressalt})
                 }
 
                 var mymap = L.map('mapinsert').setView([flight.latTo, flight.longTo], 13);
@@ -744,6 +704,49 @@ chart.cursor.xAxis = dateAxis;
                     accessToken: 'pk.eyJ1IjoidXBza3kiLCJhIjoiY2tycWZodGV2MG1oZDJucGZ3MDV5bmNmeCJ9.f0L_kNkjANGRJO9hlpcpvw'
                 }).addTo(mymap);
             });
+            am4core.ready(function() {
+
+                // Themes begin
+                am4core.useTheme(am4themes_animated);
+                // Themes end
+
+                // Create chart instance
+                const chart = am4core.create("chartdiv", am4charts.XYChart);
+
+                chart.data = alt_data
+
+                // Create axes
+                var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
+                dateAxis.baseInterval = {
+                    "timeUnit": "second",
+                    "count": 1
+                };
+                dateAxis.renderer.minGridDistance = 50;
+
+                var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+
+                // Create series
+                var series = chart.series.push(new am4charts.LineSeries());
+                series.dataFields.valueY = "gpsalt";
+                series.dataFields.dateX = "date";
+                series.strokeWidth = 2;
+                series.minBulletDistance = 10;
+                series.tooltipText = "Alt. GPS : {gpsalt}\nAlt. Baro {pressalt}";
+                series.tooltip.pointerOrientation = "vertical";
+
+                // Create series
+                var series2 = chart.series.push(new am4charts.LineSeries());
+                series2.dataFields.valueY = "pressalt";
+                series2.dataFields.dateX = "date";
+                series2.strokeWidth = 2;
+                series2.strokeDasharray = "3,4";
+                series2.stroke = series.stroke;
+
+                // Add cursor
+                chart.cursor = new am4charts.XYCursor();
+                chart.cursor.xAxis = dateAxis;
+
+            }); // end am4core.ready()
 
         });
         $('.year_item').click(function() {
