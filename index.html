@@ -576,7 +576,7 @@
                 // Themes end
 
                 // Create chart instance
-                var chart = am4core.create("chartdiv", am4charts.XYChart);
+                let chart = am4core.create("chartdiv", am4charts.XYChart);
                 console.log(alt_data)
                 chart.data = []
 
@@ -610,7 +610,7 @@
                 // Add cursor
                 chart.cursor = new am4charts.XYCursor();
                 chart.cursor.xAxis = dateAxis;
-
+console.log('done');
             }); // end am4core.ready()
     </script>
     <script type="text/javascript">
@@ -698,7 +698,7 @@
             // Add data
 
             // { indix: 0, gpsalt: 50, pressalt: 48 }
-            alt_data = []
+            var alt_data = []
 
             $.getJSON(id + ".js", function(fixes) {
 
