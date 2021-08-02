@@ -154,8 +154,8 @@ function setViewer(id, hasIGC) {
                     if (data_elem) {
                         console.log(chart.data[ev.target.dataItem.dataContext.indix].gpsalt)
 
-                        var newLatLng = new L.LatLng(chart.data[ev.target.dataItem.dataContext.indix].lat, chart.data[ev.target.dataItem.dataContext.indix].lng);
-                        cloud.setLatLng(newLatLng);
+                        // var newLatLng = new L.LatLng(chart.data[ev.target.dataItem.dataContext.indix].lat, chart.data[ev.target.dataItem.dataContext.indix].lng);
+                        // cloud.setLatLng(newLatLng);
                     }
 
 
