@@ -122,9 +122,7 @@ function setViewer(id, hasIGC) {
                 series.minBulletDistance = 10;
                 series.tooltipText = "Alt. GPS : {gpsalt}\nAlt. Baro {pressalt}";
                 series.tooltip.pointerOrientation = "vertical";
-                chart.events.on("over", function(ev) {
-                    console.log(ev.target.dataItem.dataContext);
-                }, this);
+                
 
                 // Create series
                 var series2 = chart.series.push(new am4charts.LineSeries());
@@ -137,7 +135,10 @@ function setViewer(id, hasIGC) {
                 // Add cursor
                 chart.cursor = new am4charts.XYCursor();
                 chart.cursor.xAxis = dateAxis;
-                console.log(alt_data)
+                
+                chart.cursor.events.on("over", function(ev) {
+                    console.log(ev.target.dataItem);
+                }, this);
             });
         }); // end am4core.ready()
     } else {
