@@ -150,6 +150,7 @@ function setViewer(id, hasIGC) {
                 bullet.fillOpacity = 0
                 bullet.strokeOpacity = 0
                 bullet.events.on("over", function(ev) {
+                  console.log(chart.data[ev.target.dataItem.dataContext.indix].gpsalt)
                     var data_elem = chart.data[ev.target.dataItem.dataContext.indix]
                     if (data_elem) {
                         console.log(chart.data[ev.target.dataItem.dataContext.indix].gpsalt)
