@@ -105,9 +105,7 @@ function setViewer(id, hasIGC) {
                 // Create chart instance
                 let chart = am4core.create("chartdiv", am4charts.XYChart);
 
-                chart.events.on("hit", function(ev) {
-                    console.log("indix {gpsalt}");
-                }, this);
+                
                 chart.data = alt_data
 
                 // Create axes
@@ -124,6 +122,9 @@ function setViewer(id, hasIGC) {
                 series.minBulletDistance = 10;
                 series.tooltipText = "Alt. GPS : {gpsalt}\nAlt. Baro {pressalt}";
                 series.tooltip.pointerOrientation = "vertical";
+                series.events.on("over", function(ev) {
+                    console.log("indix {gpsalt}");
+                }, this);
 
                 // Create series
                 var series2 = chart.series.push(new am4charts.LineSeries());
