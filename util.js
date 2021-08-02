@@ -136,8 +136,8 @@ function setViewer(id, hasIGC) {
                 chart.cursor = new am4charts.XYCursor();
                 chart.cursor.xAxis = dateAxis;
                 
-                chart.cursor.events.on("over", function(ev) {
-                    console.log(ev.target.dataItem);
+                chart.events.on("over", function(ev) {
+                    console.log(ev.target.cursor.dataItem);
                 }, this);
             });
         }); // end am4core.ready()
