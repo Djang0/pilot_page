@@ -62,8 +62,8 @@ function setViewer(id, hasIGC) {
                 var indix = 0;
                 for (let fix of fixes) {
                     latlngs.push([fix.lat, fix.lng]);
-                    alt_data.push({ indix: indix, date: new Date(2018, 3, 20, fix.time.h, fix.time.m, fix.time.s), gpsalt: fix.gpsalt, pressalt: fix.pressalt })
-                    indix+=1;
+                    alt_data.push({ indix: indix, date: new Date(2018, 3, 20, fix.time.h, fix.time.m, fix.time.s), gpsalt: fix.gpsalt, pressalt: fix.pressalt, fix.lat, fix.lng })
+                    indix += 1;
                 }
 
                 var mymap = L.map('mapinsert').setView([flight.latTo, flight.longTo], 13);
@@ -85,6 +85,14 @@ function setViewer(id, hasIGC) {
                     popupAnchor: [1, -34],
                     shadowSize: [41, 41]
                 });
+                const fontAwesomeIcon = L.divIcon({
+                    html: '<i class="fa fa-map-marker fa-4x"></i>',
+                    iconSize: [20, 20],
+                    className: 'myDivIcon'
+                });
+                L.marker([flight.latTo, flight.longTo], {
+                    icon: fontAwesomeIcon
+                }).addTo(map)
                 L.marker([flight.latTo, flight.longTo], { icon: greenIcon }).addTo(mymap);
                 L.marker([latlngs[latlngs.length - 1][0], latlngs[latlngs.length - 1][1]], { icon: redIcon }).addTo(mymap);
                 mymap.fitBounds(polyline.getBounds());
@@ -105,7 +113,7 @@ function setViewer(id, hasIGC) {
                 // Create chart instance
                 let chart = am4core.create("chartdiv", am4charts.XYChart);
 
-                
+
                 chart.data = alt_data
 
                 // Create axes
@@ -122,7 +130,7 @@ function setViewer(id, hasIGC) {
                 series.minBulletDistance = 10;
                 series.tooltipText = "Alt. GPS : {gpsalt}\nAlt. Baro {pressalt}";
                 series.tooltip.pointerOrientation = "vertical";
-                
+
 
                 // Create series
                 var series2 = chart.series.push(new am4charts.LineSeries());
@@ -135,10 +143,17 @@ function setViewer(id, hasIGC) {
                 // Add cursor
                 chart.cursor = new am4charts.XYCursor();
                 chart.cursor.xAxis = dateAxis;
-                
-                chart.events.on("over", function(ev) {
-                    console.log("+++",ev.target.series[0].dataItem);
-                    
+
+                let bullet = series.bullets.push(new am4charts.CircleBullet());
+                bullet.fillOpacity = 0
+                bullet.strokeOpacity = 0
+                bullet.events.on("over", function(ev) {
+                    var data_elem = chart.data[ev.target.dataItem.dataContext.indix]
+                    if (data_elem) {
+                        console.log(chart.data[ev.target.dataItem.dataContext.indix].gpsalt)
+                    }
+
+
                 }, this);
             });
         }); // end am4core.ready()
