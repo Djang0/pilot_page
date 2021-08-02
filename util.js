@@ -85,12 +85,13 @@ function setViewer(id, hasIGC) {
                     popupAnchor: [1, -34],
                     shadowSize: [41, 41]
                 });
+
                 const fontAwesomeIcon = L.divIcon({
-                    html: '<i class="fab fa-cloudversify"></i>',
+                    html: '<span class="fa-stack fa-2x"><i class="fas fa-square fa-stack-2x"></i> <i class="fab fa-cloudversify fa-stack-1x fa-inverse"></i></span>',
                     iconSize: [20, 20],
                     className: 'myDivIcon'
                 });
-                L.marker([flight.latTo, flight.longTo], {
+                cloud=L.marker([flight.latTo, flight.longTo], {
                     icon: fontAwesomeIcon
                 }).addTo(mymap)
                 L.marker([flight.latTo, flight.longTo], { icon: greenIcon }).addTo(mymap);
@@ -152,6 +153,9 @@ function setViewer(id, hasIGC) {
                     var data_elem = chart.data[ev.target.dataItem.dataContext.indix]
                     if (data_elem) {
                         console.log(chart.data[ev.target.dataItem.dataContext.indix].gpsalt)
+
+                        var newLatLng = new L.LatLng(chart.data[ev.target.dataItem.dataContext.indix].lat, chart.data[ev.target.dataItem.dataContext.indix].lng);
+                        cloud.setLatLng(newLatLng);
                     }
 
 
