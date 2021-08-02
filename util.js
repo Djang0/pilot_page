@@ -122,7 +122,7 @@ function setViewer(id, hasIGC) {
                 series.minBulletDistance = 10;
                 series.tooltipText = "Alt. GPS : {gpsalt}\nAlt. Baro {pressalt}";
                 series.tooltip.pointerOrientation = "vertical";
-                series.events.on("over", function(ev) {
+                chart.events.on("over", function(ev) {
                     console.log("indix {gpsalt}");
                 }, this);
 
