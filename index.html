@@ -47,6 +47,10 @@
     gtag('js', new Date());
 
     gtag('config', 'G-GB8D2PTX7Z');
+    var myCollapse = document.getElementById('collapseExample')
+    var bsCollapse = new bootstrap.Collapse(myCollapse, {
+        toggle: true
+    })
     </script>
     <title>Ludovic Reenaers's pilot page</title>
 </head>
@@ -556,7 +560,7 @@
 <div class="collapse" id="collapseExample">
     <div class="card card-body">
         <div id="chartdiv"></div>
-        <button type="button" id="button_graph" class="btn btn-default" ><i class="far fa-eye" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Show altitudes" aria-label="Show altitudes"></i></button>
+        
     </div>
 </div>
                 
