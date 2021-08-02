@@ -86,7 +86,7 @@ function setViewer(id, hasIGC) {
                     shadowSize: [41, 41]
                 });
                 const fontAwesomeIcon = L.divIcon({
-                    html: '<i class="far fa-eye"></i>',
+                    html: '<i class="fab fa-cloudversify"></i>',
                     iconSize: [20, 20],
                     className: 'myDivIcon'
                 });
@@ -104,7 +104,8 @@ function setViewer(id, hasIGC) {
                     zoomOffset: -1,
                     accessToken: 'pk.eyJ1IjoidXBza3kiLCJhIjoiY2tycWZodGV2MG1oZDJucGZ3MDV5bmNmeCJ9.f0L_kNkjANGRJO9hlpcpvw'
                 }).addTo(mymap);
-                L.easyButton('fa-eye', function(btn, map) {
+
+                L.easyButton('fas fa-chart-area', function(btn, map) {
                     bsCollapse.toggle();
                 }).addTo(mymap);
                 // Themes begin
