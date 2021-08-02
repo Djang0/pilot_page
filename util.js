@@ -149,6 +149,7 @@ function setViewer(id, hasIGC) {
                 let bullet = series.bullets.push(new am4charts.CircleBullet());
                 bullet.fillOpacity = 0
                 bullet.strokeOpacity = 0
+                console.log('pre')
                 bullet.events.on("over", function(ev) {
                   console.log(chart.data[ev.target.dataItem.dataContext.indix].gpsalt)
                     var data_elem = chart.data[ev.target.dataItem.dataContext.indix]
