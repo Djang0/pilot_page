@@ -138,7 +138,7 @@ function setViewer(id, hasIGC) {
                 
                 chart.events.on("over", function(ev) {
                     
-                    console.log("+++",ev.target.xAxes.getIndex(0).dataItems.values.findIndex(v => v.category === data.x));
+                    console.log("+++",ev.x);
                 }, this);
             });
         }); // end am4core.ready()
