@@ -152,13 +152,13 @@ function setViewer(id, hasIGC) {
                 console.log('pre')
                 bullet.events.on("over", function(ev) {
                   console.log(chart.data[ev.target.dataItem.dataContext.indix].gpsalt)
-                    var data_elem = chart.data[ev.target.dataItem.dataContext.indix]
-                    if (data_elem) {
-                        console.log(chart.data[ev.target.dataItem.dataContext.indix].gpsalt)
+                    //var data_elem = chart.data[ev.target.dataItem.dataContext.indix]
+                    //if (data_elem) {
+                      //  console.log(chart.data[ev.target.dataItem.dataContext.indix].gpsalt)
 
                         // var newLatLng = new L.LatLng(chart.data[ev.target.dataItem.dataContext.indix].lat, chart.data[ev.target.dataItem.dataContext.indix].lng);
                         // cloud.setLatLng(newLatLng);
-                    }
+                    //}
 
 
                 }, this);
