@@ -137,7 +137,8 @@ function setViewer(id, hasIGC) {
                 chart.cursor.xAxis = dateAxis;
                 
                 chart.events.on("over", function(ev) {
-                    console.log(ev.target.cursor.dataItem);
+                    console.log("...",ev.target.x);
+                    console.log("+++",ev.target.chart.xAxes.getIndex(0));
                 }, this);
             });
         }); // end am4core.ready()
