@@ -59,9 +59,11 @@ function setViewer(id, hasIGC) {
                 }
                 var alt_data = []
                 var flight = filteredData.find(t => t.id === id)
+                var indix = 0;
                 for (let fix of fixes) {
                     latlngs.push([fix.lat, fix.lng]);
-                    alt_data.push({ date: new Date(2018, 3, 20, fix.time.h, fix.time.m, fix.time.s), gpsalt: fix.gpsalt, pressalt: fix.pressalt })
+                    alt_data.push({ indix: indix, date: new Date(2018, 3, 20, fix.time.h, fix.time.m, fix.time.s), gpsalt: fix.gpsalt, pressalt: fix.pressalt })
+                    indix+=1;
                 }
 
                 var mymap = L.map('mapinsert').setView([flight.latTo, flight.longTo], 13);
@@ -103,6 +105,9 @@ function setViewer(id, hasIGC) {
                 // Create chart instance
                 let chart = am4core.create("chartdiv", am4charts.XYChart);
 
+                chart.events.on("hit", function(ev) {
+                    console.log("indix {gpsalt}");
+                }, this);
                 chart.data = alt_data
 
                 // Create axes
