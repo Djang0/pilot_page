@@ -92,7 +92,7 @@ function setViewer(id, hasIGC) {
                 });
                 L.marker([flight.latTo, flight.longTo], {
                     icon: fontAwesomeIcon
-                }).addTo(map)
+                }).addTo(mymap)
                 L.marker([flight.latTo, flight.longTo], { icon: greenIcon }).addTo(mymap);
                 L.marker([latlngs[latlngs.length - 1][0], latlngs[latlngs.length - 1][1]], { icon: redIcon }).addTo(mymap);
                 mymap.fitBounds(polyline.getBounds());
