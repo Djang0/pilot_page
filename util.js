@@ -47,6 +47,10 @@ function setViewer(id, hasIGC) {
     if (hasIGC) {
         var latlngs = []
         am4core.ready(function() {
+            var myCollapse = document.getElementById('collapseExample')
+            var bsCollapse = new bootstrap.Collapse(myCollapse, {
+                toggle: true
+            })
             $.getJSON(id + ".js", function(fixes) {
 
                 if ($('#mapinsert').hasClass('leaflet-container')) {
@@ -91,7 +95,7 @@ function setViewer(id, hasIGC) {
                     accessToken: 'pk.eyJ1IjoidXBza3kiLCJhIjoiY2tycWZodGV2MG1oZDJucGZ3MDV5bmNmeCJ9.f0L_kNkjANGRJO9hlpcpvw'
                 }).addTo(mymap);
                 L.easyButton('fa-eye', function(btn, map) {
-                  bsCollapse.toggle();
+                    bsCollapse.toggle();
                 }).addTo(mymap);
                 // Themes begin
                 am4core.useTheme(am4themes_animated);
