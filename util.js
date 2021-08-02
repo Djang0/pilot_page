@@ -86,7 +86,7 @@ function setViewer(id, hasIGC) {
                     shadowSize: [41, 41]
                 });
                 const fontAwesomeIcon = L.divIcon({
-                    html: '<i class="fa fa-map-marker fa-4x"></i>',
+                    html: '<i class="far fa-eye"></i>',
                     iconSize: [20, 20],
                     className: 'myDivIcon'
                 });
