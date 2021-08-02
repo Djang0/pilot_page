@@ -138,7 +138,7 @@ function setViewer(id, hasIGC) {
                 
                 chart.events.on("over", function(ev) {
                     console.log("...",ev.target.x);
-                    console.log("+++",ev.target.chart.xAxes.getIndex(0));
+                    console.log("+++",ev.target.xAxes.getIndex(0));
                 }, this);
             });
         }); // end am4core.ready()
