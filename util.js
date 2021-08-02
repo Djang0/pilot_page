@@ -123,7 +123,7 @@ function setViewer(id, hasIGC) {
                 series.tooltipText = "Alt. GPS : {gpsalt}\nAlt. Baro {pressalt}";
                 series.tooltip.pointerOrientation = "vertical";
                 chart.events.on("over", function(ev) {
-                    console.log("indix {gpsalt}",ev.target);
+                    console.log(ev.target.dataItem.dataContext);
                 }, this);
 
                 // Create series
