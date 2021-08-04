@@ -99,7 +99,7 @@ function setViewer(id, hasIGC) {
                     },
                     'paint': {
                         'line-color': '#BF93E4',
-                        'line-width': 5
+                        'line-width': 2
                     }
                 });
             })
@@ -124,7 +124,7 @@ function setViewer(id, hasIGC) {
             });
 
             var takeoff = new mapboxgl.Marker({
-                icon: mapboxgl.mapbox.marker.icon({
+                icon: mapboxgl.marker.icon({
                     'marker-size': 'large',
                     'marker-symbol': 'airport',
                     'marker-color': '#ff8080'
@@ -133,7 +133,7 @@ function setViewer(id, hasIGC) {
             takeoff.setLngLat([latlngs[0][0], latlngs[0][1]]);
             takeoff.addTo(map);
             var landing = new mapboxgl.Marker({
-                icon: mapboxgl.mapbox.marker.icon({
+                icon: mapboxgl.marker.icon({
                     'marker-size': 'large',
                     'marker-symbol': 'airport',
                     'marker-color': '#ff8080'
