@@ -69,33 +69,30 @@ function setViewer(id, hasIGC) {
                 zoom: 13 // starting zoom
             });
             // create a red polyline from an arrays of LatLng points
-            var polyline = L.polyline(latlngs, { color: 'red' }).addTo(map);
+            var polyline = mapboxgl.polyline(latlngs, { color: 'red' }).addTo(map);
             // zoom the map to the polyline
             map.fitBounds(polyline.getBounds());
 
-            var marker = new google.maps.Marker({
-                position: { lat: latlngs[0][0], lng: latlngs[0][1] },
-                title: 'Take-off',
-                icon: L.mapbox.marker.icon({
-                    'marker-size': 'large',
-                    'marker-symbol': 'rocket',
-                    'marker-color': '#bbff99'
-                }),
-                map: map
-            });
+            var takeoff = new mapboxgl.Marker(
+                    icon: mapboxgl.mapbox.marker.icon({
+                        'marker-size': 'large',
+                        'marker-symbol': 'airport',
+                        'marker-color': '#ff8080'
+                    })
+                )
+                .setLngLat([latlngs[0][0], latlngs[0][0]])
+                .addTo(map);
+            var landing = new mapboxgl.Marker(
+                    icon: mapboxgl.mapbox.marker.icon({
+                        'marker-size': 'large',
+                        'marker-symbol': 'airport',
+                        'marker-color': '#ff8080'
+                    })
+                )
+                .setLngLat([latlngs[latlngs.length - 1][0], latlngs[latlngs.length - 1][0]])
+                .addTo(map);
 
 
-
-            var marker = new google.maps.Marker({
-                position: { lat: latlngs[latlngs.length - 1][0], lng: latlngs[latlngs.length - 1][0] },
-                title: 'Landing',
-                map: map,
-                icon: L.mapbox.marker.icon({
-                    'marker-size': 'large',
-                    'marker-symbol': 'airport',
-                    'marker-color': '#ff8080'
-                })
-            });
         });
 
     } else {
