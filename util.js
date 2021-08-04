@@ -122,23 +122,16 @@ function setViewer(id, hasIGC) {
             map.fitBounds(bounds, {
                 padding: 20
             });
-
-            var takeoff = new mapboxgl.Marker({
-                icon: mapboxgl.marker.icon({
-                    'marker-size': 'large',
-                    'marker-symbol': 'airport',
-                    'marker-color': '#ff8080'
-                })
-            });
+            // create a HTML element for each feature
+            var to_el = document.createElement('div');
+            to_el.className = 'marker_to';
+            var takeoff = new mapboxgl.Marker(to_el)
             takeoff.setLngLat([latlngs[0][0], latlngs[0][1]]);
             takeoff.addTo(map);
-            var landing = new mapboxgl.Marker({
-                icon: mapboxgl.marker.icon({
-                    'marker-size': 'large',
-                    'marker-symbol': 'airport',
-                    'marker-color': '#ff8080'
-                })
-            })
+            // create a HTML element for each feature
+            var ln_el = document.createElement('div');
+            ln_el.className = 'marker_ln';
+            var landing = new mapboxgl.Marker(ln_el)
             landing.setLngLat([latlngs[latlngs.length - 1][0], latlngs[latlngs.length - 1][1]]);
             landing.addTo(map);
 
