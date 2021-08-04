@@ -78,7 +78,7 @@ function setViewer(id, hasIGC) {
             var map = new mapboxgl.Map({
                 container: 'mapinsert', // HTML container ID
                 style: 'mapbox://styles/mapbox/outdoors-v11', // style URL
-                center: [latlngs[0][1], latlngs[0][0]], // starting position [lng, lat]
+                center: [latlngs[0][0], latlngs[0][1]], // starting position [lng, lat]
                 zoom: 13 // starting zoom
             });
             // create a red polyline from an arrays of LatLng points
