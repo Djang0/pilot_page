@@ -104,7 +104,24 @@ function setViewer(id, hasIGC) {
                 });
             })
             // zoom the map to the polyline
-            map.fitBounds(polyline.getBounds());
+            var coordinates = geojson.features[0].geometry.coordinates;
+
+            /*
+            Pass the first coordinates in the LineString to `lngLatBounds`,
+            then wrap each coordinate pair in `extend` to include them 
+            in the bounds result. A variation of this technique could be 
+            applied to zooming to the bounds of multiple Points or 
+            Polygon geomtetries, which would require wrapping all 
+            the coordinates with the extend method.
+            */
+
+            var bounds = coordinates.reduce(function(bounds, coord) {
+                return bounds.extend(coord);
+            }, new mapboxgl.LngLatBounds(coordinates[0], coordinates[0]));
+
+            map.fitBounds(bounds, {
+                padding: 20
+            });
 
             var takeoff = new mapboxgl.Marker({
                 icon: mapboxgl.mapbox.marker.icon({
