@@ -73,24 +73,24 @@ function setViewer(id, hasIGC) {
             // zoom the map to the polyline
             map.fitBounds(polyline.getBounds());
 
-            var takeoff = new mapboxgl.Marker(
-                    icon: mapboxgl.mapbox.marker.icon({
-                        'marker-size': 'large',
-                        'marker-symbol': 'airport',
-                        'marker-color': '#ff8080'
-                    })
-                )
-                .setLngLat([latlngs[0][0], latlngs[0][0]])
-                .addTo(map);
-            var landing = new mapboxgl.Marker(
-                    icon: mapboxgl.mapbox.marker.icon({
-                        'marker-size': 'large',
-                        'marker-symbol': 'airport',
-                        'marker-color': '#ff8080'
-                    })
-                )
-                .setLngLat([latlngs[latlngs.length - 1][0], latlngs[latlngs.length - 1][0]])
-                .addTo(map);
+            var takeoff = new mapboxgl.Marker({
+                icon: mapboxgl.mapbox.marker.icon({
+                    'marker-size': 'large',
+                    'marker-symbol': 'airport',
+                    'marker-color': '#ff8080'
+                })
+            });
+            takeoff.setLngLat([latlngs[0][0], latlngs[0][0]]);
+            takeoff.addTo(map);
+            var landing = new mapboxgl.Marker({
+                icon: mapboxgl.mapbox.marker.icon({
+                    'marker-size': 'large',
+                    'marker-symbol': 'airport',
+                    'marker-color': '#ff8080'
+                })
+            })
+            landing.setLngLat([latlngs[latlngs.length - 1][0], latlngs[latlngs.length - 1][0]]);
+            landing.addTo(map);
 
 
         });
