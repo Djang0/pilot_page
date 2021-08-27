@@ -597,7 +597,7 @@ gtag('config', 'G-GB8D2PTX7Z');
             $('<div id="mapinsert" class="modal-body"></div>').insertAfter("#before_modal");
         })
         $('.table_viewer').click(function() {
-            
+
             var currentRow = $(this).closest("tr");
             var data = $('#flights_table').DataTable().row(currentRow).data();
             var id = parseInt(data['id']);
@@ -606,11 +606,7 @@ gtag('config', 'G-GB8D2PTX7Z');
 
         });
 
-        $('.viewer').click(function() {
-            var id = $(this).data('id');
-            setViewer(id, true);
-
-        });
+        bindAll();
         $('.year_item').click(function() {
             year_label = $(this).text();
             if ($(this).attr("id") == 'season_0') {

@@ -270,6 +270,13 @@ function redrawTable(filteredData) {
     }
 
 }
+function bindAll(){
+    $('.viewer').click(function() {
+            var id = $(this).data('id');
+            setViewer(id, true);
+
+        });
+}
 
 function avgData(summed, count, noIgc) {
     avg = 0;
