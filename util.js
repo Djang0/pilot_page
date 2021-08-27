@@ -117,7 +117,7 @@ function setViewer(id, hasIGC) {
             }).addTo(mymap)
             L.marker([flight.latTo, flight.longTo], { icon: greenIcon }).addTo(mymap);
             L.marker([latlngs[latlngs.length - 1][0], latlngs[latlngs.length - 1][1]], { icon: redIcon }).addTo(mymap);
-            mymap.fitBounds(polyline.getBounds());
+            
             // L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
             //     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
             //     maxZoom: 18,
@@ -190,6 +190,7 @@ function setViewer(id, hasIGC) {
                     }
                 ]
             });
+            mymap.fitBounds(polyline.getBounds());
         });
 
     } else {
