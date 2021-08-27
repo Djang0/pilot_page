@@ -44,7 +44,7 @@ function redrawSitesFilter(sites) {
 }
 
 function setViewer(id, hasIGC) {
-    console.log(id+'//'+hasIGC)
+    console.log(id + '//' + hasIGC)
     if (hasIGC) {
         console.log('hasIGC')
         var latlngs = []
@@ -244,6 +244,17 @@ function redrawTable(filteredData) {
                 }
             ]
         });
+        table.on('draw', function() {
+            $('.table_viewer').click(function() {
+
+                var currentRow = $(this).closest("tr");
+                var data = $('#flights_table').DataTable().row(currentRow).data();
+                var id = parseInt(data['id']);
+                var igc = data['hasIGC'];
+                setViewer(id, igc)
+
+            });
+        })
     }
 
 }
