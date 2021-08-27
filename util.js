@@ -106,7 +106,7 @@ function setViewer(id, hasIGC) {
                     accessToken: 'pk.eyJ1IjoidXBza3kiLCJhIjoiY2tycWZodGV2MG1oZDJucGZ3MDV5bmNmeCJ9.f0L_kNkjANGRJO9hlpcpvw'
                 }).addTo(mymap);
 
-                Highcharts.chart('container', {
+                Highcharts.chart('chartdiv', {
     chart: {
       type: 'area'
     },
