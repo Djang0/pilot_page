@@ -595,15 +595,15 @@ gtag('config', 'G-GB8D2PTX7Z');
             $('#mapinsert').remove();
             $('<div id="mapinsert" class="modal-body"></div>').insertAfter("#before_modal");
         })
-        // $('.table_viewer').click(function() {
+        $('.table_viewer').click(function() {
             
-        //     var currentRow = $(this).closest("tr");
-        //     var data = $('#flights_table').DataTable().row(currentRow).data();
-        //     var id = parseInt(data['id']);
-        //     var igc = data['hasIGC'];
-        //     setViewer(id, igc)
+            var currentRow = $(this).closest("tr");
+            var data = $('#flights_table').DataTable().row(currentRow).data();
+            var id = parseInt(data['id']);
+            var igc = data['hasIGC'];
+            setViewer(id, igc)
 
-        // });
+        });
 
         $('.viewer').click(function() {
             var id = $(this).data('id');
