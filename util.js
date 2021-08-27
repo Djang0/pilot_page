@@ -113,7 +113,7 @@ function setViewer(id, hasIGC) {
                 id: 'mapbox/outdoors-v11',
                 tileSize: 512,
                 zoomOffset: -1,
-                accessToken: 'pk.eyJ1IjoidXBza3kiLCJhIjoiY2tycWZodGV2MG1oZDJucGZ3MDV5bmNmeCJ9.f0L_kNkjANGRJO9hlpcpvw'
+                accessToken: 'pk.eyJ1IjoidXBza3kiLCJhIjoiY2tycWZlam1mMDc2bTJ1bzRrYWV0OWk3bSJ9.CfIBijQ6nqq07t7rZgXl8w'
             }).addTo(mymap);
 
             Highcharts.chart('chartdiv', {
