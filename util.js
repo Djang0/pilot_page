@@ -65,7 +65,7 @@ function setViewer(id, hasIGC) {
                 latlngs.push([fix.lat, fix.lng]);
                 //gps_alt_data.push({ indix: indix, date: new Date(2018, 3, 20, fix.time.h, fix.time.m, fix.time.s), gpsalt: fix.gpsalt, pressalt: fix.pressalt, lat: fix.lat, lng: fix.lng })
                 gps_alt_data.push([new Date(2018, 3, 20, fix.time.h, fix.time.m, fix.time.s).getTime(), fix.gpsalt, fix.gpsalt,fix.lat,fix.lng ])
-                baro_alt_data.push([new Date(2018, 3, 20, fix.time.h, fix.time.m, fix.time.s).getTime(), fix.pressalt, fix.pressalt, fix.lat,fix.lng])
+                baro_alt_data.push([new Date(2018, 3, 20, fix.time.h, fix.time.m, fix.time.s).getTime(), fix.pressalt, fix.pressalt])
                 indix += 1;
             }
 
@@ -161,6 +161,11 @@ function setViewer(id, hasIGC) {
                         }
                     },
                     data: gps_alt_data
+                },
+                {
+                    name: 'Baro',
+                    keys: ['name', 'custom.value', 'y'],
+                    data: baro_alt_data
                 }]
             });
         });
