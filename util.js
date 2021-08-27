@@ -45,15 +45,17 @@ function redrawSitesFilter(sites) {
 
 function setViewer(id, hasIGC) {
     if (hasIGC) {
+        console.log('hasIGC')
         var latlngs = []
 
-        var myCollapse = document.getElementById('collapseExample')
-        var bsCollapse = new bootstrap.Collapse(myCollapse, {
-            toggle: true
-        })
+        // var myCollapse = document.getElementById('collapseExample')
+        // var bsCollapse = new bootstrap.Collapse(myCollapse, {
+        //     toggle: true
+        // })
         $.getJSON(id + ".js", function(fixes) {
 
             if ($('#mapinsert').hasClass('leaflet-container')) {
+                console.log('has_class')
                 $('#mapinsert').remove();
                 $('<div id="mapinsert" class="modal-body"></div>').insertAfter("#before_modal");
             }
