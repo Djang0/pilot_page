@@ -257,7 +257,6 @@ function redrawTable(filteredData) {
             ]
         });
         table.on('draw', function() {
-            alert( 'Table redrawn' );
             $('.table_viewer').click(function() {
 
                 var currentRow = $(this).closest("tr");
