@@ -61,10 +61,17 @@ function setViewer(id, hasIGC) {
             var baro_alt_data = []
             var flight = filteredData.find(t => t.id === id)
             var indix = 0;
+            maxgps = Math.max.apply(Math, fixes.map(function(o) { return o.gpsalt; }))
+            maxbaro = Math.max.apply(Math, fixes.map(function(o) { return o.pressalt; }))
+            if (maxbaro > maxgps) {
+                ceil = maxbaro
+            } else {
+                ceil = maxgps
+            }
             for (let fix of fixes) {
                 latlngs.push([fix.lat, fix.lng]);
                 //gps_alt_data.push({ indix: indix, date: new Date(2018, 3, 20, fix.time.h, fix.time.m, fix.time.s), gpsalt: fix.gpsalt, pressalt: fix.pressalt, lat: fix.lat, lng: fix.lng })
-                gps_alt_data.push([new Date(2018, 3, 20, fix.time.h, fix.time.m, fix.time.s).getTime(), fix.gpsalt, fix.gpsalt,fix.lat,fix.lng ])
+                gps_alt_data.push([new Date(2018, 3, 20, fix.time.h, fix.time.m, fix.time.s).getTime(), fix.gpsalt, fix.gpsalt, fix.lat, fix.lng])
                 baro_alt_data.push([new Date(2018, 3, 20, fix.time.h, fix.time.m, fix.time.s).getTime(), fix.pressalt, fix.pressalt])
                 indix += 1;
             }
@@ -123,6 +130,8 @@ function setViewer(id, hasIGC) {
                     title: {
                         text: 'altitude'
                     },
+                    ceiling: ceil,
+
                     labels: {
                         formatter: function() {
                             return this.value + ' m';
@@ -134,7 +143,6 @@ function setViewer(id, hasIGC) {
                 },
                 plotOptions: {
                     area: {
-                        pointStart: 1940,
                         marker: {
                             enabled: false,
                             symbol: 'circle',
@@ -148,25 +156,24 @@ function setViewer(id, hasIGC) {
                     }
                 },
                 series: [{
-                    name: 'GPS',
-                    keys: ['name', 'custom.value', 'y', 'custom.lat', 'custom.lng'],
-                    point: {
-                        events: {
-                            mouseOver: function() {
-                               
-                                console.log(this.custom.lat + "/" + this.custom.lng);
-                                var newLatLng = new L.LatLng(this.custom.lat, this.custom.lng);
-                                cloud.setLatLng(newLatLng);
+                        name: 'GPS',
+                        keys: ['name', 'custom.value', 'y', 'custom.lat', 'custom.lng'],
+                        point: {
+                            events: {
+                                mouseOver: function() {
+                                    var newLatLng = new L.LatLng(this.custom.lat, this.custom.lng);
+                                    cloud.setLatLng(newLatLng);
+                                }
                             }
-                        }
+                        },
+                        data: gps_alt_data
                     },
-                    data: gps_alt_data
-                },
-                {
-                    name: 'Baro',
-                    keys: ['name', 'custom.value', 'y'],
-                    data: baro_alt_data
-                }]
+                    {
+                        name: 'Baro',
+                        keys: ['name', 'custom.value', 'y'],
+                        data: baro_alt_data
+                    }
+                ]
             });
         });
 
