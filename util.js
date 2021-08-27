@@ -44,9 +44,9 @@ function redrawSitesFilter(sites) {
 }
 
 function setViewer(id, hasIGC) {
-   
+
     if (hasIGC) {
-       
+
         var latlngs = []
 
         // var myCollapse = document.getElementById('collapseExample')
@@ -56,7 +56,7 @@ function setViewer(id, hasIGC) {
         $.getJSON(id + ".js", function(fixes) {
 
             if ($('#mapinsert').hasClass('leaflet-container')) {
-                
+
                 $('#mapinsert').remove();
                 $('<div id="mapinsert" class="modal-body"></div>').insertAfter("#before_modal");
             }
@@ -117,7 +117,7 @@ function setViewer(id, hasIGC) {
             }).addTo(mymap)
             L.marker([flight.latTo, flight.longTo], { icon: greenIcon }).addTo(mymap);
             L.marker([latlngs[latlngs.length - 1][0], latlngs[latlngs.length - 1][1]], { icon: redIcon }).addTo(mymap);
-            
+
             // L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
             //     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
             //     maxZoom: 18,
@@ -175,7 +175,7 @@ function setViewer(id, hasIGC) {
                         point: {
                             events: {
                                 mouseOver: function() {
-                                    
+
                                     var newLatLng = new L.LatLng(this.custom.lat, this.custom.lng);
                                     cloud.setLatLng(newLatLng);
                                 }
@@ -191,10 +191,13 @@ function setViewer(id, hasIGC) {
                 ]
             });
             mymap.fitBounds(polyline.getBounds());
-            $('.testa').click(function(){
-               
+            L.easyButton('fa-globe', function(btn, map) {
+                alert('toto')
+            }).addTo(mymap);
+            $('.testa').click(function() {
+
                 mymap.fitBounds(polyline.getBounds());
-                
+
             })
         });
 
@@ -272,12 +275,13 @@ function redrawTable(filteredData) {
     }
 
 }
-function bindAll(){
-    $('.viewer').click(function() {
-            var id = $(this).data('id');
-            setViewer(id, true);
 
-        });
+function bindAll() {
+    $('.viewer').click(function() {
+        var id = $(this).data('id');
+        setViewer(id, true);
+
+    });
 }
 
 function avgData(summed, count, noIgc) {
