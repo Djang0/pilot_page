@@ -44,6 +44,7 @@ function redrawSitesFilter(sites) {
 }
 
 function setViewer(id, hasIGC) {
+    console.log(id+'//'+hasIGC)
     if (hasIGC) {
         console.log('hasIGC')
         var latlngs = []
