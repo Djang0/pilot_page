@@ -44,9 +44,9 @@ function redrawSitesFilter(sites) {
 }
 
 function setViewer(id, hasIGC) {
-    console.log(id + '//' + hasIGC)
+   
     if (hasIGC) {
-        console.log('hasIGC')
+       
         var latlngs = []
 
         // var myCollapse = document.getElementById('collapseExample')
@@ -56,7 +56,7 @@ function setViewer(id, hasIGC) {
         $.getJSON(id + ".js", function(fixes) {
 
             if ($('#mapinsert').hasClass('leaflet-container')) {
-                console.log('has_class')
+                
                 $('#mapinsert').remove();
                 $('<div id="mapinsert" class="modal-body"></div>').insertAfter("#before_modal");
             }
@@ -98,14 +98,22 @@ function setViewer(id, hasIGC) {
                 popupAnchor: [1, -34],
                 shadowSize: [41, 41]
             });
-
-            const fontAwesomeIcon = L.divIcon({
-                html: '<span class="fa-stack fa-2x"><i class="fas fa-square fa-stack-2x"></i> <i class="fab fa-cloudversify fa-stack-1x fa-inverse"></i></span>',
-                iconSize: [20, 20],
-                className: 'myDivIcon'
+            var blueIcon = new L.Icon({
+                iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png',
+                shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+                iconSize: [25, 41],
+                iconAnchor: [12, 41],
+                popupAnchor: [1, -34],
+                shadowSize: [41, 41]
             });
+
+            // const fontAwesomeIcon = L.divIcon({
+            //     html: '<span class="fa-stack fa-2x"><i class="fas fa-square fa-stack-2x"></i> <i class="fab fa-cloudversify fa-stack-1x fa-inverse"></i></span>',
+            //     iconSize: [20, 20],
+            //     className: 'myDivIcon'
+            // });
             cloud = L.marker([flight.latTo, flight.longTo], {
-                icon: fontAwesomeIcon
+                icon: blueIcon
             }).addTo(mymap)
             L.marker([flight.latTo, flight.longTo], { icon: greenIcon }).addTo(mymap);
             L.marker([latlngs[latlngs.length - 1][0], latlngs[latlngs.length - 1][1]], { icon: redIcon }).addTo(mymap);
@@ -167,7 +175,7 @@ function setViewer(id, hasIGC) {
                         point: {
                             events: {
                                 mouseOver: function() {
-                                    console.log('toto')
+                                    
                                     var newLatLng = new L.LatLng(this.custom.lat, this.custom.lng);
                                     cloud.setLatLng(newLatLng);
                                 }
