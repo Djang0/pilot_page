@@ -57,13 +57,15 @@ function setViewer(id, hasIGC) {
                 $('#mapinsert').remove();
                 $('<div id="mapinsert" class="modal-body"></div>').insertAfter("#before_modal");
             }
-            var alt_data = []
+            var gps_alt_data = []
+            var baro_alt_data = []
             var flight = filteredData.find(t => t.id === id)
             var indix = 0;
             for (let fix of fixes) {
                 latlngs.push([fix.lat, fix.lng]);
-                //alt_data.push({ indix: indix, date: new Date(2018, 3, 20, fix.time.h, fix.time.m, fix.time.s), gpsalt: fix.gpsalt, pressalt: fix.pressalt, lat: fix.lat, lng: fix.lng })
-                alt_data.push([new Date(2018, 3, 20, fix.time.h, fix.time.m, fix.time.s).getTime(),fix.gpsalt,fix.gpsalt,fix.lat,fix.lng])
+                //gps_alt_data.push({ indix: indix, date: new Date(2018, 3, 20, fix.time.h, fix.time.m, fix.time.s), gpsalt: fix.gpsalt, pressalt: fix.pressalt, lat: fix.lat, lng: fix.lng })
+                gps_alt_data.push([new Date(2018, 3, 20, fix.time.h, fix.time.m, fix.time.s).getTime(), fix.gpsalt, fix.gpsalt], indix)
+                baro_alt_data.push([new Date(2018, 3, 20, fix.time.h, fix.time.m, fix.time.s).getTime(), fix.pressalt, fix.pressalt], indix)
                 indix += 1;
             }
 
@@ -147,15 +149,17 @@ function setViewer(id, hasIGC) {
                 },
                 series: [{
                     name: 'baro',
-                    keys: ['name', 'custom.value', 'y', 'custom.lat', 'custom.lng'],
+                    keys: ['name', 'custom.value', 'y', 'custom.indix'],
                     point: {
                         events: {
                             mouseOver: function() {
-                                console.log(this.custom.lat+"/"+this.custom.lng);
+                                console.log(latlngs[indix][0] + "/" + latlngs[indix][1]);
+                                var newLatLng = new L.LatLng(latlngs[indix][0], latlngs[indix][1]);
+                                cloud.setLatLng(newLatLng);
                             }
                         }
                     },
-                    data: alt_data
+                    data: gps_alt_data
                 }]
             });
         });
