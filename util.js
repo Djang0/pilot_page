@@ -64,8 +64,8 @@ function setViewer(id, hasIGC) {
             for (let fix of fixes) {
                 latlngs.push([fix.lat, fix.lng]);
                 //gps_alt_data.push({ indix: indix, date: new Date(2018, 3, 20, fix.time.h, fix.time.m, fix.time.s), gpsalt: fix.gpsalt, pressalt: fix.pressalt, lat: fix.lat, lng: fix.lng })
-                gps_alt_data.push([new Date(2018, 3, 20, fix.time.h, fix.time.m, fix.time.s).getTime(), fix.gpsalt, fix.gpsalt], indix)
-                baro_alt_data.push([new Date(2018, 3, 20, fix.time.h, fix.time.m, fix.time.s).getTime(), fix.pressalt, fix.pressalt], indix)
+                gps_alt_data.push([new Date(2018, 3, 20, fix.time.h, fix.time.m, fix.time.s).getTime(), fix.gpsalt, fix.gpsalt,fix.lat,fix.lng ])
+                baro_alt_data.push([new Date(2018, 3, 20, fix.time.h, fix.time.m, fix.time.s).getTime(), fix.pressalt, fix.pressalt, fix.lat,fix.lng])
                 indix += 1;
             }
 
@@ -148,14 +148,14 @@ function setViewer(id, hasIGC) {
                     }
                 },
                 series: [{
-                    name: 'baro',
-                    keys: ['name', 'custom.value', 'y', 'custom.indix'],
+                    name: 'GPS',
+                    keys: ['name', 'custom.value', 'y', 'custom.lat', 'custom.lng'],
                     point: {
                         events: {
                             mouseOver: function() {
-                                indix=this.custom.indix
-                                console.log(latlngs[indix][0] + "/" + latlngs[indix][1]);
-                                var newLatLng = new L.LatLng(latlngs[indix][0], latlngs[indix][1]);
+                               
+                                console.log(this.custom.lat + "/" + this.custom.lng);
+                                var newLatLng = new L.LatLng(this.custom.lat, this.custom.lng);
                                 cloud.setLatLng(newLatLng);
                             }
                         }
