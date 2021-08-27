@@ -63,7 +63,7 @@ function setViewer(id, hasIGC) {
             for (let fix of fixes) {
                 latlngs.push([fix.lat, fix.lng]);
                 //alt_data.push({ indix: indix, date: new Date(2018, 3, 20, fix.time.h, fix.time.m, fix.time.s), gpsalt: fix.gpsalt, pressalt: fix.pressalt, lat: fix.lat, lng: fix.lng })
-                alt_data.push([new Date(2018, 3, 20, fix.time.h, fix.time.m, fix.time.s).getTime(),fix.pressalt,fix.pressalt,fix.lat,fix.lng])
+                alt_data.push([new Date(2018, 3, 20, fix.time.h, fix.time.m, fix.time.s).getTime(),fix.gpsalt,fix.gpsalt,fix.lat,fix.lng])
                 indix += 1;
             }
 
