@@ -47,140 +47,126 @@ function setViewer(id, hasIGC) {
     if (hasIGC) {
         var latlngs = []
 
-            var myCollapse = document.getElementById('collapseExample')
-            var bsCollapse = new bootstrap.Collapse(myCollapse, {
-                toggle: true
-            })
-            $.getJSON(id + ".js", function(fixes) {
+        var myCollapse = document.getElementById('collapseExample')
+        var bsCollapse = new bootstrap.Collapse(myCollapse, {
+            toggle: true
+        })
+        $.getJSON(id + ".js", function(fixes) {
 
-                if ($('#mapinsert').hasClass('leaflet-container')) {
-                    $('#mapinsert').remove();
-                    $('<div id="mapinsert" class="modal-body"></div>').insertAfter("#before_modal");
-                }
-                var alt_data = []
-                var flight = filteredData.find(t => t.id === id)
-                var indix = 0;
-                for (let fix of fixes) {
-                    latlngs.push([fix.lat, fix.lng]);
-                    alt_data.push({ indix: indix, date: new Date(2018, 3, 20, fix.time.h, fix.time.m, fix.time.s), gpsalt: fix.gpsalt, pressalt: fix.pressalt, lat: fix.lat, lng: fix.lng })
-                    indix += 1;
-                }
-
-                var mymap = L.map('mapinsert').setView([flight.latTo, flight.longTo], 13);
-                var polyline = L.polyline(latlngs, { color: 'red' }).addTo(mymap);
-                var greenIcon = new L.Icon({
-                    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
-                    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-                    iconSize: [25, 41],
-                    iconAnchor: [12, 41],
-                    popupAnchor: [1, -34],
-                    shadowSize: [41, 41]
-                });
-
-                var redIcon = new L.Icon({
-                    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
-                    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-                    iconSize: [25, 41],
-                    iconAnchor: [12, 41],
-                    popupAnchor: [1, -34],
-                    shadowSize: [41, 41]
-                });
-
-                const fontAwesomeIcon = L.divIcon({
-                    html: '<span class="fa-stack fa-2x"><i class="fas fa-square fa-stack-2x"></i> <i class="fab fa-cloudversify fa-stack-1x fa-inverse"></i></span>',
-                    iconSize: [20, 20],
-                    className: 'myDivIcon'
-                });
-                cloud=L.marker([flight.latTo, flight.longTo], {
-                    icon: fontAwesomeIcon
-                }).addTo(mymap)
-                L.marker([flight.latTo, flight.longTo], { icon: greenIcon }).addTo(mymap);
-                L.marker([latlngs[latlngs.length - 1][0], latlngs[latlngs.length - 1][1]], { icon: redIcon }).addTo(mymap);
-                mymap.fitBounds(polyline.getBounds());
-                L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
-                    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-                    maxZoom: 18,
-                    id: 'mapbox/outdoors-v11',
-                    tileSize: 512,
-                    zoomOffset: -1,
-                    accessToken: 'pk.eyJ1IjoidXBza3kiLCJhIjoiY2tycWZodGV2MG1oZDJucGZ3MDV5bmNmeCJ9.f0L_kNkjANGRJO9hlpcpvw'
-                }).addTo(mymap);
-
-                Highcharts.chart('chartdiv', {
-    chart: {
-      type: 'area'
-    },
-    accessibility: {
-      description: 'Image description: An area chart compares the nuclear stockpiles of the USA and the USSR/Russia between 1945 and 2017. The number of nuclear weapons is plotted on the Y-axis and the years on the X-axis. The chart is interactive, and the year-on-year stockpile levels can be traced for each country. The US has a stockpile of 6 nuclear weapons at the dawn of the nuclear age in 1945. This number has gradually increased to 369 by 1950 when the USSR enters the arms race with 6 weapons. At this point, the US starts to rapidly build its stockpile culminating in 32,040 warheads by 1966 compared to the USSR’s 7,089. From this peak in 1966, the US stockpile gradually decreases as the USSR’s stockpile expands. By 1978 the USSR has closed the nuclear gap at 25,393. The USSR stockpile continues to grow until it reaches a peak of 45,000 in 1986 compared to the US arsenal of 24,401. From 1986, the nuclear stockpiles of both countries start to fall. By 2000, the numbers have fallen to 10,577 and 21,000 for the US and Russia, respectively. The decreases continue until 2017 at which point the US holds 4,018 weapons compared to Russia’s 4,500.'
-    },
-    title: {
-      text: 'US and USSR nuclear stockpiles'
-    },
-    subtitle: {
-      text: 'Sources: <a href="https://thebulletin.org/2006/july/global-nuclear-stockpiles-1945-2006">' +
-        'thebulletin.org</a> & <a href="https://www.armscontrol.org/factsheets/Nuclearweaponswhohaswhat">' +
-        'armscontrol.org</a>'
-    },
-    xAxis: {
-      allowDecimals: false,
-      labels: {
-        formatter: function () {
-          return this.value; // clean, unformatted number for year
-        }
-      },
-      accessibility: {
-        rangeDescription: 'Range: 1940 to 2017.'
-      }
-    },
-    yAxis: {
-      title: {
-        text: 'Nuclear weapon states'
-      },
-      labels: {
-        formatter: function () {
-          return this.value / 1000 + 'k';
-        }
-      }
-    },
-    tooltip: {
-      pointFormat: '{series.name} had stockpiled <b>{point.y:,.0f}</b><br/>warheads in {point.x}'
-    },
-    plotOptions: {
-      area: {
-        pointStart: 1940,
-        marker: {
-          enabled: false,
-          symbol: 'circle',
-          radius: 2,
-          states: {
-            hover: {
-              enabled: true
+            if ($('#mapinsert').hasClass('leaflet-container')) {
+                $('#mapinsert').remove();
+                $('<div id="mapinsert" class="modal-body"></div>').insertAfter("#before_modal");
             }
-          }
-        }
-      }
-    },
-    series: [{
-      name: 'USA',
-      keys: ['name', 'custom.value', 'y', 'custom.rank','custom.lng'],
-      point: {
-          events: {
-              mouseOver: function() {
-                  console.log(this.custom.lng);
-              }
-          }
-      },
-      data: [
-        [1940,10,10,3,1004],
-        [1945,100,100,4,22],
-        [1950,1000,1000,5,33],
-        [1955,100,100,6,34],
-        [1960,1000,1000,7,77],
-        [1965,10,10,8,78]
-      ]
-    }]
-  });
+            var alt_data = []
+            var flight = filteredData.find(t => t.id === id)
+            var indix = 0;
+            for (let fix of fixes) {
+                latlngs.push([fix.lat, fix.lng]);
+                //alt_data.push({ indix: indix, date: new Date(2018, 3, 20, fix.time.h, fix.time.m, fix.time.s), gpsalt: fix.gpsalt, pressalt: fix.pressalt, lat: fix.lat, lng: fix.lng })
+                alt_data.push([new Date(2018, 3, 20, fix.time.h, fix.time.m, fix.time.s).getTime(),fix.pressalt,fix.pressalt,fix.lat,fix.lng])
+                indix += 1;
+            }
+
+            var mymap = L.map('mapinsert').setView([flight.latTo, flight.longTo], 13);
+            var polyline = L.polyline(latlngs, { color: 'red' }).addTo(mymap);
+            var greenIcon = new L.Icon({
+                iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
+                shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+                iconSize: [25, 41],
+                iconAnchor: [12, 41],
+                popupAnchor: [1, -34],
+                shadowSize: [41, 41]
             });
+
+            var redIcon = new L.Icon({
+                iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
+                shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+                iconSize: [25, 41],
+                iconAnchor: [12, 41],
+                popupAnchor: [1, -34],
+                shadowSize: [41, 41]
+            });
+
+            const fontAwesomeIcon = L.divIcon({
+                html: '<span class="fa-stack fa-2x"><i class="fas fa-square fa-stack-2x"></i> <i class="fab fa-cloudversify fa-stack-1x fa-inverse"></i></span>',
+                iconSize: [20, 20],
+                className: 'myDivIcon'
+            });
+            cloud = L.marker([flight.latTo, flight.longTo], {
+                icon: fontAwesomeIcon
+            }).addTo(mymap)
+            L.marker([flight.latTo, flight.longTo], { icon: greenIcon }).addTo(mymap);
+            L.marker([latlngs[latlngs.length - 1][0], latlngs[latlngs.length - 1][1]], { icon: redIcon }).addTo(mymap);
+            mymap.fitBounds(polyline.getBounds());
+            L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+                attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+                maxZoom: 18,
+                id: 'mapbox/outdoors-v11',
+                tileSize: 512,
+                zoomOffset: -1,
+                accessToken: 'pk.eyJ1IjoidXBza3kiLCJhIjoiY2tycWZodGV2MG1oZDJucGZ3MDV5bmNmeCJ9.f0L_kNkjANGRJO9hlpcpvw'
+            }).addTo(mymap);
+
+            Highcharts.chart('chartdiv', {
+                chart: {
+                    type: 'area'
+                },
+                accessibility: {
+                    description: 'Image description: An area chart compares the nuclear stockpiles of the USA and the USSR/Russia between 1945 and 2017. The number of nuclear weapons is plotted on the Y-axis and the years on the X-axis. The chart is interactive, and the year-on-year stockpile levels can be traced for each country. The US has a stockpile of 6 nuclear weapons at the dawn of the nuclear age in 1945. This number has gradually increased to 369 by 1950 when the USSR enters the arms race with 6 weapons. At this point, the US starts to rapidly build its stockpile culminating in 32,040 warheads by 1966 compared to the USSR’s 7,089. From this peak in 1966, the US stockpile gradually decreases as the USSR’s stockpile expands. By 1978 the USSR has closed the nuclear gap at 25,393. The USSR stockpile continues to grow until it reaches a peak of 45,000 in 1986 compared to the US arsenal of 24,401. From 1986, the nuclear stockpiles of both countries start to fall. By 2000, the numbers have fallen to 10,577 and 21,000 for the US and Russia, respectively. The decreases continue until 2017 at which point the US holds 4,018 weapons compared to Russia’s 4,500.'
+                },
+                title: {
+                    text: 'US and USSR nuclear stockpiles'
+                },
+                subtitle: {
+                    text: 'Sources: <a href="https://thebulletin.org/2006/july/global-nuclear-stockpiles-1945-2006">' +
+                        'thebulletin.org</a> & <a href="https://www.armscontrol.org/factsheets/Nuclearweaponswhohaswhat">' +
+                        'armscontrol.org</a>'
+                },
+                xAxis: {
+                    type: 'datetime'
+                },
+                yAxis: {
+                    title: {
+                        text: 'Nuclear weapon states'
+                    },
+                    labels: {
+                        formatter: function() {
+                            return this.value / 1000 + 'k';
+                        }
+                    }
+                },
+                tooltip: {
+                    pointFormat: '{series.name} had stockpiled <b>{point.y:,.0f}</b><br/>warheads in {point.x}'
+                },
+                plotOptions: {
+                    area: {
+                        pointStart: 1940,
+                        marker: {
+                            enabled: false,
+                            symbol: 'circle',
+                            radius: 2,
+                            states: {
+                                hover: {
+                                    enabled: true
+                                }
+                            }
+                        }
+                    }
+                },
+                series: [{
+                    name: 'baro',
+                    keys: ['name', 'custom.value', 'y', 'custom.rank', 'custom.lat', 'custom.lng'],
+                    point: {
+                        events: {
+                            mouseOver: function() {
+                                console.log(this.custom.lat+"/"+this.custom.lng);
+                            }
+                        }
+                    },
+                    data: alt_data
+                }]
+            });
+        });
 
     } else {
         $('#mapinsert').html('<H1> There is no IGC data for this flight</H1>');
