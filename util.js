@@ -191,6 +191,9 @@ function setViewer(id, hasIGC) {
                 ]
             });
             mymap.fitBounds(polyline.getBounds());
+            $('.testa').click(function(){
+                mymap.fitBounds(polyline.getBounds());
+            })
         });
 
     } else {
