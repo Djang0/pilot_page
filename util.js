@@ -153,6 +153,7 @@ function setViewer(id, hasIGC) {
                     point: {
                         events: {
                             mouseOver: function() {
+                                indix=this.custom.indix
                                 console.log(latlngs[indix][0] + "/" + latlngs[indix][1]);
                                 var newLatLng = new L.LatLng(latlngs[indix][0], latlngs[indix][1]);
                                 cloud.setLatLng(newLatLng);
