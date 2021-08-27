@@ -161,6 +161,7 @@ function setViewer(id, hasIGC) {
                         point: {
                             events: {
                                 mouseOver: function() {
+                                    console.log('toto')
                                     var newLatLng = new L.LatLng(this.custom.lat, this.custom.lng);
                                     cloud.setLatLng(newLatLng);
                                 }
