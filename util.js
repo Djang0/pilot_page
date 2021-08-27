@@ -620,6 +620,7 @@ function redrawBadges(filteredData) {
 function redrawViz(filteredData) {
     redrawTable(filteredData)
     redrawBadges(filteredData)
+    bindAll();
 }
 
 function getFlightRepr(flight, appliedFilters) {
