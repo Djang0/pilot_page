@@ -49,10 +49,6 @@ function setViewer(id, hasIGC, flight) {
         datestr = flight.date
         var latlngs = []
 
-        // var myCollapse = document.getElementById('collapseExample')
-        // var bsCollapse = new bootstrap.Collapse(myCollapse, {
-        //     toggle: true
-        // })
         $.getJSON(id + ".js", function(fixes) {
 
             if ($('#mapinsert').hasClass('leaflet-container')) {
@@ -74,7 +70,6 @@ function setViewer(id, hasIGC, flight) {
             s = datestr.split('-')
             for (let fix of fixes) {
                 latlngs.push([fix.lat, fix.lng]);
-                //gps_alt_data.push({ indix: indix, date: new Date(2018, 3, 20, fix.time.h, fix.time.m, fix.time.s), gpsalt: fix.gpsalt, pressalt: fix.pressalt, lat: fix.lat, lng: fix.lng })
                 gps_alt_data.push([new Date(Date.UTC(parseInt(s[0]), parseInt(s[1] - 1), parseInt(s[2]), fix.time.h, fix.time.m, fix.time.s, 0)).getTime(), fix.gpsalt, fix.gpsalt, fix.lat, fix.lng])
                 baro_alt_data.push([new Date(Date.UTC(parseInt(s[0]), parseInt(s[1] - 1), parseInt(s[2]), fix.time.h, fix.time.m, fix.time.s, 0)).getTime(), fix.pressalt, fix.pressalt])
                 indix += 1;
@@ -172,46 +167,38 @@ function setViewer(id, hasIGC, flight) {
                 shadowSize: [41, 41]
             });
 
-            // const fontAwesomeIcon = L.divIcon({
-            //     html: '<span class="fa-stack fa-2x"><i class="fas fa-square fa-stack-2x"></i> <i class="fab fa-cloudversify fa-stack-1x fa-inverse"></i></span>',
-            //     iconSize: [20, 20],
-            //     className: 'myDivIcon'
-            // });
             cloud = L.marker([flight.latTo, flight.longTo], {
                 icon: blueIcon
             }).addTo(mymap)
             L.marker([flight.latTo, flight.longTo], { icon: greenIcon }).addTo(mymap);
             L.marker([latlngs[latlngs.length - 1][0], latlngs[latlngs.length - 1][1]], { icon: redIcon }).addTo(mymap);
 
-            // L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
-            //     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-            //     maxZoom: 18,
-            //     id: 'mapbox/outdoors-v11',
-            //     tileSize: 512,
-            //     zoomOffset: -1,
-            //     accessToken: 'pk.eyJ1IjoidXBza3kiLCJhIjoiY2tycWZlam1mMDc2bTJ1bzRrYWV0OWk3bSJ9.CfIBijQ6nqq07t7rZgXl8w'
-            // }).addTo(mymap);
+
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             }).addTo(mymap);
             mymap.fitBounds(polyline.getBounds());
-            L.easyButton('fa-globe', function(btn, map) {
+            L.easyButton('fa-crosshairs', function(btn, map) {
                 setInterval(function() {
                     mymap.invalidateSize();
                     mymap.fitBounds(polyline.getBounds());
                 }, 100);
 
             }).addTo(mymap);
-            setInterval(function() {
-                    mymap.invalidateSize();
-                    mymap.fitBounds(polyline.getBounds());
-                }, 100);
-            //mymap.invalidateSize();
-            // $('.testa').click(function() {
+            L.easyButton('fa-chart-area', function(btn, map) {
 
-            //     //mymap.fitBounds(polyline.getBounds());
-            //     mymap.invalidateSize();
-            // })
+                var myCollapse = document.getElementById('collapseExample')
+                var bsCollapse = new bootstrap.Collapse(myCollapse, {
+                    toggle: true
+                })
+            }).addTo(mymap);
+
+
+
+            setInterval(function() {
+                mymap.invalidateSize();
+                mymap.fitBounds(polyline.getBounds());
+            }, 100);
         });
 
     } else {
