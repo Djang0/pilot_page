@@ -43,10 +43,10 @@ function redrawSitesFilter(sites) {
     $("#sitesFilter").html(filterHTML);
 }
 
-function setViewer(id, hasIGC, flight) {
+function setViewer(id, hasIGC) {
 
     if (hasIGC) {
-        datestr = flight.date
+        
         var latlngs = []
 
         $.getJSON(id + ".js", function(fixes) {
@@ -67,6 +67,7 @@ function setViewer(id, hasIGC, flight) {
             } else {
                 ceil = maxgps
             }
+            datestr = flight.date
             s = datestr.split('-')
             for (let fix of fixes) {
                 latlngs.push([fix.lat, fix.lng]);
@@ -206,6 +207,7 @@ function setViewer(id, hasIGC, flight) {
             setInterval(function() {
                 mymap.invalidateSize();
                 mymap.fitBounds(polyline.getBounds());
+                console.log('iiiin')
             }, 100);
         });
 
@@ -293,7 +295,7 @@ function bindAll() {
         var flight = filteredData.find(obj => {
             return obj.id === id
         })
-        setViewer(id, true, flight);
+        setViewer(id, true  );
 
     });
 }

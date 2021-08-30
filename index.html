@@ -109,7 +109,7 @@ gtag('config', 'G-GB8D2PTX7Z');
     <br />
     <img src="pilot.png" class="card-img-top rounded-circle mx-auto d-block " style="width:60%" alt="...">
     <div class="card-body">
-        <h5 class="card-title">Ludovic Reenaers</h5>
+        <h5 class="card-title" id="famous-pilot">Ludovic Reenaers</h5>
         <h6 class="card-subtitle mb-4 text-muted">Belgium, Liège</h6>
         <p class="card-text" id="userPad">
             <p><i class="fas fa-address-card" data-bs-toggle="tooltip" data-bs-placement="right" title="License (id/federation)"></i>&nbsp; be-06957 (FBVL)</p><p class="fs-6 fw-lighter"><i class="far fa-clock" data-bs-toggle="tooltip" data-bs-placement="right" title="Total air time"></i>&nbsp;<small> 54h 19m 1s </small></p><p class="fs-6 fw-lighter"><i class="fas fa-dove" data-bs-toggle="tooltip" data-bs-placement="right" title="Flights count"></i>&nbsp; <small>226 flights (23 without IGC)</small></p><p class="fs-6 fw-lighter"><i class="fas fa-graduation-cap" data-bs-toggle="tooltip" data-bs-placement="right" title="License (date obtained)"></i>&nbsp;<small>Pilote parapente (1301) (28/05/19)</small></p><p class="fs-6 fw-lighter"><i class="fas fa-graduation-cap" data-bs-toggle="tooltip" data-bs-placement="right" title="License (date obtained)"></i>&nbsp;<small>Pilote XC parapente (744) (28/05/19)</small></p><p class="fs-6 fw-lighter"><i class="fas fa-graduation-cap" data-bs-toggle="tooltip" data-bs-placement="right" title="License (date obtained)"></i>&nbsp;<small>IPPI 5 (29/05/19)</small></p><p class="fs-6 fw-lighter"><i class="fas fa-graduation-cap" data-bs-toggle="tooltip" data-bs-placement="right" title="License (date obtained)"></i>&nbsp;<small>Pilote XC GAA (11) (25/08/21)</small></p><p class="fs-6 fw-lighter"><i class="fab fa-angellist" data-bs-toggle="tooltip" data-bs-placement="right" title="Club"></i>&nbsp;<small>Laroch'Ailes</small></p>
@@ -540,17 +540,23 @@ gtag('config', 'G-GB8D2PTX7Z');
 <div class="modal fade" id="mapModal" tabindex="-1" aria-labelledby="map" aria-hidden="true">
     <div class="modal-dialog modal-fullscreen">
         <div class="modal-content">
-            <div  class="modal-header">
+            <div class="modal-header">
                 <h5 class="modal-title" id="map_label">Modal title</h5>
                 <button type="button" class="btn-close close_modal" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div id="comment-collapse" class="collapse collapse-horizontal">
-                toto
+                <figure>
+                    <blockquote class="blockquote">
+                        <p id="comm-data">A well-known quote, contained in a blockquote element.</p>
+                    </blockquote>
+                    <figcaption class="blockquote-footer">
+                        <span id="pilot_name"></span> in <cite title="Source Title">Logfly database</cite>
+                    </figcaption>
+                </figure>
             </div>
             <div id="before_modal"></div>
             <div id="mapinsert" class="modal-body">
             </div>
-            
             <div class="modal-footer">
                 <!-- Styles -->
 <style>
