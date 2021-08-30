@@ -202,6 +202,10 @@ function setViewer(id, hasIGC, flight) {
                 }, 100);
 
             }).addTo(mymap);
+            setInterval(function() {
+                    mymap.invalidateSize();
+                    mymap.fitBounds(polyline.getBounds());
+                }, 100);
             //mymap.invalidateSize();
             // $('.testa').click(function() {
 
@@ -277,7 +281,10 @@ function redrawTable(filteredData) {
                 var data = $('#flights_table').DataTable().row(currentRow).data();
                 var id = parseInt(data['id']);
                 var igc = data['hasIGC'];
-                setViewer(id, igc)
+                var flight = filteredData.find(obj => {
+                    return obj.id === id
+                })
+                setViewer(id, igc, flight)
 
             });
         })
