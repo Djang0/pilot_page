@@ -547,6 +547,9 @@ gtag('config', 'G-GB8D2PTX7Z');
             <div id="mapinsert" class="modal-body">
                 
             </div>
+            <div id="comment-collapse" class="collapse collapse-horizontal">
+                blahaoijdflzdjkfs
+            </div>
             <div class="modal-footer">
                 <!-- Styles -->
 <style>
@@ -594,6 +597,10 @@ gtag('config', 'G-GB8D2PTX7Z');
             });
         });
         $('.close_modal').click(function() {
+            var myCollapse = document.getElementById('collapseExample')
+            var bsCollapse = new bootstrap.Collapse(myCollapse, {
+                toggle: true
+            })
             $('#mapinsert').remove();
             $('<div id="mapinsert" class="modal-body"></div>').insertAfter("#before_modal");
         })

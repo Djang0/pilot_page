@@ -139,6 +139,10 @@ function setViewer(id, hasIGC, flight) {
 
                 ]
             });
+            var myCollapse = document.getElementById('comment-collapse')
+            var bsCollapse = new bootstrap.Collapse(myCollapse, {
+                hide: true
+            })
             var mymap = L.map('mapinsert').setView([flight.latTo, flight.longTo], 13);
             var polyline = L.polyline(latlngs, { color: 'red' }).addTo(mymap);
             var greenIcon = new L.Icon({
@@ -193,6 +197,13 @@ function setViewer(id, hasIGC, flight) {
                 })
             }).addTo(mymap);
 
+            L.easyButton('fa-comment-dots', function(btn, map) {
+
+                var myCollapse = document.getElementById('comment-collapse')
+                var bsCollapse = new bootstrap.Collapse(myCollapse, {
+                    toggle: true
+                })
+            }).addTo(mymap);
 
 
             setInterval(function() {
