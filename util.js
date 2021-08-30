@@ -181,7 +181,7 @@ function setViewer(id, hasIGC) {
             }).addTo(mymap);
             mymap.fitBounds(polyline.getBounds());
             L.easyButton('fa-crosshairs', function(btn, map) {
-                seTimeout(function() {
+                setTimeout(function() {
                     mymap.invalidateSize();
                     mymap.fitBounds(polyline.getBounds());
                 }, 100);
@@ -204,7 +204,7 @@ function setViewer(id, hasIGC) {
             }).addTo(mymap);
 
 
-            seTimeout(function() {
+            setTimeout(function() {
                 mymap.invalidateSize();
                 mymap.fitBounds(polyline.getBounds());
                 console.log('iiiin')
