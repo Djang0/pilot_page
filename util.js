@@ -200,8 +200,8 @@ function setViewer(id, hasIGC, flight) {
             mymap.invalidateSize();
             $('.testa').click(function() {
 
-                mymap.fitBounds(polyline.getBounds());
-
+                //mymap.fitBounds(polyline.getBounds());
+                mymap.invalidateSize();
             })
         });
 
