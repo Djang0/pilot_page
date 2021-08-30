@@ -46,7 +46,7 @@ function redrawSitesFilter(sites) {
 function setViewer(id, hasIGC, flight) {
 
     if (hasIGC) {
-        datestr=flight.date
+        datestr = flight.date
         var latlngs = []
 
         // var myCollapse = document.getElementById('collapseExample')
@@ -80,7 +80,7 @@ function setViewer(id, hasIGC, flight) {
                 indix += 1;
             }
 
-            
+
 
             Highcharts.chart('chartdiv', {
                 chart: {
@@ -121,7 +121,7 @@ function setViewer(id, hasIGC, flight) {
                         }
                     }
                 },
-                series: [ {
+                series: [{
                         name: 'GPS',
                         keys: ['name', 'custom.value', 'y', 'custom.lat', 'custom.lng'],
                         point: {
@@ -196,7 +196,11 @@ function setViewer(id, hasIGC, flight) {
             }).addTo(mymap);
             mymap.fitBounds(polyline.getBounds());
             L.easyButton('fa-globe', function(btn, map) {
-                alert('toto')
+                setInterval(function() {
+                    mymap.invalidateSize();
+                    mymap.fitBounds(polyline.getBounds());
+                }, 100);
+
             }).addTo(mymap);
             //mymap.invalidateSize();
             // $('.testa').click(function() {
