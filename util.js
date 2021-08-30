@@ -43,7 +43,7 @@ function redrawSitesFilter(sites) {
     $("#sitesFilter").html(filterHTML);
 }
 
-function setViewer(id, hasIGC) {
+function setViewer(id, hasIGC, datestr) {
 
     if (hasIGC) {
 
@@ -71,11 +71,12 @@ function setViewer(id, hasIGC) {
             } else {
                 ceil = maxgps
             }
+            s=datestr.split('-')
             for (let fix of fixes) {
                 latlngs.push([fix.lat, fix.lng]);
                 //gps_alt_data.push({ indix: indix, date: new Date(2018, 3, 20, fix.time.h, fix.time.m, fix.time.s), gpsalt: fix.gpsalt, pressalt: fix.pressalt, lat: fix.lat, lng: fix.lng })
-                gps_alt_data.push([new Date(Date.UTC(2018, 3, 20, fix.time.h, fix.time.m, fix.time.s, 0)).getTime(), fix.gpsalt, fix.gpsalt, fix.lat, fix.lng])
-                baro_alt_data.push([new Date(Date.UTC(2018, 3, 20, fix.time.h, fix.time.m, fix.time.s, 0)).getTime(), fix.pressalt, fix.pressalt])
+                gps_alt_data.push([new Date(Date.UTC(parseInt(s[0]), parseInt(s[1]-1), parseInt(s[2]), fix.time.h, fix.time.m, fix.time.s, 0)).getTime(), fix.gpsalt, fix.gpsalt, fix.lat, fix.lng])
+                baro_alt_data.push([new Date(Date.UTC(parseInt(s[0]), parseInt(s[1]-1), parseInt(s[2]), fix.time.h, fix.time.m, fix.time.s, 0)).getTime(), fix.pressalt, fix.pressalt])
                 indix += 1;
             }
 
@@ -135,7 +136,7 @@ function setViewer(id, hasIGC) {
                     type: 'area'
                 },
                 accessibility: {
-                    description: 'Image description: An area chart compares the nuclear stockpiles of the USA and the USSR/Russia between 1945 and 2017. The number of nuclear weapons is plotted on the Y-axis and the years on the X-axis. The chart is interactive, and the year-on-year stockpile levels can be traced for each country. The US has a stockpile of 6 nuclear weapons at the dawn of the nuclear age in 1945. This number has gradually increased to 369 by 1950 when the USSR enters the arms race with 6 weapons. At this point, the US starts to rapidly build its stockpile culminating in 32,040 warheads by 1966 compared to the USSR’s 7,089. From this peak in 1966, the US stockpile gradually decreases as the USSR’s stockpile expands. By 1978 the USSR has closed the nuclear gap at 25,393. The USSR stockpile continues to grow until it reaches a peak of 45,000 in 1986 compared to the US arsenal of 24,401. From 1986, the nuclear stockpiles of both countries start to fall. By 2000, the numbers have fallen to 10,577 and 21,000 for the US and Russia, respectively. The decreases continue until 2017 at which point the US holds 4,018 weapons compared to Russia’s 4,500.'
+                    description: 'Image description: A chart of GPS and barometric altirude over time.'
                 },
                 xAxis: {
                     type: 'datetime'
@@ -153,7 +154,7 @@ function setViewer(id, hasIGC) {
                     }
                 },
                 tooltip: {
-                    pointFormat: '{series.name} had stockpiled <b>{point.y:,.0f}</b><br/>warheads in {point.x}'
+                    pointFormat: '{series.name} altitude <b>{point.y:,.0f}</b> m'
                 },
                 plotOptions: {
                     area: {
@@ -185,6 +186,7 @@ function setViewer(id, hasIGC) {
                     },
                     {
                         name: 'Baro',
+                        visible: false,
                         keys: ['name', 'custom.value', 'y'],
                         data: baro_alt_data
                     }
@@ -279,7 +281,10 @@ function redrawTable(filteredData) {
 function bindAll() {
     $('.viewer').click(function() {
         var id = $(this).data('id');
-        setViewer(id, true);
+        var flight = filteredData.find(obj => {
+            return obj.id === id
+        })
+        setViewer(id, true, flight.date);
 
     });
 }

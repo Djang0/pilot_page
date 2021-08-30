@@ -608,7 +608,7 @@ gtag('config', 'G-GB8D2PTX7Z');
             var data = $('#flights_table').DataTable().row(currentRow).data();
             var id = parseInt(data['id']);
             var igc = data['hasIGC'];
-            setViewer(id, igc)
+            setViewer(id, igc,data['date'])
 
         });
 
@@ -625,6 +625,7 @@ gtag('config', 'G-GB8D2PTX7Z');
             $('#nb_years').text(year_label);
             filteredData = applyFilters(allData, appliedFilters, filterStrings);
             redrawViz(filteredData);
+
         });
 
         $('.wing_item').click(function() {
