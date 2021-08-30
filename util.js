@@ -43,10 +43,10 @@ function redrawSitesFilter(sites) {
     $("#sitesFilter").html(filterHTML);
 }
 
-function setViewer(id, hasIGC, datestr) {
+function setViewer(id, hasIGC, flight) {
 
     if (hasIGC) {
-
+        datestr=flight.date
         var latlngs = []
 
         // var myCollapse = document.getElementById('collapseExample')
@@ -71,12 +71,12 @@ function setViewer(id, hasIGC, datestr) {
             } else {
                 ceil = maxgps
             }
-            s=datestr.split('-')
+            s = datestr.split('-')
             for (let fix of fixes) {
                 latlngs.push([fix.lat, fix.lng]);
                 //gps_alt_data.push({ indix: indix, date: new Date(2018, 3, 20, fix.time.h, fix.time.m, fix.time.s), gpsalt: fix.gpsalt, pressalt: fix.pressalt, lat: fix.lat, lng: fix.lng })
-                gps_alt_data.push([new Date(Date.UTC(parseInt(s[0]), parseInt(s[1]-1), parseInt(s[2]), fix.time.h, fix.time.m, fix.time.s, 0)).getTime(), fix.gpsalt, fix.gpsalt, fix.lat, fix.lng])
-                baro_alt_data.push([new Date(Date.UTC(parseInt(s[0]), parseInt(s[1]-1), parseInt(s[2]), fix.time.h, fix.time.m, fix.time.s, 0)).getTime(), fix.pressalt, fix.pressalt])
+                gps_alt_data.push([new Date(Date.UTC(parseInt(s[0]), parseInt(s[1] - 1), parseInt(s[2]), fix.time.h, fix.time.m, fix.time.s, 0)).getTime(), fix.gpsalt, fix.gpsalt, fix.lat, fix.lng])
+                baro_alt_data.push([new Date(Date.UTC(parseInt(s[0]), parseInt(s[1] - 1), parseInt(s[2]), fix.time.h, fix.time.m, fix.time.s, 0)).getTime(), fix.pressalt, fix.pressalt])
                 indix += 1;
             }
 
@@ -171,6 +171,11 @@ function setViewer(id, hasIGC, datestr) {
                     }
                 },
                 series: [{
+                        name: 'Baro',
+                        visible: false,
+                        keys: ['name', 'custom.value', 'y'],
+                        data: baro_alt_data
+                    }, {
                         name: 'GPS',
                         keys: ['name', 'custom.value', 'y', 'custom.lat', 'custom.lng'],
                         point: {
@@ -183,19 +188,15 @@ function setViewer(id, hasIGC, datestr) {
                             }
                         },
                         data: gps_alt_data
-                    },
-                    {
-                        name: 'Baro',
-                        visible: false,
-                        keys: ['name', 'custom.value', 'y'],
-                        data: baro_alt_data
                     }
+
                 ]
             });
             mymap.fitBounds(polyline.getBounds());
             L.easyButton('fa-globe', function(btn, map) {
                 alert('toto')
             }).addTo(mymap);
+            mymap.invalidateSize();
             $('.testa').click(function() {
 
                 mymap.fitBounds(polyline.getBounds());
@@ -284,7 +285,7 @@ function bindAll() {
         var flight = filteredData.find(obj => {
             return obj.id === id
         })
-        setViewer(id, true, flight.date);
+        setViewer(id, true, flight);
 
     });
 }
