@@ -170,12 +170,7 @@ function setViewer(id, hasIGC, flight) {
                         }
                     }
                 },
-                series: [{
-                        name: 'Baro',
-                        visible: false,
-                        keys: ['name', 'custom.value', 'y'],
-                        data: baro_alt_data
-                    }, {
+                series: [ {
                         name: 'GPS',
                         keys: ['name', 'custom.value', 'y', 'custom.lat', 'custom.lng'],
                         point: {
@@ -188,6 +183,12 @@ function setViewer(id, hasIGC, flight) {
                             }
                         },
                         data: gps_alt_data
+                    },
+                    {
+                        name: 'Baro',
+                        visible: false,
+                        keys: ['name', 'custom.value', 'y'],
+                        data: baro_alt_data
                     }
 
                 ]
