@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <!-- Required meta tags -->
+        <!-- Required meta tags -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- TODO: amcharts -->
@@ -16,6 +16,7 @@
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
 <script src="https://code.highcharts.com/modules/export-data.js"></script>
 <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+<script src="dark-unica.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="" />
 <!-- Make sure you put this AFTER Leaflet's CSS -->
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
@@ -137,6 +138,11 @@ gtag('config', 'G-GB8D2PTX7Z');
         <li class="nav-item" role="presentation">
             <button class="nav-link" id="fli-tab-but" data-bs-toggle="tab" data-bs-target="#fli-tab" type="button" role="tab" aria-controls="flights" aria-selected="false">
                 Flights
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="fig-tab-but" data-bs-toggle="tab" data-bs-target="#fig-tab" type="button" role="tab" aria-controls="Figures" aria-selected="false">
+                Figures
             </button>
         </li>
     </ul>
@@ -530,6 +536,9 @@ gtag('config', 'G-GB8D2PTX7Z');
         </div><!-- card-body -->
     </div><!-- profil card -->
 </div>
+        </div>
+        <div class="tab-pane fade" id="fig-tab" role="tabpanel" aria-labelledby="fig-tab">
+            
         </div>
     </div>
 </div>
