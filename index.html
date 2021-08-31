@@ -539,6 +539,55 @@ gtag('config', 'G-GB8D2PTX7Z');
         </div>
         <div class="tab-pane fade" id="fig-tab" role="tabpanel" aria-labelledby="fig-tab">
             
+<div class="row" data-masonry='{"percentPosition": true }'>
+    <div class="col-sm-6 col-lg-6 mb-2 mt-2">
+        
+<div id="per_ctry"></div>
+<script type="text/javascript">
+	
+	Highcharts.chart('per_ctry', {
+  chart: {
+    type: 'pie',
+    options3d: {
+      enabled: true,
+      alpha: 45
+    }
+  },
+  title: {
+    text: 'Contents of Highsoft\'s weekly fruit delivery'
+  },
+  subtitle: {
+    text: '3D donut in Highcharts'
+  },
+  plotOptions: {
+    pie: {
+      innerSize: 100,
+      depth: 45
+    }
+  },
+  series: [{
+    name: 'Delivered amount',
+    data: [
+      ['Bananas', 8],
+      ['Kiwi', 3],
+      ['Mixed nuts', 1],
+      ['Oranges', 6],
+      ['Apples', 8],
+      ['Pears', 4],
+      ['Clementines', 4],
+      ['Reddish (bag)', 1],
+      ['Grapes (bunch)', 1]
+    ]
+  }]
+});
+
+</script>
+    </div>
+    
+</div>
+
+
+
         </div>
     </div>
 </div>
