@@ -326,6 +326,19 @@ function bindAll() {
         setViewer(id, true);
 
     });
+$('.comm-toggle').click(function() {
+        var myCollapse = document.getElementById('comment-collapse')
+                    var bsCollapse = new bootstrap.Collapse(myCollapse, {
+                        toggle: true
+                    })
+                    setTimeout(function() {
+                        mymap.invalidateSize();
+                        mymap.fitBounds(polyline.getBounds());
+                    }, 100);
+
+    });
+
+
 }
 
 function avgData(summed, count, noIgc) {
