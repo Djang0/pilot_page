@@ -272,7 +272,7 @@ function redrawTable(filteredData) {
                         }
 
                     }
-                    defaultContent: ''
+                    
                 }, {
                     data: 'date',
                     title: "Date"
