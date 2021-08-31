@@ -206,7 +206,7 @@ function setViewer(id, hasIGC) {
             }).addTo(mymap);
 
             if (flight.hasComment) {
-                $('#comm-data').html(flight.comments)
+                $('#comm-data').html('<span class="triangle"></span>'+flight.comments)
                 $('#pilot_name').html($('#famous-pilot').html())
                 L.easyButton('fa-comment-dots', function(btn, map) {
 
