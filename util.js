@@ -224,7 +224,17 @@ function setViewer(id, hasIGC) {
             }).addTo(mymap);
 
 
+            $('.commtoggle').click(function() {
+                var myCollapse = document.getElementById('comment-collapse')
+                var bsCollapse = new bootstrap.Collapse(myCollapse, {
+                    toggle: true
+                })
+                setTimeout(function() {
+                    mymap.invalidateSize();
+                    mymap.fitBounds(polyline.getBounds());
+                }, 100);
 
+            });
 
             setTimeout(function() {
                 mymap.invalidateSize();
@@ -327,17 +337,7 @@ function bindAll() {
         setViewer(id, true);
 
     });
-    $('.commtoggle').click(function() {
-        var myCollapse = document.getElementById('comment-collapse')
-        var bsCollapse = new bootstrap.Collapse(myCollapse, {
-            toggle: true
-        })
-        setTimeout(function() {
-            mymap.invalidateSize();
-            mymap.fitBounds(polyline.getBounds());
-        }, 100);
 
-    });
 
 
 }
