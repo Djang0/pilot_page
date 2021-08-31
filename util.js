@@ -263,9 +263,9 @@ function redrawTable(filteredData) {
                     visible: false,
                     title: "hasIGC"
                 }, {
-                    data: 'null',
+                    data: 'hasIGC',
                     render: function(data, type, row) {
-                        if (data.hasIGC) {
+                        if (data) {
                             return '<button type="button" class="btn btn-default table_viewer" data-bs-toggle="modal" data-bs-target="#mapModal"><i class="fas fa-globe-americas" data-bs-toggle="tooltip" data-bs-placement="bottom" title="View flight trace"></i></button>';
                         } else {
                             return '<button type="button" class="btn btn-default disabled"><i class="far fa-eye-slash" data-bs-toggle="tooltip" data-bs-placement="bottom" title="No IGC data for this flight"></i></button>';
