@@ -14,8 +14,6 @@ function secToHms(sec) {
 
 function getViewButton(flight_id) {
     return '<button type="button" class="btn btn-default viewer" data-id="' + flight_id.toString() + '" data-bs-toggle="modal" data-bs-target="#mapModal"><i class="fas fa-globe-americas" data-bs-toggle="tooltip" data-bs-placement="bottom" title="View flight trace"></i></button>'
-
-
 }
 
 function redrawWingsFilter(wings) {
@@ -587,7 +585,7 @@ function redrawBadges(filteredData) {
         sum_ffvl_dist = '<span class="fs-2">' + ffvl_total_dist.toFixed(2) + ' Km</span><span class="fw-lighter"><small>(' + flightNoIGC + ' w/o IGC)</small></span>'
 
         avg_ffvl_score = '<span class="fs-2">' + ffvl_avg_score.toFixed(2) + ' Pts.</span><span class="fw-lighter"><small>(' + flightNoIGC + ' w/o IGC)</small></span>'
-        max_ffvl_score = '<span class="fs-2">' + ffvl_max_score.toFixed(2) + ' Pts.</span><span class="fw-lighter"><small>(' + flightNoIGC + ' w/o IGC)</small></span>'+ getViewButton(ffvl_max_score_id);
+        max_ffvl_score = '<span class="fs-2">' + ffvl_max_score.toFixed(2) + ' Pts.</span><span class="fw-lighter"><small>(' + flightNoIGC + ' w/o IGC)</small></span>' + getViewButton(ffvl_max_score_id);
         sum_ffvl_score = '<span class="fs-2">' + ffvl_total_score.toFixed(2) + ' Pts.</span><span class="fw-lighter"><small>(' + flightNoIGC + ' w/o IGC)</small></span>'
 
         alti_gps = '<span class="fs-2">' + maxGPS + ' m</span> <span class="fw-lighter"><small>(' + flightNoIGC + ' w/o IGC)</small></span> ' + getViewButton(maxGPS_id);
@@ -704,9 +702,49 @@ function redrawBadges(filteredData) {
     $('#trace_length').html(sum_trace);
 }
 
+function redrawFigures(filteredData) {
+    ctry_count={}
+    filteredData.forEach((flight) => {
+        if (ctry_count.hasOwnProperty(flight.country)) {
+            ctry_count[flight.country]+=1
+        }else{
+            ctry_count[flight.country]=1
+        }
+    })
+    datas=[]
+    for(let ctry in Object.keys(ctry_count)){
+        datas.push([ctry,ctry_count[ctry]])
+    }
+
+    Highcharts.chart('per_ctry', {
+        chart: {
+            type: 'pie',
+            options3d: {
+                enabled: true,
+                alpha: 45
+            }
+        },
+        title: {
+            text: 'Flight(s) per country'
+        },
+        
+        plotOptions: {
+            pie: {
+                innerSize: 100,
+                depth: 45
+            }
+        },
+        series: [{
+            name: 'Flights',
+            data: datas
+        }]
+    });
+}
+
 function redrawViz(filteredData) {
     redrawTable(filteredData)
     redrawBadges(filteredData)
+    redrawFigures(filteredData)
     bindAll();
 }
 
