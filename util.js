@@ -187,25 +187,6 @@ function setViewer(id, hasIGC) {
                 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             }).addTo(mymap);
             mymap.fitBounds(polyline.getBounds());
-            L.easyButton('fa-crosshairs', function(btn, map) {
-                setTimeout(function() {
-                    mymap.invalidateSize();
-                    mymap.fitBounds(polyline.getBounds());
-                }, 100);
-
-            }).addTo(mymap);
-            L.easyButton('fa-chart-area', function(btn, map) {
-
-                var myCollapse = document.getElementById('collapseExample')
-                var bsCollapse = new bootstrap.Collapse(myCollapse, {
-                    toggle: true
-                })
-                setTimeout(function() {
-                    mymap.invalidateSize();
-                    mymap.fitBounds(polyline.getBounds());
-                }, 100);
-            }).addTo(mymap);
-
             if (flight.hasComment) {
                 $('#comm-data').html('<span class="triangle"></span>' + flight.comments)
                 $('#pilot_name').html($('#famous-pilot').html())
@@ -221,6 +202,26 @@ function setViewer(id, hasIGC) {
                     }, 100);
                 }).addTo(mymap);
             }
+
+            L.easyButton('fa-chart-area', function(btn, map) {
+
+                var myCollapse = document.getElementById('collapseExample')
+                var bsCollapse = new bootstrap.Collapse(myCollapse, {
+                    toggle: true
+                })
+                setTimeout(function() {
+                    mymap.invalidateSize();
+                    mymap.fitBounds(polyline.getBounds());
+                }, 100);
+            }).addTo(mymap);
+
+            L.easyButton('fa-crosshairs', function(btn, map) {
+                setTimeout(function() {
+                    mymap.invalidateSize();
+                    mymap.fitBounds(polyline.getBounds());
+                }, 100);
+
+            }).addTo(mymap);
 
 
 
@@ -326,15 +327,15 @@ function bindAll() {
         setViewer(id, true);
 
     });
-$('.comm-toggle').click(function() {
+    $('.commtoggle').click(function() {
         var myCollapse = document.getElementById('comment-collapse')
-                    var bsCollapse = new bootstrap.Collapse(myCollapse, {
-                        toggle: true
-                    })
-                    setTimeout(function() {
-                        mymap.invalidateSize();
-                        mymap.fitBounds(polyline.getBounds());
-                    }, 100);
+        var bsCollapse = new bootstrap.Collapse(myCollapse, {
+            toggle: true
+        })
+        setTimeout(function() {
+            mymap.invalidateSize();
+            mymap.fitBounds(polyline.getBounds());
+        }, 100);
 
     });
 
