@@ -712,6 +712,8 @@ function redrawFigures(filteredData) {
         }
     })
     datas=[]
+    console.log(ctry_count)
+    console.log('____________________________')
     for(let ctry in Object.keys(ctry_count)){
         datas.push([ctry,ctry_count[ctry]])
     }
