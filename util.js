@@ -227,7 +227,7 @@ function setViewer(id, hasIGC) {
             $('.commtoggle').click(function() {
                 var myCollapse = document.getElementById('comment-collapse')
                 var bsCollapse = new bootstrap.Collapse(myCollapse, {
-                    toggle: true
+                    close: true
                 })
                 setTimeout(function() {
                     mymap.invalidateSize();
