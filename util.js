@@ -402,6 +402,7 @@ function redrawBadges(filteredData) {
     g_avg_speed = 0;
 
     g_max_i_speed_id = 0;
+    g_max_i_speed = 0;
     g_avg_i_speed = 0;
 
     t_max_speed = 0;
