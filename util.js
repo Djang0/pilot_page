@@ -225,7 +225,7 @@ function setViewer(id, hasIGC) {
 
 
             $('.commtoggle').click(function() {
-                $('#comment-collapse').collapse()
+                $('#comment-collapse').hide()
                
                 setTimeout(function() {
                     mymap.invalidateSize();
