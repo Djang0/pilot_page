@@ -192,10 +192,7 @@ function setViewer(id, hasIGC) {
                 $('#pilot_name').html($('#famous-pilot').html())
                 L.easyButton('fa-comment-dots', function(btn, map) {
 
-                    var myCollapse = document.getElementById('comment-collapse')
-                    var bsCollapse = new bootstrap.Collapse(myCollapse, {
-                        toggle: true
-                    })
+                    $('#comment-collapse').toggle()
                     setTimeout(function() {
                         mymap.invalidateSize();
                         mymap.fitBounds(polyline.getBounds());
