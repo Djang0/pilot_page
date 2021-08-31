@@ -83,13 +83,14 @@ function setViewer(id, hasIGC) {
 
             Highcharts.chart('chartdiv', {
                 chart: {
-                    type: 'area',
-                    title: {
-                        text: 'Altitude variation over flight time'
-                    }
+                    type: 'area'
+
                 },
                 accessibility: {
                     description: 'Image description: A chart of GPS and barometric altirude over time.'
+                },
+                title: {
+                    text: 'Altitude variation over flight time'
                 },
                 xAxis: {
                     type: 'datetime'
@@ -206,7 +207,7 @@ function setViewer(id, hasIGC) {
             }).addTo(mymap);
 
             if (flight.hasComment) {
-                $('#comm-data').html('<span class="triangle"></span>'+flight.comments)
+                $('#comm-data').html('<span class="triangle"></span>' + flight.comments)
                 $('#pilot_name').html($('#famous-pilot').html())
                 L.easyButton('fa-comment-dots', function(btn, map) {
 
@@ -272,7 +273,7 @@ function redrawTable(filteredData) {
                         }
 
                     }
-                    
+
                 }, {
                     data: 'date',
                     title: "Date"
