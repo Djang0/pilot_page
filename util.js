@@ -715,7 +715,7 @@ function redrawFigures(filteredData) {
     for(let ctry in Object.keys(ctry_count)){
         datas.push([ctry,ctry_count[ctry]])
     }
-
+    console.log(datas)
     Highcharts.chart('per_ctry', {
         chart: {
             type: 'pie',
