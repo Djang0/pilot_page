@@ -728,7 +728,7 @@ function redrawPerCtry(datas) {
     });
 }
 
-function redrawPerCtry(datas) {
+function redrawPerSite(datas) {
     Highcharts.chart('per_site', {
     chart: {
         type: 'pie',
