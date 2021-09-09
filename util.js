@@ -719,7 +719,9 @@ function redrawPerCtryDuration(datas) {
                 innerSize: 100,
                 depth: 45
             }
-        },
+        },tooltip: {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f} second</b>'
+    },
         series: [{
             name: 'Total duration',
             data: datas
