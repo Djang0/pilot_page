@@ -722,7 +722,7 @@ function redrawPerCtryDuration(datas) {
             }
         },
         tooltip: {
-            pointFormat: '{series.name}: <b>{point.y:.1f} minutes</b>'
+            pointFormat: '{series.name}: <b>{point.y:.1f} hours</b>'
         },
         series: [{
             name: 'Total duration',
@@ -756,7 +756,7 @@ function redrawPerSiteDuration(datas) {
             }
         },
         tooltip: {
-            pointFormat: '{series.name}: <b>{point.y:.1f} minutes</b>'
+            pointFormat: '{series.name}: <b>{point.y:.1f} hours</b>'
         },
         series: [{
             type: 'pie',
@@ -823,13 +823,103 @@ function redrawPerSite(datas) {
         }]
     });
 }
-
+function redrawHistoCount(datas){
+    Highcharts.chart('histo_count', {
+    chart: {
+        type: 'column',
+        options3d: {
+            enabled: true,
+            alpha: 10,
+            beta: 25,
+            depth: 70
+        }
+    },
+    title: {
+        text: 'Evolution of flight(s) count through time'
+    },
+    plotOptions: {
+        column: {
+            depth: 25
+        }
+    },
+    xAxis: {
+        categories: Highcharts.getOptions().lang.shortMonths,
+        labels: {
+            skew3d: true,
+            style: {
+                fontSize: '16px'
+            }
+        }
+    },
+    yAxis: {
+        title: {
+            text: null
+        }
+    },
+    series: datas
+});
+}
+function redrawHistoDuration(datas){
+    Highcharts.chart('histo_duration', {
+        chart: {
+            type: 'column',
+            options3d: {
+                enabled: true,
+                alpha: 10,
+                beta: 25,
+                depth: 70
+            }
+        },
+        title: {
+            text: 'Evolution of flight(s) duration through time'
+        },
+        plotOptions: {
+            column: {
+                depth: 25
+            }
+        },
+        xAxis: {
+            categories: Highcharts.getOptions().lang.shortMonths,
+            labels: {
+                skew3d: true,
+                style: {
+                    fontSize: '16px'
+                }
+            }
+        },
+        yAxis: {
+            title: {
+                text: null
+            }
+        },
+        series: datas
+    });
+}
 function redrawFigures(filteredData) {
     ctry_count = {}
     site_count = {}
     ctry_duration = {}
     site_duration = {}
+    histo_duration = {}
+    histo_count = {}
     filteredData.forEach((flight) => {
+        datestr = flight.date
+        s = datestr.split('-')
+        y = parseInt(s[0])
+        m = parseInt(s[1])
+        if (histo_count.hasOwnProperty(y)) {
+            if (histo_count[y][m - 1]) {
+                histo_count[y][m - 1] = histo_count[y][m - 1] + 1
+                histo_duration[y][m - 1] = histo_duration[y][m - 1] + flight.duration
+            } else {
+                histo_count[y][m - 1] = 1
+                histo_duration[y][m - 1] = flight.duration
+            }
+
+        } else {
+            histo_count[y] = [null, null, null, null, null, null, null, null, null, null, null, null]
+            histo_duration[y] = [null, null, null, null, null, null, null, null, null, null, null, null]
+        }
         if (site_count.hasOwnProperty(flight.site)) {
             site_count[flight.site] += 1
         } else {
@@ -854,20 +944,33 @@ function redrawFigures(filteredData) {
     ctry_data = []
     ctry_duration_data = []
     for (let ctry in ctry_count) {
-        ctry_duration_data.push([ctry, ctry_duration[ctry]/60])
+        ctry_duration_data.push([ctry, ctry_duration[ctry] / 3600])
         ctry_data.push([ctry, ctry_count[ctry]])
     }
     site_data = []
     site_duration_data = []
     for (let site in site_count) {
-        site_duration_data.push([site, site_duration[site]/60])
+        site_duration_data.push([site, site_duration[site] / 3600])
         site_data.push([site, site_count[site]])
+    }
+    k=Object.keys(histo_duration)
+    histo_duration_series=[]
+    histo_count_series=[]
+    for (let y in k) {
+        for (let z in histo_duration[k[y]]) {
+            histo_duration[k[y]][z]=histo_duration[k[y]][z]/3600
+        }
+        histo_count_series.push({name:k[y].toString(),data:histo_count[k[y]]})
+        histo_duration_series.push({name:k[y].toString(),data:histo_duration[k[y]]})
     }
     redrawPerCtry(ctry_data)
     redrawPerSite(site_data)
 
     redrawPerCtryDuration(ctry_duration_data)
     redrawPerSiteDuration(site_duration_data)
+
+    redrawHistoCount(histo_count_series)
+    redrawHistoDuration(histo_duration_series)
 }
 
 function redrawViz(filteredData) {
