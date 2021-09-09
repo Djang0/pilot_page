@@ -823,43 +823,48 @@ function redrawPerSite(datas) {
         }]
     });
 }
-function redrawHistoCount(datas){
+
+function redrawHistoCount(datas) {
     Highcharts.chart('histo_count', {
-    chart: {
-        type: 'column',
-        options3d: {
-            enabled: true,
-            alpha: 10,
-            beta: 25,
-            depth: 70
-        }
-    },
-    title: {
-        text: 'Evolution of flight(s) count through time'
-    },
-    plotOptions: {
-        column: {
-            depth: 25
-        }
-    },
-    xAxis: {
-        categories: Highcharts.getOptions().lang.shortMonths,
-        labels: {
-            skew3d: true,
-            style: {
-                fontSize: '16px'
+        chart: {
+            type: 'column',
+            options3d: {
+                enabled: true,
+                alpha: 10,
+                beta: 25,
+                depth: 70
             }
-        }
-    },
-    yAxis: {
+        },
         title: {
-            text: null
-        }
-    },
-    series: datas
-});
+            text: 'Evolution of flight(s) count through time'
+        },
+        plotOptions: {
+            column: {
+                depth: 25
+            }
+        },
+        xAxis: {
+            categories: Highcharts.getOptions().lang.shortMonths,
+            labels: {
+                skew3d: true,
+                style: {
+                    fontSize: '16px'
+                }
+            }
+        },
+        yAxis: {
+            title: {
+                text: null
+            }
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.y:.1f} flight(s)</b>'
+        },
+        series: datas
+    });
 }
-function redrawHistoDuration(datas){
+
+function redrawHistoDuration(datas) {
     Highcharts.chart('histo_duration', {
         chart: {
             type: 'column',
@@ -892,14 +897,75 @@ function redrawHistoDuration(datas){
                 text: null
             }
         },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.y:.1f} hours</b>'
+        },
         series: datas
     });
 }
+
+function redrawYearDuration(datas) {
+    Highcharts.Chart('y_dur', {
+        chart: {
+            type: 'column',
+            options3d: {
+                enabled: true,
+                alpha: 15,
+                beta: 15,
+                depth: 50,
+                viewDistance: 25
+            }
+        },
+        title: {
+            text: 'Evolution flight(s) duration per year'
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.y:.1f} hours</b>'
+        },
+        plotOptions: {
+            column: {
+                depth: 25
+            }
+        },
+        series: [{
+            data: datas
+        }]
+    });
+}
+
+function redrawYearCount(datas) {
+    Highcharts.Chart('y_cpt', {
+        chart: {
+            type: 'column',
+            options3d: {
+                enabled: true,
+                alpha: 15,
+                beta: 15,
+                depth: 50,
+                viewDistance: 25
+            }
+        },
+        title: {
+            text: 'Evolution flight(s) count per year'
+        },
+        plotOptions: {
+            column: {
+                depth: 25
+            }
+        },
+        series: [{
+            data: datas
+        }]
+    });
+}
+
 function redrawFigures(filteredData) {
     ctry_count = {}
     site_count = {}
     ctry_duration = {}
     site_duration = {}
+    year_count = {}
+    year_duration = {}
     histo_duration = {}
     histo_count = {}
     filteredData.forEach((flight) => {
@@ -919,6 +985,14 @@ function redrawFigures(filteredData) {
         } else {
             histo_count[y] = [null, null, null, null, null, null, null, null, null, null, null, null]
             histo_duration[y] = [null, null, null, null, null, null, null, null, null, null, null, null]
+        }
+
+        if (year_count.hasOwnProperty(y)) {
+            year_count[y] = year_count[y] + 1
+            year_duration[y] = year_duration[y] + flight.duration
+        } else {
+            year_count[y] = 1
+            year_duration[y] = flight.duration
         }
         if (site_count.hasOwnProperty(flight.site)) {
             site_count[flight.site] += 1
@@ -953,15 +1027,25 @@ function redrawFigures(filteredData) {
         site_duration_data.push([site, site_duration[site] / 3600])
         site_data.push([site, site_count[site]])
     }
-    k=Object.keys(histo_duration)
-    histo_duration_series=[]
-    histo_count_series=[]
+    k = Object.keys(histo_duration)
+    histo_duration_series = []
+    histo_count_series = []
     for (let y in k) {
         for (let z in histo_duration[k[y]]) {
-            histo_duration[k[y]][z]=histo_duration[k[y]][z]/3600
+            if (histo_duration[k[y]][z]) {
+                histo_duration[k[y]][z] = histo_duration[k[y]][z] / 3600
+            }
+
         }
-        histo_count_series.push({name:k[y].toString(),data:histo_count[k[y]]})
-        histo_duration_series.push({name:k[y].toString(),data:histo_duration[k[y]]})
+        histo_count_series.push({ name: k[y].toString(), data: histo_count[k[y]] })
+        histo_duration_series.push({ name: k[y].toString(), data: histo_duration[k[y]] })
+    }
+
+    year_count_data = []
+    year_duration_data = []
+    for (let y in year_count) {
+        year_duration_data.push([y, year_duration[y] / 3600])
+        year_count_data.push([y, year_count[y]])
     }
     redrawPerCtry(ctry_data)
     redrawPerSite(site_data)
@@ -971,6 +1055,9 @@ function redrawFigures(filteredData) {
 
     redrawHistoCount(histo_count_series)
     redrawHistoDuration(histo_duration_series)
+
+    redrawYearCount(year_count)
+    redrawYearDuration(year_duration)
 }
 
 function redrawViz(filteredData) {
