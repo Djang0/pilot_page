@@ -702,22 +702,7 @@ function redrawBadges(filteredData) {
     $('#trace_length').html(sum_trace);
 }
 
-function redrawFigures(filteredData) {
-    ctry_count={}
-    filteredData.forEach((flight) => {
-        if (ctry_count.hasOwnProperty(flight.country)) {
-            ctry_count[flight.country]+=1
-        }else{
-            ctry_count[flight.country]=1
-        }
-    })
-    datas=[]
-
-    for(let ctry in ctry_count){
-
-        datas.push([ctry,ctry_count[ctry]])
-    }
-    
+function redrawPerCtry(datas) {
     Highcharts.chart('per_ctry', {
         chart: {
             type: 'pie',
@@ -729,7 +714,7 @@ function redrawFigures(filteredData) {
         title: {
             text: 'Flight(s) per country'
         },
-        
+
         plotOptions: {
             pie: {
                 innerSize: 100,
@@ -741,6 +726,75 @@ function redrawFigures(filteredData) {
             data: datas
         }]
     });
+}
+
+function redrawPerCtry(datas) {
+    Highcharts.chart('per_Site', {
+    chart: {
+        type: 'pie',
+        options3d: {
+            enabled: true,
+            alpha: 45,
+            beta: 0
+        }
+    },
+    title: {
+        text: 'Amount of flightds per site'
+    },
+    accessibility: {
+        point: {
+            valueSuffix: '%'
+        }
+    },
+    tooltip: {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+    },
+    plotOptions: {
+        pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            depth: 35,
+            dataLabels: {
+                enabled: true,
+                format: '{point.name}'
+            }
+        }
+    },
+    series: [{
+        type: 'pie',
+        name: 'Site share',
+        data: datas
+    }]
+});
+}
+
+function redrawFigures(filteredData) {
+    ctry_count = {}
+    site_count = {}
+    filteredData.forEach((flight) => {
+        if (site_count.hasOwnProperty(flight.site)) {
+            site_count[flight.site] += 1
+        } else {
+            site_count[flight.site] = 1
+        }
+        if (ctry_count.hasOwnProperty(flight.country)) {
+            ctry_count[flight.country] += 1
+        } else {
+            ctry_count[flight.country] = 1
+        }
+    })
+    ctry_data = []
+    for (let ctry in ctry_count) {
+
+        ctry_data.push([ctry, ctry_count[ctry]])
+    }
+    site_data = []
+    for (let site in site_count) {
+
+        site_data.push([site, site_count[site]])
+    }
+    redrawPerCtry(ctry_data)
+    redrawPerSite(site_data)
 }
 
 function redrawViz(filteredData) {
