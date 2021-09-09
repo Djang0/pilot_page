@@ -1057,8 +1057,8 @@ function redrawFigures(filteredData) {
     redrawHistoCount(histo_count_series)
     redrawHistoDuration(histo_duration_series)
 
-    redrawYearCount(year_count)
-    redrawYearDuration(year_duration)
+    redrawYearCount(year_count_data)
+    redrawYearDuration(year_duration_data)
 }
 
 function redrawViz(filteredData) {
