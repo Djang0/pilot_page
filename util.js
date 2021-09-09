@@ -729,7 +729,7 @@ function redrawPerCtry(datas) {
 }
 
 function redrawPerCtry(datas) {
-    Highcharts.chart('per_Site', {
+    Highcharts.chart('per_site', {
     chart: {
         type: 'pie',
         options3d: {
