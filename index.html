@@ -632,7 +632,13 @@ gtag('config', 'G-GB8D2PTX7Z');
         redrawYearsFilter(years);
         redrawSitesFilter(sites);
         redrawViz(filteredData);
-
+        var tabEl = document.querySelector('button[data-bs-toggle="tab"]')
+        tabEl.addEventListener('shown.bs.tab', function(event) {
+            //event.target // newly activated tab
+            //event.relatedTarget // previous active tab
+            alert('ff')
+            window.dispatchEvent(new Event('resize'));
+        })
         $("#site_input").on("keyup", function() {
             var value = $(this).val().toLowerCase();
             $("#sitesFilter li.filterable").filter(function() {
