@@ -701,6 +701,7 @@ function redrawBadges(filteredData) {
 
     $('#trace_length').html(sum_trace);
 }
+
 function redrawPerCtryDuration(datas) {
     Highcharts.chart('per_ctry_dur', {
         chart: {
@@ -719,9 +720,10 @@ function redrawPerCtryDuration(datas) {
                 innerSize: 100,
                 depth: 45
             }
-        },tooltip: {
-        pointFormat: '{series.name}: <b>{point.percentage:.1f} second</b>'
-    },
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.y:.1f} minutes</b>'
+        },
         series: [{
             name: 'Total duration',
             data: datas
@@ -731,35 +733,39 @@ function redrawPerCtryDuration(datas) {
 
 function redrawPerSiteDuration(datas) {
     Highcharts.chart('per_site_dur', {
-    chart: {
-        type: 'pie',
-        options3d: {
-            enabled: true,
-            alpha: 45,
-            beta: 0
-        }
-    },
-    title: {
-        text: 'Flight(s) duration per site'
-    },   
-    plotOptions: {
-        pie: {
-            allowPointSelect: true,
-            cursor: 'pointer',
-            depth: 35,
-            dataLabels: {
+        chart: {
+            type: 'pie',
+            options3d: {
                 enabled: true,
-                format: '{point.name}'
+                alpha: 45,
+                beta: 0
             }
-        }
-    },
-    series: [{
-        type: 'pie',
-        name: 'Total duration',
-        data: datas
-    }]
-});
+        },
+        title: {
+            text: 'Flight(s) duration per site'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                depth: 35,
+                dataLabels: {
+                    enabled: true,
+                    format: '{point.name}'
+                }
+            }
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.y:.1f} minutes</b>'
+        },
+        series: [{
+            type: 'pie',
+            name: 'Total duration',
+            data: datas
+        }]
+    });
 }
+
 function redrawPerCtry(datas) {
     Highcharts.chart('per_ctry', {
         chart: {
@@ -788,34 +794,34 @@ function redrawPerCtry(datas) {
 
 function redrawPerSite(datas) {
     Highcharts.chart('per_site', {
-    chart: {
-        type: 'pie',
-        options3d: {
-            enabled: true,
-            alpha: 45,
-            beta: 0
-        }
-    },
-    title: {
-        text: 'Flight(s) per site'
-    },
-    plotOptions: {
-        pie: {
-            allowPointSelect: true,
-            cursor: 'pointer',
-            depth: 35,
-            dataLabels: {
+        chart: {
+            type: 'pie',
+            options3d: {
                 enabled: true,
-                format: '{point.name}'
+                alpha: 45,
+                beta: 0
             }
-        }
-    },
-    series: [{
-        type: 'pie',
-        name: 'Flights',
-        data: datas
-    }]
-});
+        },
+        title: {
+            text: 'Flight(s) per site'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                depth: 35,
+                dataLabels: {
+                    enabled: true,
+                    format: '{point.name}'
+                }
+            }
+        },
+        series: [{
+            type: 'pie',
+            name: 'Flights',
+            data: datas
+        }]
+    });
 }
 
 function redrawFigures(filteredData) {
@@ -848,19 +854,19 @@ function redrawFigures(filteredData) {
     ctry_data = []
     ctry_duration_data = []
     for (let ctry in ctry_count) {
-        ctry_duration_data.push([ctry, ctry_duration[ctry]])
+        ctry_duration_data.push([ctry, ctry_duration[ctry]/60])
         ctry_data.push([ctry, ctry_count[ctry]])
     }
     site_data = []
     site_duration_data = []
     for (let site in site_count) {
-        site_duration_data.push([site, site_duration[site]])
+        site_duration_data.push([site, site_duration[site]/60])
         site_data.push([site, site_count[site]])
     }
     redrawPerCtry(ctry_data)
     redrawPerSite(site_data)
 
-     redrawPerCtryDuration(ctry_duration_data)
+    redrawPerCtryDuration(ctry_duration_data)
     redrawPerSiteDuration(site_duration_data)
 }
 
