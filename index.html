@@ -142,7 +142,7 @@ gtag('config', 'G-GB8D2PTX7Z');
             </button>
         </li>
         <li class="nav-item" role="presentation">
-            <button class="nav-link" id="fig-tab-but" data-bs-toggle="tab" data-bs-target="#fig-tab" type="button" role="tab" aria-controls="Figures" aria-selected="false">
+            <button class="nav-link resizer" id="fig-tab-but" data-bs-toggle="tab" data-bs-target="#fig-tab" type="button" role="tab" aria-controls="Figures" aria-selected="false">
                 Figures
             </button>
         </li>
@@ -633,12 +633,14 @@ gtag('config', 'G-GB8D2PTX7Z');
         redrawSitesFilter(sites);
         redrawViz(filteredData);
         var tabEl = document.querySelector('button[data-bs-toggle="tab"]')
-        tabEl.addEventListener('shown.bs.tab', function(event) {
+        $('.resizer').on('shown.bs.tab', function(event) {
             //event.target // newly activated tab
             //event.relatedTarget // previous active tab
+            console.log('ffffff')
             alert('ff')
             window.dispatchEvent(new Event('resize'));
         })
+      
         $("#site_input").on("keyup", function() {
             var value = $(this).val().toLowerCase();
             $("#sitesFilter li.filterable").filter(function() {
