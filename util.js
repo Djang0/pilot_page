@@ -701,7 +701,71 @@ function redrawBadges(filteredData) {
 
     $('#trace_length').html(sum_trace);
 }
+function redrawPerCtryDuration(datas) {
+    Highcharts.chart('per_ctry_dur', {
+        chart: {
+            type: 'pie',
+            options3d: {
+                enabled: true,
+                alpha: 45
+            }
+        },
+        title: {
+            text: 'Flight(s) duration per country'
+        },
 
+        plotOptions: {
+            pie: {
+                innerSize: 100,
+                depth: 45
+            }
+        },
+        series: [{
+            name: 'Total duration',
+            data: datas
+        }]
+    });
+}
+
+function redrawPerSiteDuration(datas) {
+    Highcharts.chart('per_site_dur', {
+    chart: {
+        type: 'pie',
+        options3d: {
+            enabled: true,
+            alpha: 45,
+            beta: 0
+        }
+    },
+    title: {
+        text: 'Flight(s) duration per site'
+    },
+    accessibility: {
+        point: {
+            valueSuffix: '%'
+        }
+    },
+    tooltip: {
+        pointFormat: '{series.name}: <b>{point}</b>'
+    },
+    plotOptions: {
+        pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            depth: 35,
+            dataLabels: {
+                enabled: true,
+                format: '{point.name}'
+            }
+        }
+    },
+    series: [{
+        type: 'pie',
+        name: 'Total duration',
+        data: datas
+    }]
+});
+}
 function redrawPerCtry(datas) {
     Highcharts.chart('per_ctry', {
         chart: {
@@ -739,7 +803,7 @@ function redrawPerSite(datas) {
         }
     },
     title: {
-        text: 'Amount of flightds per site'
+        text: 'Flights per site'
     },
     accessibility: {
         point: {
@@ -747,7 +811,7 @@ function redrawPerSite(datas) {
         }
     },
     tooltip: {
-        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        pointFormat: '{series.name}: <b>{point}</b>'
     },
     plotOptions: {
         pie: {
@@ -762,7 +826,7 @@ function redrawPerSite(datas) {
     },
     series: [{
         type: 'pie',
-        name: 'Site share',
+        name: 'Flights',
         data: datas
     }]
 });
@@ -771,6 +835,8 @@ function redrawPerSite(datas) {
 function redrawFigures(filteredData) {
     ctry_count = {}
     site_count = {}
+    ctry_duration = {}
+    site_duration = {}
     filteredData.forEach((flight) => {
         if (site_count.hasOwnProperty(flight.site)) {
             site_count[flight.site] += 1
@@ -782,19 +848,34 @@ function redrawFigures(filteredData) {
         } else {
             ctry_count[flight.country] = 1
         }
+        if (site_duration.hasOwnProperty(flight.site)) {
+            site_duration[flight.site] += flight.duration
+        } else {
+            site_duration[flight.site] = flight.duration
+        }
+        if (ctry_duration.hasOwnProperty(flight.country)) {
+            ctry_duration[flight.country] += flight.duration
+        } else {
+            ctry_duration[flight.country] = flight.duration
+        }
     })
     ctry_data = []
+    ctry_duration_data = []
     for (let ctry in ctry_count) {
-
+        ctry_duration_data.push([ctry, ctry_duration[ctry]])
         ctry_data.push([ctry, ctry_count[ctry]])
     }
     site_data = []
+    site_duration_data = []
     for (let site in site_count) {
-
+        site_duration_data.push([site, site_duration[site]])
         site_data.push([site, site_count[site]])
     }
     redrawPerCtry(ctry_data)
     redrawPerSite(site_data)
+
+     redrawPerCtryDuration(ctry_duration_data)
+    redrawPerSiteDuration(site_duration_data)
 }
 
 function redrawViz(filteredData) {
