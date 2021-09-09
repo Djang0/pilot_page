@@ -739,15 +739,7 @@ function redrawPerSiteDuration(datas) {
     },
     title: {
         text: 'Flight(s) duration per site'
-    },
-    accessibility: {
-        point: {
-            valueSuffix: '%'
-        }
-    },
-    tooltip: {
-        pointFormat: '{series.name}: <b>{point.data}</b>'
-    },
+    },   
     plotOptions: {
         pie: {
             allowPointSelect: true,
@@ -804,14 +796,6 @@ function redrawPerSite(datas) {
     },
     title: {
         text: 'Flight(s) per site'
-    },
-    accessibility: {
-        point: {
-            valueSuffix: '%'
-        }
-    },
-    tooltip: {
-        pointFormat: '{series.name}: <b>{point.data}</b>'
     },
     plotOptions: {
         pie: {
