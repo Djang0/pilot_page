@@ -905,7 +905,7 @@ function redrawHistoDuration(datas) {
 }
 
 function redrawYearDuration(datas) {
-    Highcharts.Chart('y_dur', {
+    Highcharts.chart('y_dur', {
         chart: {
             type: 'column',
             options3d: {
@@ -934,7 +934,8 @@ function redrawYearDuration(datas) {
 }
 
 function redrawYearCount(datas) {
-    Highcharts.Chart('y_cpt', {
+
+    Highcharts.chart('y_dur', {
         chart: {
             type: 'column',
             options3d: {
@@ -957,138 +958,138 @@ function redrawYearCount(datas) {
             data: datas
         }]
     });
-}
 
-function redrawFigures(filteredData) {
-    ctry_count = {}
-    site_count = {}
-    ctry_duration = {}
-    site_duration = {}
-    year_count = {}
-    year_duration = {}
-    histo_duration = {}
-    histo_count = {}
-    filteredData.forEach((flight) => {
-        datestr = flight.date
-        s = datestr.split('-')
-        y = parseInt(s[0])
-        m = parseInt(s[1])
-        if (histo_count.hasOwnProperty(y)) {
-            if (histo_count[y][m - 1]) {
-                histo_count[y][m - 1] = histo_count[y][m - 1] + 1
-                histo_duration[y][m - 1] = histo_duration[y][m - 1] + flight.duration
+
+    function redrawFigures(filteredData) {
+        ctry_count = {}
+        site_count = {}
+        ctry_duration = {}
+        site_duration = {}
+        year_count = {}
+        year_duration = {}
+        histo_duration = {}
+        histo_count = {}
+        filteredData.forEach((flight) => {
+            datestr = flight.date
+            s = datestr.split('-')
+            y = parseInt(s[0])
+            m = parseInt(s[1])
+            if (histo_count.hasOwnProperty(y)) {
+                if (histo_count[y][m - 1]) {
+                    histo_count[y][m - 1] = histo_count[y][m - 1] + 1
+                    histo_duration[y][m - 1] = histo_duration[y][m - 1] + flight.duration
+                } else {
+                    histo_count[y][m - 1] = 1
+                    histo_duration[y][m - 1] = flight.duration
+                }
+
             } else {
-                histo_count[y][m - 1] = 1
-                histo_duration[y][m - 1] = flight.duration
+                histo_count[y] = [null, null, null, null, null, null, null, null, null, null, null, null]
+                histo_duration[y] = [null, null, null, null, null, null, null, null, null, null, null, null]
             }
 
-        } else {
-            histo_count[y] = [null, null, null, null, null, null, null, null, null, null, null, null]
-            histo_duration[y] = [null, null, null, null, null, null, null, null, null, null, null, null]
-        }
-
-        if (year_count.hasOwnProperty(y)) {
-            year_count[y] = year_count[y] + 1
-            year_duration[y] = year_duration[y] + flight.duration
-        } else {
-            year_count[y] = 1
-            year_duration[y] = flight.duration
-        }
-        if (site_count.hasOwnProperty(flight.site)) {
-            site_count[flight.site] += 1
-        } else {
-            site_count[flight.site] = 1
-        }
-        if (ctry_count.hasOwnProperty(flight.country)) {
-            ctry_count[flight.country] += 1
-        } else {
-            ctry_count[flight.country] = 1
-        }
-        if (site_duration.hasOwnProperty(flight.site)) {
-            site_duration[flight.site] += flight.duration
-        } else {
-            site_duration[flight.site] = flight.duration
-        }
-        if (ctry_duration.hasOwnProperty(flight.country)) {
-            ctry_duration[flight.country] += flight.duration
-        } else {
-            ctry_duration[flight.country] = flight.duration
-        }
-    })
-    ctry_data = []
-    ctry_duration_data = []
-    for (let ctry in ctry_count) {
-        ctry_duration_data.push([ctry, ctry_duration[ctry] / 3600])
-        ctry_data.push([ctry, ctry_count[ctry]])
-    }
-    site_data = []
-    site_duration_data = []
-    for (let site in site_count) {
-        site_duration_data.push([site, site_duration[site] / 3600])
-        site_data.push([site, site_count[site]])
-    }
-    k = Object.keys(histo_duration)
-    histo_duration_series = []
-    histo_count_series = []
-    for (let y in k) {
-        for (let z in histo_duration[k[y]]) {
-            if (histo_duration[k[y]][z]) {
-                histo_duration[k[y]][z] = histo_duration[k[y]][z] / 3600
+            if (year_count.hasOwnProperty(y)) {
+                year_count[y] = year_count[y] + 1
+                year_duration[y] = year_duration[y] + flight.duration
+            } else {
+                year_count[y] = 1
+                year_duration[y] = flight.duration
             }
-
+            if (site_count.hasOwnProperty(flight.site)) {
+                site_count[flight.site] += 1
+            } else {
+                site_count[flight.site] = 1
+            }
+            if (ctry_count.hasOwnProperty(flight.country)) {
+                ctry_count[flight.country] += 1
+            } else {
+                ctry_count[flight.country] = 1
+            }
+            if (site_duration.hasOwnProperty(flight.site)) {
+                site_duration[flight.site] += flight.duration
+            } else {
+                site_duration[flight.site] = flight.duration
+            }
+            if (ctry_duration.hasOwnProperty(flight.country)) {
+                ctry_duration[flight.country] += flight.duration
+            } else {
+                ctry_duration[flight.country] = flight.duration
+            }
+        })
+        ctry_data = []
+        ctry_duration_data = []
+        for (let ctry in ctry_count) {
+            ctry_duration_data.push([ctry, ctry_duration[ctry] / 3600])
+            ctry_data.push([ctry, ctry_count[ctry]])
         }
-        histo_count_series.push({ name: k[y].toString(), data: histo_count[k[y]] })
-        histo_duration_series.push({ name: k[y].toString(), data: histo_duration[k[y]] })
-    }
-
-    year_count_data = []
-    year_duration_data = []
-    for (let y in year_count) {
-        year_duration_data.push([y, year_duration[y] / 3600])
-        year_count_data.push([y, year_count[y]])
-    }
-    redrawPerCtry(ctry_data)
-    redrawPerSite(site_data)
-
-    redrawPerCtryDuration(ctry_duration_data)
-    redrawPerSiteDuration(site_duration_data)
-
-    redrawHistoCount(histo_count_series)
-    redrawHistoDuration(histo_duration_series)
-
-    redrawYearCount(year_count)
-    redrawYearDuration(year_duration)
-}
-
-function redrawViz(filteredData) {
-    redrawTable(filteredData)
-    redrawBadges(filteredData)
-    redrawFigures(filteredData)
-    bindAll();
-}
-
-function getFlightRepr(flight, appliedFilters) {
-    repr = "";
-    if (appliedFilters[0]) {
-        repr += flight.wing;
-    }
-    if (appliedFilters[1]) {
-        repr += flight.year;
-    }
-    if (appliedFilters[2]) {
-        repr += flight.site;
-    }
-    return repr;
-}
-
-function applyFilters(allData, appliedFilters, filterStrings) {
-    var filterRepr = filterStrings.join('');
-
-    filteredData = [];
-    allData.forEach((flight, i) => {
-        if (getFlightRepr(flight, appliedFilters) == filterRepr) {
-            filteredData.push(flight);
+        site_data = []
+        site_duration_data = []
+        for (let site in site_count) {
+            site_duration_data.push([site, site_duration[site] / 3600])
+            site_data.push([site, site_count[site]])
         }
-    });
-    return filteredData;
-}
+        k = Object.keys(histo_duration)
+        histo_duration_series = []
+        histo_count_series = []
+        for (let y in k) {
+            for (let z in histo_duration[k[y]]) {
+                if (histo_duration[k[y]][z]) {
+                    histo_duration[k[y]][z] = histo_duration[k[y]][z] / 3600
+                }
+
+            }
+            histo_count_series.push({ name: k[y].toString(), data: histo_count[k[y]] })
+            histo_duration_series.push({ name: k[y].toString(), data: histo_duration[k[y]] })
+        }
+
+        year_count_data = []
+        year_duration_data = []
+        for (let y in year_count) {
+            year_duration_data.push([y, year_duration[y] / 3600])
+            year_count_data.push([y, year_count[y]])
+        }
+        redrawPerCtry(ctry_data)
+        redrawPerSite(site_data)
+
+        redrawPerCtryDuration(ctry_duration_data)
+        redrawPerSiteDuration(site_duration_data)
+
+        redrawHistoCount(histo_count_series)
+        redrawHistoDuration(histo_duration_series)
+
+        redrawYearCount(year_count)
+        redrawYearDuration(year_duration)
+    }
+
+    function redrawViz(filteredData) {
+        redrawTable(filteredData)
+        redrawBadges(filteredData)
+        redrawFigures(filteredData)
+        bindAll();
+    }
+
+    function getFlightRepr(flight, appliedFilters) {
+        repr = "";
+        if (appliedFilters[0]) {
+            repr += flight.wing;
+        }
+        if (appliedFilters[1]) {
+            repr += flight.year;
+        }
+        if (appliedFilters[2]) {
+            repr += flight.site;
+        }
+        return repr;
+    }
+
+    function applyFilters(allData, appliedFilters, filterStrings) {
+        var filterRepr = filterStrings.join('');
+
+        filteredData = [];
+        allData.forEach((flight, i) => {
+            if (getFlightRepr(flight, appliedFilters) == filterRepr) {
+                filteredData.push(flight);
+            }
+        });
+        return filteredData;
+    }
