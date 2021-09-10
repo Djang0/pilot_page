@@ -41,9 +41,9 @@ function redrawSitesFilter(sites) {
     $("#sitesFilter").html(filterHTML);
 }
 
-function setViewer(id, hasIGC) {
-
-    if (hasIGC) {
+function setViewer(id) {
+    var flight = filteredData.find(t => t.id === id)
+    if (flight.hasIGC) {
 
         var latlngs = []
 
@@ -56,7 +56,7 @@ function setViewer(id, hasIGC) {
             }
             var gps_alt_data = []
             var baro_alt_data = []
-            var flight = filteredData.find(t => t.id === id)
+            
             var indix = 0;
             maxgps = Math.max.apply(Math, fixes.map(function(o) { return o.gpsalt; }))
             maxbaro = Math.max.apply(Math, fixes.map(function(o) { return o.pressalt; }))
@@ -238,7 +238,7 @@ function setViewer(id, hasIGC) {
     } else {
         $('#mapinsert').html('<H1> There is no IGC data for this flight</H1>');
     }
-
+    window.location.hash='flight_'+id.tostring
 }
 
 function redrawTable(filteredData) {
@@ -309,11 +309,8 @@ function redrawTable(filteredData) {
                 var currentRow = $(this).closest("tr");
                 var data = $('#flights_table').DataTable().row(currentRow).data();
                 var id = parseInt(data['id']);
-                var igc = data['hasIGC'];
-                var flight = filteredData.find(obj => {
-                    return obj.id === id
-                })
-                setViewer(id, igc, flight)
+                
+                setViewer(id)
 
             });
         })
@@ -327,7 +324,7 @@ function bindAll() {
         var flight = filteredData.find(obj => {
             return obj.id === id
         })
-        setViewer(id, true);
+        setViewer(id);
 
     });
 
