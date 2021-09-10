@@ -929,7 +929,7 @@ function redrawYearDuration(datas) {
         },
         series: [{
             name: 'Duration',
-            data: datas
+            data: datas,
             color: '#20c997'
         }]
     });
