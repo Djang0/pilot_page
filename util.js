@@ -917,7 +917,7 @@ function redrawYearDuration(datas) {
             }
         },
         title: {
-            text: 'Yearly flight duration count evolution'
+            text: 'Yearly flight duration evolution'
         },
         tooltip: {
             pointFormat: '{series.name}: <b>{point.y:.1f} hours</b>'
