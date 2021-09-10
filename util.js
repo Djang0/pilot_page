@@ -910,14 +910,14 @@ function redrawYearDuration(datas) {
             type: 'column',
             options3d: {
                 enabled: true,
-                alpha: 15,
-                beta: 15,
-                depth: 50,
+                alpha: 27,
+                beta: 14,
+                depth: 100,
                 viewDistance: 25
             }
         },
         title: {
-            text: 'Evolution flight(s) duration per year'
+            text: 'Yearly flight duration count evolution'
         },
         tooltip: {
             pointFormat: '{series.name}: <b>{point.y:.1f} hours</b>'
@@ -928,7 +928,9 @@ function redrawYearDuration(datas) {
             }
         },
         series: [{
+            name: 'Duration',
             data: datas
+            color: '#20c997'
         }]
     });
 }
@@ -940,14 +942,14 @@ function redrawYearCount(datas) {
             type: 'column',
             options3d: {
                 enabled: true,
-                alpha: 15,
-                beta: 15,
-                depth: 50,
+                alpha: 27,
+                beta: 14,
+                depth: 100,
                 viewDistance: 25
             }
         },
         title: {
-            text: 'Evolution flight(s) count per year'
+            text: 'Yearly flight count evolution'
         },
         plotOptions: {
             column: {
@@ -955,6 +957,7 @@ function redrawYearCount(datas) {
             }
         },
         series: [{
+            name: 'Flights',
             data: datas
         }]
     });
