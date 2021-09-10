@@ -670,7 +670,9 @@ gtag('config', 'G-GB8D2PTX7Z');
 
         // Change hash for page-reload
         $('.nav-tabs a').on('shown.bs.tab', function(e) {
+            console.log(window.location.href)
             window.location.hash = e.target.hash;
+
             console.log('loc:'+e.target.hash)
         })
         redrawWingsFilter(wings);
