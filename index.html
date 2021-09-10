@@ -672,7 +672,7 @@ gtag('config', 'G-GB8D2PTX7Z');
         $('.nav-tabs a').on('shown.bs.tab', function(e) {
             
             //window.location.hash = e.target.hash;
-            window.location.href=window.location.href.split('#')[0]+'#'+e.target.hash
+            window.location.href=window.location.href.split('#')[0]+e.target.hash
             console.log('loc:'+e.target.hash)
         })
         redrawWingsFilter(wings);
