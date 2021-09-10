@@ -238,7 +238,7 @@ function setViewer(id) {
     } else {
         $('#mapinsert').html('<H1> There is no IGC data for this flight</H1>');
     }
-    window.location.hash='flight_'+id.tostring
+    window.location.hash='flight_'+id
 }
 
 function redrawTable(filteredData) {
