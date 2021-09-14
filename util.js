@@ -42,14 +42,11 @@ function redrawSitesFilter(sites) {
 }
 
 function setViewer(id) {
-    console.log('iiin')
+    
     if (parseInt(id) > 0) {
-        console.log('id ok')
         var flight = filteredData.find(t => t.id === id)
         if (flight) {
           if (flight.hasIGC) {
-           
-
             var latlngs = []
 
             $.getJSON(id + ".js", function(fixes) {
