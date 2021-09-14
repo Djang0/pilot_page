@@ -46,9 +46,9 @@ function setViewer(id) {
     if (parseInt(id) > 0) {
         console.log('id ok')
         var flight = filteredData.find(t => t.id === id)
-        console.log('flight:'+flight)
-        if (flight.hasIGC) {
-            console.log('has igc')
+        if (flight) {
+          if (flight.hasIGC) {
+           
 
             var latlngs = []
 
@@ -242,7 +242,11 @@ function setViewer(id) {
 
         } else {
             $('#mapinsert').html('<H1> There is no IGC data for this flight</H1>');
-        }
+        }  
+    }else{
+        $('#mapinsert').html('<H1> This flight does not exists.</H1>');
+    }
+        
         window.location.hash = 'flight_' + id
     }
 
