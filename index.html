@@ -687,14 +687,14 @@ gtag('config', 'G-GB8D2PTX7Z');
             })
             $('#mapinsert').remove();
             $('<div id="mapinsert" class="modal-body"></div>').insertAfter("#before_modal");
-            document.location.hash='#'
+            document.location.hash = '#'
         })
         $('.table_viewer').click(function() {
 
             var currentRow = $(this).closest("tr");
             var data = $('#flights_table').DataTable().row(currentRow).data();
             var id = parseInt(data['id']);
-                        
+
             setViewer(id)
 
         });
@@ -772,9 +772,13 @@ gtag('config', 'G-GB8D2PTX7Z');
         console.log(hash)
         if (hash) {
             if (hash.startsWith('flight_')) {
-                id = parseInt(hash.replace('flight_', ''))
-                $('#mapModal').show()
-                setViewer(id)
+                var id = parseInt(hash.replace('flight_', ''))
+                var myModal = new bootstrap.Modal(document.getElementById("mapModal"), {});
+                document.onreadystatechange = function() {
+                    myModal.show();
+                    setViewer(id)
+                };
+                
             } else {
                 $('.nav-tabs a[href="#' + hash + '"]').tab('show');
             }
