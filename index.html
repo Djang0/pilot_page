@@ -773,6 +773,7 @@ gtag('config', 'G-GB8D2PTX7Z');
         if (hash) {
             if (hash.startsWith('flight_')) {
                 id = parseInt(hash.replace('flight_', ''))
+                $('#mapModal').show()
                 setViewer(id)
             } else {
                 $('.nav-tabs a[href="#' + hash + '"]').tab('show');
