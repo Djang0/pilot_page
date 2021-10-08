@@ -1050,7 +1050,7 @@ glide=Math.round((data.glid*100)/data.tot)
 therm=Math.round((data.therm*100)/data.tot)
 droite=Math.round((data.right*100)/data.therm)
 gauche=Math.round((data.left*100)/data.therm)
-console.log(glide,therm,droite,gauche)
+console.log(data,glide,therm,droite,gauche)
 Highcharts.chart('durations', {
 
     chart: {
