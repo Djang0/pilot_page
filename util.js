@@ -1046,7 +1046,11 @@ function renderIcons() {
 }
 function redrawDurations(data) {
 
-
+glide=Math.round((data.glid*100)/data.tot)
+therm=Math.round((data.therm*100)/data.tot)
+droite=Math.round((data.right*100)/data.therm)
+gauche=Math.round((data.left*100)/data.therm)
+console.log(glide,therm,droite,gauche)
 Highcharts.chart('durations', {
 
     chart: {
@@ -1139,7 +1143,7 @@ Highcharts.chart('durations', {
             color: Highcharts.getOptions().colors[0],
             radius: '112%',
             innerRadius: '94%',
-            y: Math.round((data.glid*100)/data.tot)
+            y: glide
         }]
     }, {
         name: 'Thermal',
@@ -1147,7 +1151,7 @@ Highcharts.chart('durations', {
             color: Highcharts.getOptions().colors[1],
             radius: '93%',
             innerRadius: '75%',
-            y: Math.round((data.therm*100)/data.tot)
+            y: therm
         }]
     }, {
         name: 'Right',
@@ -1155,7 +1159,7 @@ Highcharts.chart('durations', {
             color: Highcharts.getOptions().colors[2],
             radius: '74%',
             innerRadius: '56%',
-            y: Math.round((data.right*100)/data.therm)
+            y: droite
         }]
     }, {
         name: 'Left',
@@ -1163,7 +1167,7 @@ Highcharts.chart('durations', {
             color: Highcharts.getOptions().colors[3],
             radius: '56%',
             innerRadius: '38%',
-            y: Math.round((data.left*100)/data.therm)
+            y: gauche
         }]
     }]
 });
