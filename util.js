@@ -971,7 +971,7 @@ function renderIcons() {
 
     // glide icon
     if (!this.series[0].icon) {
-        this.series[0].icon = this.renderer.path(['M', -8, 0, 'L', 8, 0, 'M', 0, -8, 'L', 8, 0, 0, 8])
+        this.series[0].icon = this.renderer.path(['M', 0, 8, 'L', 0, -8,'M',-8,0,'L',0,8,8,0])
             .attr({
                 stroke: '#303030',
                 'stroke-linecap': 'round',
@@ -990,8 +990,7 @@ function renderIcons() {
     // thermal icon
     if (!this.series[1].icon) {
         this.series[1].icon = this.renderer.path(
-            ['M', -8, 0, 'L', 8, 0, 'M', 0, -8, 'L', 8, 0, 0, 8,
-                'M', 8, -8, 'L', 16, 0, 8, 8]
+            ['M', 0, 8, 'L', 0, -8, 'M', -8, 0, 'L', 0, -8, 8, 0]
         )
             .attr({
                 stroke: '#ffffff',
@@ -1010,7 +1009,7 @@ function renderIcons() {
 
     // right icon
     if (!this.series[2].icon) {
-        this.series[2].icon = this.renderer.path(['M', 0, 8, 'L', 0, -8, 'M', -8, 0, 'L', 0, -8, 8, 0])
+        this.series[2].icon = this.renderer.path(['M', -8, 0, 'L', 8, 0, 'M', 0, -8, 'L', 8, 0, 0, 8])
             .attr({
                 stroke: '#303030',
                 'stroke-linecap': 'round',
@@ -1028,7 +1027,7 @@ function renderIcons() {
     );
     // left icon
     if (!this.series[3].icon) {
-        this.series[3].icon = this.renderer.path(['M', 8, 0, 'L', -8, 0, 'M', -8, -8, 'L', -8, 0])
+        this.series[3].icon = this.renderer.path(['M', 8, 0, 'L', -8, 0, 'M',0,-8,'L',-8,0,0,8])
             .attr({
                 stroke: '#303030',
                 'stroke-linecap': 'round',
@@ -1045,7 +1044,7 @@ function renderIcons() {
             (this.series[3].points[0].shapeArgs.r - this.series[3].points[0].shapeArgs.innerR) / 2
     );
 }
-function redrawYearCount(datas) {
+function redrawDurations(datas) {
 
 
 Highcharts.chart('durations', {
@@ -1140,7 +1139,7 @@ Highcharts.chart('durations', {
             color: Highcharts.getOptions().colors[0],
             radius: '112%',
             innerRadius: '94%',
-            y: 80
+            y: Math.round((data.glid*100)/data.tot)
         }]
     }, {
         name: 'Thermal',
@@ -1148,7 +1147,7 @@ Highcharts.chart('durations', {
             color: Highcharts.getOptions().colors[1],
             radius: '93%',
             innerRadius: '75%',
-            y: 65
+            y: Math.round((data.therm*100)/data.tot)
         }]
     }, {
         name: 'Right',
@@ -1156,7 +1155,7 @@ Highcharts.chart('durations', {
             color: Highcharts.getOptions().colors[2],
             radius: '74%',
             innerRadius: '56%',
-            y: 50
+            y: Math.round((data.right*100)/data.therm)
         }]
     }, {
         name: 'Left',
@@ -1164,7 +1163,7 @@ Highcharts.chart('durations', {
             color: Highcharts.getOptions().colors[3],
             radius: '56%',
             innerRadius: '38%',
-            y: 50
+            y: Math.round((data.left*100)/data.therm)
         }]
     }]
 });
@@ -1178,11 +1177,19 @@ function redrawFigures(filteredData) {
     year_duration = {}
     histo_duration = {}
     histo_count = {}
+    durations={'tot':0,'glid':0,'therm':0,'right':0, 'left':0}
     filteredData.forEach((flight) => {
         datestr = flight.date
         s = datestr.split('-')
         y = parseInt(s[0])
         m = parseInt(s[1])
+        
+        durations.tot = durations.tot+flight.durations.total
+        durations.glid = durations.glid+flight.durations.gliding
+        durations.therm = durations.therm+flight.durations.thermal
+        durations.left = durations.left+flight.durations.left
+        durations.right = durations.right+flight.durations.right
+
         if (histo_count.hasOwnProperty(y)) {
             if (histo_count[y][m - 1]) {
                 histo_count[y][m - 1] = histo_count[y][m - 1] + 1
@@ -1268,6 +1275,8 @@ function redrawFigures(filteredData) {
 
     redrawYearCount(year_count_data)
     redrawYearDuration(year_duration_data)
+
+    redrawDurations(durations)
 }
 
 function redrawViz(filteredData) {
