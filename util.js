@@ -1041,7 +1041,7 @@ Highcharts.chart('durations', {
     },
 
     title: {
-        text: 'Activity',
+        text: 'Summary',
         style: {
             fontSize: '24px'
         }
@@ -1067,24 +1067,31 @@ Highcharts.chart('durations', {
     pane: {
         startAngle: 0,
         endAngle: 360,
-        background: [{ // Track for Move
+        background: [{ // Track for Gliding
             outerRadius: '112%',
             innerRadius: '88%',
             backgroundColor: Highcharts.color(Highcharts.getOptions().colors[0])
                 .setOpacity(0.3)
                 .get(),
             borderWidth: 0
-        }, { // Track for Exercise
+        }, { // Track for Thermalling
             outerRadius: '87%',
             innerRadius: '63%',
             backgroundColor: Highcharts.color(Highcharts.getOptions().colors[1])
                 .setOpacity(0.3)
                 .get(),
             borderWidth: 0
-        }, { // Track for Stand
+        }, { // Track for thermal right 
             outerRadius: '62%',
             innerRadius: '38%',
             backgroundColor: Highcharts.color(Highcharts.getOptions().colors[2])
+                .setOpacity(0.3)
+                .get(),
+            borderWidth: 0
+        }, { // Track for thermal left
+            outerRadius: '37%',
+            innerRadius: '13%',
+            backgroundColor: Highcharts.color(Highcharts.getOptions().colors[3])
                 .setOpacity(0.3)
                 .get(),
             borderWidth: 0
@@ -1110,7 +1117,7 @@ Highcharts.chart('durations', {
     },
 
     series: [{
-        name: 'Move',
+        name: 'Glide',
         data: [{
             color: Highcharts.getOptions().colors[0],
             radius: '112%',
@@ -1118,7 +1125,7 @@ Highcharts.chart('durations', {
             y: 80
         }]
     }, {
-        name: 'Exercise',
+        name: 'Thermal',
         data: [{
             color: Highcharts.getOptions().colors[1],
             radius: '87%',
@@ -1126,11 +1133,19 @@ Highcharts.chart('durations', {
             y: 65
         }]
     }, {
-        name: 'Stand',
+        name: 'Right',
         data: [{
             color: Highcharts.getOptions().colors[2],
             radius: '62%',
             innerRadius: '38%',
+            y: 50
+        }]
+    }, {
+        name: 'Left',
+        data: [{
+            color: Highcharts.getOptions().colors[3],
+            radius: '37%',
+            innerRadius: '13%',
             y: 50
         }]
     }]
