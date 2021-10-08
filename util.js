@@ -1069,28 +1069,28 @@ Highcharts.chart('durations', {
         endAngle: 360,
         background: [{ // Track for Gliding
             outerRadius: '112%',
-            innerRadius: '88%',
+            innerRadius: '100%',
             backgroundColor: Highcharts.color(Highcharts.getOptions().colors[0])
                 .setOpacity(0.3)
                 .get(),
             borderWidth: 0
         }, { // Track for Thermalling
-            outerRadius: '87%',
-            innerRadius: '63%',
+            outerRadius: '99%',
+            innerRadius: '87%',
             backgroundColor: Highcharts.color(Highcharts.getOptions().colors[1])
                 .setOpacity(0.3)
                 .get(),
             borderWidth: 0
         }, { // Track for thermal right 
-            outerRadius: '62%',
-            innerRadius: '38%',
+            outerRadius: '86%',
+            innerRadius: '74%',
             backgroundColor: Highcharts.color(Highcharts.getOptions().colors[2])
                 .setOpacity(0.3)
                 .get(),
             borderWidth: 0
         }, { // Track for thermal left
-            outerRadius: '37%',
-            innerRadius: '13%',
+            outerRadius: '73%',
+            innerRadius: '61%',
             backgroundColor: Highcharts.color(Highcharts.getOptions().colors[3])
                 .setOpacity(0.3)
                 .get(),
