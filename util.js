@@ -1044,7 +1044,7 @@ function renderIcons() {
             (this.series[3].points[0].shapeArgs.r - this.series[3].points[0].shapeArgs.innerR) / 2
     );
 }
-function redrawDurations(datas) {
+function redrawDurations(data) {
 
 
 Highcharts.chart('durations', {
