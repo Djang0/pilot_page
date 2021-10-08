@@ -1069,28 +1069,28 @@ Highcharts.chart('durations', {
         endAngle: 360,
         background: [{ // Track for Gliding
             outerRadius: '112%',
-            innerRadius: '100%',
+            innerRadius: '94%',
             backgroundColor: Highcharts.color(Highcharts.getOptions().colors[0])
                 .setOpacity(0.3)
                 .get(),
             borderWidth: 0
         }, { // Track for Thermalling
-            outerRadius: '99%',
-            innerRadius: '87%',
+            outerRadius: '93%',
+            innerRadius: '75%',
             backgroundColor: Highcharts.color(Highcharts.getOptions().colors[1])
                 .setOpacity(0.3)
                 .get(),
             borderWidth: 0
         }, { // Track for thermal right 
-            outerRadius: '86%',
-            innerRadius: '74%',
+            outerRadius: '74%',
+            innerRadius: '56%',
             backgroundColor: Highcharts.color(Highcharts.getOptions().colors[2])
                 .setOpacity(0.3)
                 .get(),
             borderWidth: 0
         }, { // Track for thermal left
-            outerRadius: '73%',
-            innerRadius: '61%',
+            outerRadius: '56%',
+            innerRadius: '38%',
             backgroundColor: Highcharts.color(Highcharts.getOptions().colors[3])
                 .setOpacity(0.3)
                 .get(),
@@ -1121,31 +1121,31 @@ Highcharts.chart('durations', {
         data: [{
             color: Highcharts.getOptions().colors[0],
             radius: '112%',
-            innerRadius: '100%',
+            innerRadius: '94%',
             y: 80
         }]
     }, {
         name: 'Thermal',
         data: [{
             color: Highcharts.getOptions().colors[1],
-            radius: '99%',
-            innerRadius: '87%',
+            radius: '93%',
+            innerRadius: '75%',
             y: 65
         }]
     }, {
         name: 'Right',
         data: [{
             color: Highcharts.getOptions().colors[2],
-            radius: '86%',
-            innerRadius: '74%',
+            radius: '74%',
+            innerRadius: '56%',
             y: 50
         }]
     }, {
         name: 'Left',
         data: [{
             color: Highcharts.getOptions().colors[3],
-            radius: '73%',
-            innerRadius: '61%',
+            radius: '56%',
+            innerRadius: '38%',
             y: 50
         }]
     }]
