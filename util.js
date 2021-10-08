@@ -1121,31 +1121,31 @@ Highcharts.chart('durations', {
         data: [{
             color: Highcharts.getOptions().colors[0],
             radius: '112%',
-            innerRadius: '88%',
+            innerRadius: '100%',
             y: 80
         }]
     }, {
         name: 'Thermal',
         data: [{
             color: Highcharts.getOptions().colors[1],
-            radius: '87%',
-            innerRadius: '63%',
+            radius: '99%',
+            innerRadius: '87%',
             y: 65
         }]
     }, {
         name: 'Right',
         data: [{
             color: Highcharts.getOptions().colors[2],
-            radius: '62%',
-            innerRadius: '38%',
+            radius: '86%',
+            innerRadius: '74%',
             y: 50
         }]
     }, {
         name: 'Left',
         data: [{
             color: Highcharts.getOptions().colors[3],
-            radius: '37%',
-            innerRadius: '13%',
+            radius: '73%',
+            innerRadius: '61%',
             y: 50
         }]
     }]
