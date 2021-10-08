@@ -1028,7 +1028,7 @@ function renderIcons() {
     );
     // left icon
     if (!this.series[3].icon) {
-        this.series[3].icon = this.renderer.path(['M', 0, 8, 'L', -8, 0, 'M', -8, 0, 'L', 0, -8, 8, 0])
+        this.series[3].icon = this.renderer.path(['M', 0, 8, 'L', -8, 0, 'M', 0, -8, 'L', 0, -8, 8, 0])
             .attr({
                 stroke: '#303030',
                 'stroke-linecap': 'round',
