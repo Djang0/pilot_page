@@ -1187,7 +1187,7 @@ function redrawFigures(filteredData) {
         s = datestr.split('-')
         y = parseInt(s[0])
         m = parseInt(s[1])
-        
+        console.log(flight.durations.total)
         durations.tot = durations.tot+flight.durations.total
         durations.glid = durations.glid+flight.durations.gliding
         durations.therm = durations.therm+flight.durations.thermal
