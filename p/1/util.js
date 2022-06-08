@@ -258,7 +258,7 @@ function redrawTable(filteredData) {
     } else {
 
         var table = $('#flights_table').DataTable({
-            "autoWidth": false,
+            autoWidth: false,
             aaSorting: [
                 [3, 'desc'],
                 [4, 'desc']
