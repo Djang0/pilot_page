@@ -142,6 +142,105 @@ gtag('config', 'G-GB8D2PTX7Z');
 
     <div class="tab-content flex-column" id="mainTabContent">
         <div class="tab-pane fade show active" id="glob-tab" role="tabpanel" aria-labelledby="glob-tab">
+            
+            <div class="row">
+    <div class="col-sm-6 col-lg-6 mb-2 mt-2">
+        <!-- flight-count -->
+<div class="card mx-2">
+    <div class="card-header">
+        Flights count
+    </div>
+    <div class="card-body">
+        <!-- <h5 class="card-title">Flights count</h5> -->
+        <p class="card-text" id="count_badge">
+            
+        </p>
+    </div><!-- card-body -->
+</div><!-- profil card -->
+    </div>
+    <div class="col-sm-6 col-lg-6 mb-2 mt-2">
+       <!-- air time -->
+<div class="card mx-2">
+    <div class="card-header">
+        Air time
+    </div>
+    <div class="card-body">
+        <!-- <h5 class="card-title">Air time</h5> -->
+        <p class="card-text" id="air_badge">
+           
+        </p>
+    </div><!-- card-body -->
+</div><!-- profil card -->
+    </div>
+    <div class="col-sm-6 col-lg-6 mb-2 mt-2">
+       <div class="card mx-2">
+    <div class="card-header">
+        Total traces length
+    </div>
+    <div class="card-body">
+        <!-- <h5 class="card-title">Total traces length</h5> -->
+        <p class="card-text" id="trace_length">
+        </p>
+    </div><!-- card-body -->
+</div><!-- profil card -->
+    </div>
+    <div class="col-sm-6 col-lg-6 mb-2 mt-2">
+        <!-- max alt gps -->
+<div class="card mx-2">
+    <div class="card-header">
+        Altitude max (GPS)
+    </div>
+    <div class="card-body">
+        <!-- <h5 class="card-title">Altitude max (GPS)</h5> -->
+        <p class="card-text" id="alti_GPS_badge">
+            
+        </p>
+    </div><!-- card-body -->
+</div><!-- profil card -->
+    </div>
+    <div class="col-sm-6 col-lg-6 mb-2 mt-2">
+        <!-- max alt baro -->
+<div class="card mx-2">
+    <div class="card-header">
+        Altitude max (Baro)
+    </div>
+    <div class="card-body">
+        <!-- <h5 class="card-title">Altitude max (Baro)</h5> -->
+        <p class="card-text" id="alti_Baro_badge">
+           
+        </p>
+    </div><!-- card-body -->
+</div><!-- profil card -->
+    </div>
+    <div class="col-sm-6 col-lg-6 mb-2 mt-2">
+        <!-- with tab -->
+<div class="card mx-2">
+    <div class="card-header">
+        <h5 class="card-title">Dist. from take-off</h5>
+    </div>
+    <div class="card-body">
+        <ul class="nav nav-tabs card-header-tabs" role="tablist" id="max_dist_tab">
+            <li class="nav-item" role="presentation">
+                <a class="nav-link active" id="tot_dist-tab" data-bs-toggle="tab" href="#sum_dist" role="tab" aria-controls="Total" aria-selected="true">Total</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" id="max_dist-tab" data-bs-toggle="tab" href="#max_dist" role="tab" aria-controls="Max" aria-selected="true">Max.</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" id="avg_dist-tab" data-bs-toggle="tab" href="#avg_dist" role="tab" aria-controls="Avg" aria-selected="true">Avg.</a>
+            </li>
+        </ul>
+        <div class="tab-content" id="max_dist_tab_content">
+            <div class="tab-pane fade show active" id="sum_dist" role="tabpanel" aria-labelledby="Total"></div>
+            <div class="tab-pane fade" id="max_dist" role="tabpanel" aria-labelledby="Max"></div>
+            <div class="tab-pane fade" id="avg_dist" role="tabpanel" aria-labelledby="Avg"></div>
+        </div>
+    </div><!-- card-body -->
+</div><!-- profil card -->
+    </div>
+</div>
+        </div>
+        <div class="tab-pane fade" id="snv-tab" role="tabpanel" aria-labelledby="snv-tab">
             <div class="row" >
     <div class="col-sm-6 col-lg-6 mb-2 mt-2 ">
         <div class="card mx-2">
@@ -314,105 +413,6 @@ gtag('config', 'G-GB8D2PTX7Z');
 </div><!-- profil card -->
     </div>
 </div>
-            
-        </div>
-        <div class="tab-pane fade" id="snv-tab" role="tabpanel" aria-labelledby="snv-tab">
-            <div class="row">
-    <div class="col-sm-6 col-lg-6 mb-2 mt-2">
-        <!-- flight-count -->
-<div class="card mx-2">
-    <div class="card-header">
-        Flights count
-    </div>
-    <div class="card-body">
-        <!-- <h5 class="card-title">Flights count</h5> -->
-        <p class="card-text" id="count_badge">
-            
-        </p>
-    </div><!-- card-body -->
-</div><!-- profil card -->
-    </div>
-    <div class="col-sm-6 col-lg-6 mb-2 mt-2">
-       <!-- air time -->
-<div class="card mx-2">
-    <div class="card-header">
-        Air time
-    </div>
-    <div class="card-body">
-        <!-- <h5 class="card-title">Air time</h5> -->
-        <p class="card-text" id="air_badge">
-           
-        </p>
-    </div><!-- card-body -->
-</div><!-- profil card -->
-    </div>
-    <div class="col-sm-6 col-lg-6 mb-2 mt-2">
-       <div class="card mx-2">
-    <div class="card-header">
-        Total traces length
-    </div>
-    <div class="card-body">
-        <!-- <h5 class="card-title">Total traces length</h5> -->
-        <p class="card-text" id="trace_length">
-        </p>
-    </div><!-- card-body -->
-</div><!-- profil card -->
-    </div>
-    <div class="col-sm-6 col-lg-6 mb-2 mt-2">
-        <!-- max alt gps -->
-<div class="card mx-2">
-    <div class="card-header">
-        Altitude max (GPS)
-    </div>
-    <div class="card-body">
-        <!-- <h5 class="card-title">Altitude max (GPS)</h5> -->
-        <p class="card-text" id="alti_GPS_badge">
-            
-        </p>
-    </div><!-- card-body -->
-</div><!-- profil card -->
-    </div>
-    <div class="col-sm-6 col-lg-6 mb-2 mt-2">
-        <!-- max alt baro -->
-<div class="card mx-2">
-    <div class="card-header">
-        Altitude max (Baro)
-    </div>
-    <div class="card-body">
-        <!-- <h5 class="card-title">Altitude max (Baro)</h5> -->
-        <p class="card-text" id="alti_Baro_badge">
-           
-        </p>
-    </div><!-- card-body -->
-</div><!-- profil card -->
-    </div>
-    <div class="col-sm-6 col-lg-6 mb-2 mt-2">
-        <!-- with tab -->
-<div class="card mx-2">
-    <div class="card-header">
-        <h5 class="card-title">Dist. from take-off</h5>
-    </div>
-    <div class="card-body">
-        <ul class="nav nav-tabs card-header-tabs" role="tablist" id="max_dist_tab">
-            <li class="nav-item" role="presentation">
-                <a class="nav-link active" id="tot_dist-tab" data-bs-toggle="tab" href="#sum_dist" role="tab" aria-controls="Total" aria-selected="true">Total</a>
-            </li>
-            <li class="nav-item" role="presentation">
-                <a class="nav-link" id="max_dist-tab" data-bs-toggle="tab" href="#max_dist" role="tab" aria-controls="Max" aria-selected="true">Max.</a>
-            </li>
-            <li class="nav-item" role="presentation">
-                <a class="nav-link" id="avg_dist-tab" data-bs-toggle="tab" href="#avg_dist" role="tab" aria-controls="Avg" aria-selected="true">Avg.</a>
-            </li>
-        </ul>
-        <div class="tab-content" id="max_dist_tab_content">
-            <div class="tab-pane fade show active" id="sum_dist" role="tabpanel" aria-labelledby="Total"></div>
-            <div class="tab-pane fade" id="max_dist" role="tabpanel" aria-labelledby="Max"></div>
-            <div class="tab-pane fade" id="avg_dist" role="tabpanel" aria-labelledby="Avg"></div>
-        </div>
-    </div><!-- card-body -->
-</div><!-- profil card -->
-    </div>
-</div>
         </div>
         <div class="tab-pane fade" id="sco-tab" role="tabpanel" aria-labelledby="sco-tab">
             <div class="row">
@@ -529,7 +529,7 @@ gtag('config', 'G-GB8D2PTX7Z');
             <div class="card-header">Flights list</div>
             <div class="card-body">
                 
-                <table id='flights_table' class='display nowrap ' style="width:100%"></table>
+                <table id='flights_table' class='display nowrap compact' style="width:100%"></table>
             </div><!-- card-body -->
         </div><!-- profil card -->
     </div>
