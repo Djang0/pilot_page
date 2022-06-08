@@ -689,11 +689,7 @@ gtag('config', 'G-GB8D2PTX7Z');
             $('.resizer').on('shown.bs.tab', function (event) {
                 //event.target // newly activated tab
                 //event.relatedTarget // previous active tab
-                console.log('coucou')
-                if (e.target.hash == '#fli-tab') {
-                    data.columns.adjust().draw()
-                    console.log('proute')
-                }
+                
                 window.dispatchEvent(new Event('resize'));
             })
 
