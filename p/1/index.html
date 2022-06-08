@@ -680,8 +680,8 @@ gtag('config', 'G-GB8D2PTX7Z');
     </script>
     <script type="text/javascript">
         $(document).ready(function () {
-            $(window).on('activate.bs.scrollspy', function (e,obj) {
-          console.log(obj.relatedTarget);
+            $(window).on('activate.bs.scrollspy', function (e) {
+          console.log(e.relatedTarget);
       });
             redrawWingsFilter(wings);
             redrawYearsFilter(years);
