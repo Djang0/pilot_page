@@ -252,13 +252,13 @@ function setViewer(id) {
 function redrawTable(filteredData) {
 
     if ($.fn.dataTable.isDataTable('#flights_table')) {
-        table = $('#flights_table').DataTable({"autoWidth": false});
+        table = $('#flights_table').DataTable();
         table.clear().rows.add(filteredData).draw();
 
     } else {
 
         var table = $('#flights_table').DataTable({
-            autoWidth: false,
+            
             aaSorting: [
                 [3, 'desc'],
                 [4, 'desc']
