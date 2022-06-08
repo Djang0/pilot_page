@@ -57,7 +57,7 @@ gtag('config', 'G-GB8D2PTX7Z');
 </head>
 
 <body data-bs-spy="scroll" data-bs-target="#main_tab">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
     <div class="container-fluid">
         <a class="navbar-brand" href="#"><i class="fas fa-dove"></i>IFly</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -680,7 +680,9 @@ gtag('config', 'G-GB8D2PTX7Z');
     </script>
     <script type="text/javascript">
         $(document).ready(function () {
-
+            $(window).on('activate.bs.scrollspy', function (e,obj) {
+          console.log(obj.relatedTarget);
+      });
             redrawWingsFilter(wings);
             redrawYearsFilter(years);
             redrawSitesFilter(sites);
