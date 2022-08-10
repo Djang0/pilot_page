@@ -1,9 +1,6 @@
 
 /*generic*/
-#site_input{
-    position:sticky;
-    top:0;
-}
+
 .scrollable-menu {
     height: auto;
     max-height: 200px;
