@@ -18,7 +18,7 @@
     </div>
     <style type="text/css">
     #map {
-        height: 480px;
+        position: absolute; top: 0; left: 0;
     }
     </style>
     <script type="text/javascript">
@@ -34,7 +34,7 @@
         };
 
 
-        var heat = L.heatLayer(fixes, { radius: 10 });
+        var heat = L.heatLayer(fixes, { radius: 18 });
     map.addLayer(heat);
     });
     </script>
