@@ -9,8 +9,7 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css" integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14=" crossorigin="" />
     <!-- Make sure you put this AFTER Leaflet's CSS -->
     <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js" integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg=" crossorigin=""></script>
-    <script src="heatmap.js"></script>
-    <script src="heatmap-leaflet.js"></script>
+    <script src="leaflet.heat.js"></script>
 </head>
 
 <body>
@@ -33,23 +32,10 @@
             max: 8,
             data: fixes
         };
-        var cfg = {
-            // radius should be small ONLY if scaleRadius is true (or small radius is intended)
-            // if scaleRadius is false it will be the constant radius used in pixels
-            "radius": 35,
-            // which field name in your data represents the latitude - default "lat"
-            latField: 'lat',
-            // which field name in your data represents the longitude - default "lng"
-            lngField: 'lng',
-            // which field name in your data represents the data value - default "value"
-            valueField: 'count',
-            
-        };
 
 
-        var heatmapLayer = new HeatmapOverlay(cfg);
-        heatmapLayer.addTo(map)
-        heatmapLayer.setData(testData);
+        var heat = L.heatLayer(locations, { radius: 35 });
+    map.addLayer(heat);
     });
     </script>
 </body>
