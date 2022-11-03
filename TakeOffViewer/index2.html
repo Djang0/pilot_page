@@ -30,7 +30,7 @@
             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         }).addTo(map);
         var testData = {
-            max: 10 ,
+            max: 20 ,
             min:1,
             data: fixes
         };
@@ -45,7 +45,7 @@
             // if set to false the heatmap uses the global maximum for colorization
             // if activated: uses the data maximum within the current map boundaries
             //   (there will always be a red spot with useLocalExtremas true)
-            "useLocalExtrema": false,
+            "useLocalExtrema": true,
             // which field name in your data represents the latitude - default "lat"
             latField: 'lat',
             // which field name in your data represents the longitude - default "lng"
