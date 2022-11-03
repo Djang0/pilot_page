@@ -30,8 +30,8 @@
             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         }).addTo(map);
         var testData = {
-            max: 8 ,
-            min:1,
+            max: 8,
+            min: 1,
             data: fixes
         };
 
@@ -51,7 +51,11 @@
             // which field name in your data represents the longitude - default "lng"
             lngField: 'lng',
             // which field name in your data represents the data value - default "value"
-            valueField: 'count'
+            valueField: 'count',
+            
+            onExtremaChange : function(data) {
+                console.log(data);
+            }
         };
         var heatmapLayer = new HeatmapOverlay(cfg);
 
