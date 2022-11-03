@@ -26,7 +26,7 @@
     <script type="text/javascript">
     $.getJSON("./therm3.js", function(fixes) {
         var map = L.map('map').setView([50.17926, 5.56843], 12);
-        L.tileLayer('https://{s}.tile.stamen.com/toner/{z}/{x}/{y}.png', {
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 21,
             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         }).addTo(map);
