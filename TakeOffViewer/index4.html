@@ -16,32 +16,33 @@
 <body>
     <div>
         <div id="map"></div>
+        <div id="scale"></div>
     </div>
     <style type="text/css">
     #map {
-        height: 1000px;
+        height: 800px;
     }
     </style>
     <script type="text/javascript">
-    $.getJSON("./therm2.js", function(fixes) {
+    $.getJSON("./therm3.js", function(fixes) {
         var map = L.map('map').setView([50.17926, 5.56843], 12);
-        L.tileLayer('http://{s}.tile.stamen.com/toner/{z}/{x}/{y}.png', {
-            maxZoom: 19,
+        L.tileLayer('https://{s}.tile.stamen.com/toner/{z}/{x}/{y}.png', {
+            maxZoom: 21,
             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         }).addTo(map);
         var testData = {
-            max: 10 ,
-            min:1,
+            max: 14,
+            min: 1,
             data: fixes
         };
 
         var cfg = {
             // radius should be small ONLY if scaleRadius is true (or small radius is intended)
             // if scaleRadius is false it will be the constant radius used in pixels
-            "radius": 2,
+            "radius": 6,
             "maxOpacity": .8,
             // scales the radius based on map zoom
-            "scaleRadius": true,
+            "scaleRadius": false,
             // if set to false the heatmap uses the global maximum for colorization
             // if activated: uses the data maximum within the current map boundaries
             //   (there will always be a red spot with useLocalExtremas true)
@@ -51,7 +52,10 @@
             // which field name in your data represents the longitude - default "lng"
             lngField: 'lng',
             // which field name in your data represents the data value - default "value"
-            valueField: 'count'
+            valueField: 'count',
+            onExtremaChange : function(data){
+                $('#scale').html('<p>'+data+'</p>');
+            }
         };
         var heatmapLayer = new HeatmapOverlay(cfg);
 
