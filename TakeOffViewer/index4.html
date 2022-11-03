@@ -54,7 +54,7 @@
             // which field name in your data represents the data value - default "value"
             valueField: 'count',
             onExtremaChange : function(data){
-                $('#scale').html('<p>'+data+'</p>');
+                $('#scale').html('<p>'+JSON.stringify(data))+'</p>');
             }
         };
         var heatmapLayer = new HeatmapOverlay(cfg);
