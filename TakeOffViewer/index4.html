@@ -24,9 +24,10 @@
     }
     </style>
     <script type="text/javascript">
-    $.getJSON("./therm3.js", function(fixes) {
+    $.getJSON("./therm4.js", function(fixes) {
         var map = L.map('map').setView([50.17926, 5.56843], 12);
-        L.tileLayer('https://{s}.tiles.champs-libres.be/cyclosm/{z}/{x}/{y}.png', {
+        //be : https://{s}.tiles.champs-libres.be/cyclosm/{z}/{x}/{y}.png
+        L.tileLayer('https://{s}.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png', {
             maxZoom: 21,
             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         }).addTo(map);
@@ -53,16 +54,8 @@
             lngField: 'lng',
             // which field name in your data represents the data value - default "value"
             valueField: 'count',
-            gradient: {
-                // enter n keys between 0 and 1 here
-                // for gradient color customization
-                '.2': '#4d96ff',
-                '.5': '#ffe400',
-                '.1': '#fb3a27'
-                
-            },
-            onExtremaChange: function(data) {
-                $('#scale').html('<p>' + JSON.stringify(data) + '</p>');
+            onExtremaChange : function(data){
+                $('#scale').html('<p>'+JSON.stringify(data)+'</p>');
             }
         };
         var heatmapLayer = new HeatmapOverlay(cfg);
